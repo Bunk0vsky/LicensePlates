@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    
+    <title>Nazwa Strony</title>
+  </head>
+  <body>
+
+<header class="header"></header>
+
+    <h2>Using the <i> fetch() browser method </i> to fetch data from API</h2>
+    <div id = "output"> </div> 
+    <button onclick = "fetchData()"> Fetch API to get data </button>
+    <script>
+       let output = document.getElementById('output');
+       function fetchData() {
+          fetch('http://localhost:1337/api/main-page', {
+      headers: {
+        'Authorization': 'Bearer 82b9f7925262262cfb4d6f33a6123941957072f8b800e11bc469798379eec0cf3109d7175b349608fcb9a1bd8bd35094ecc893b22aa48ee2c9b1e624ea5b18cc524122df00e4711ab3e9995365d76614ffc21e3afeac0c52649d3f4ec4a5008f831e861d71e53292718705c19ae5e5bb327e582559f3c7504de51136895b3571'
+      }})
+          .then(response => response.json())
+          .then(res => {
+            console.log(res);
+             output.innerHTML += "title = " + res.data.attributes.title + "<br/>";
+          })
+       }
+    </script>
+
+
+
+    <section class="section-gallery">
+      <div class="gallery">
+        <figure class="gallery-item">
+          <img
+            src="img/gallery/gallery1.jpg"
+            alt="Photo of license plate"
+          />
+          <figure class="gallery-item">
+            <img
+              src="img/gallery/gallery2.jpg"
+              alt="Photo of front door"
+            />
+            <figure class="gallery-item">
+              <img
+                src="img/gallery/gallery3.jpg"
+                alt="Wall of plates"
+              />
+      </div>
+    </section>
+
+ 
+
+
+
+  </body>
+</html>
