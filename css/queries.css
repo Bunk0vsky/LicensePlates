@@ -1,0 +1,9 @@
+.wrapper {
+  @media screen and (min-width: 1025px) {
+    max-width: 1140px; /* Maksymalna szerokość kontenera dla dużych ekranów */
+    padding-right: 15px; /* Prawy padding */
+    padding-left: 15px; /* Lewy padding */
+    margin-right: auto; /* Wyśrodkowanie kontenera na ekranie */
+    margin-left: auto; /* Wyśrodkowanie kontenera na ekranie */
+  }
+}

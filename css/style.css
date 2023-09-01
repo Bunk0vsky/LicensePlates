@@ -283,7 +283,7 @@ rect.shadow {
 
 .promo-bar {
   position: relative;
-  padding: 0 3.2rem;
+  /* padding: 0 3.2rem; */
   margin: 2rem 5rem;
   display: flex;
   flex-wrap: wrap;
@@ -300,7 +300,7 @@ rect.shadow {
   background-color: #fff;
   font-family: "Exo", serif;
 
-  height: 24rem;
+  height: 36rem;
   margin: 8px;
 }
 
@@ -341,8 +341,9 @@ rect.shadow {
 .promo-condition,
 .promo-size,
 .promo-year {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.4;
+  font-weight: 500;
 }
 
 .old-price {
@@ -399,7 +400,8 @@ rect.shadow {
   transition: all 0.4s;
   background-color: #fff;
   font-family: "Exo", serif;
-  height: 28rem;
+
+  height: 32rem;
   margin: 8px;
 }
 

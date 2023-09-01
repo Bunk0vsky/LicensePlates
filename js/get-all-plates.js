@@ -124,6 +124,11 @@ const getPlates = () => {
             size.textContent = `Wymiary: ${plate.sizeLength} x ${plate.sizeWidth}`;
             promoContent.appendChild(size);
 
+            const year = document.createElement("p");
+            year.className = "promo-year";
+            year.textContent = `Rok: ${plate.year}`;
+            promoContent.appendChild(year);
+
             const condition = document.createElement("p");
             condition.className = "promo-condition";
             condition.textContent = `Stan: ${plate.condition}`;

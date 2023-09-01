@@ -32,8 +32,8 @@ const selectedOption = async (e) => {
 const removeElements = () => {
   const element = document.getElementById("shop-bar");
   const loader = document.getElementById("scroll-loader");
-  element.replaceChildren();
-  if (!loader) {
+  element?.replaceChildren();
+  if (!loader && element) {
     element.insertAdjacentHTML(
       "afterend",
       `<div id="scroll-loader">
