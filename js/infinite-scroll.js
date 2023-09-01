@@ -4,10 +4,11 @@ const infiniteSCroll = async (plateCount) => {
   const cardCountElem = document.getElementById("card-count");
   const cardTotalElem = document.getElementById("card-total");
   const loader = document.getElementById("scroll-loader");
+  console.log(plateCount);
   let cardLimit = plateCount;
   const cardIncrease = 5;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
-
+  console.log(cardLimit, cardIncrease);
   cardTotalElem.innerHTML = cardLimit;
 
   var throttleTimer;
@@ -26,11 +27,14 @@ const infiniteSCroll = async (plateCount) => {
     const endRange =
       pageIndex == pageCount ? cardLimit : pageIndex * cardIncrease;
     cardCountElem.innerHTML = endRange;
-
+    console.log(pageIndex, pageCount);
     if (pageIndex === pageCount) {
+      console.log("wszedł do remove");
+
       removeInfiniteScroll();
     }
-    if (pageIndex > 1) {
+    if (pageIndex > 1 && pageIndex < pageCount) {
+      console.log("wszedł tu");
       await displayMore();
       currentPage = pageIndex;
     }
@@ -61,7 +65,6 @@ const infiniteSCroll = async (plateCount) => {
   await addCards(currentPage);
 };
 window.onload = async () => {
-  console.log("dupsko");
   window.addEventListener("hashchange", async (e) => {
     if (e.newURL.includes("shop")) {
       platesStartRange = 0;
@@ -77,5 +80,6 @@ window.onload = async () => {
   if (shopBar) {
     const data = await displayMore();
     infiniteSCroll(data?.count || 0);
+    getStates();
   }
 };

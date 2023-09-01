@@ -1,33 +1,5 @@
-const filterPlates = (e) => {
-  const stateName = e.textContent;
-  let QUERY_STATE = encodeURIComponent(
-    `*[_type == "plate"]{
-    ...,
-    country->,
-    state->
-    }
-    [state.name == "${stateName}"]`
-  );
-
-  // Compose the URL for your project's endpoint and add the query
-  let URL_to_get_state = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_STATE}`;
-  fetch(URL_to_get_state)
-    .then((res) => res.json())
-    .then(({ result }) => {
-      let shopSection = document.getElementById("shop-bar");
-      shopSection.replaceChildren();
-
-      if (result.length > 0) {
-        if (shopSection) {
-          result.forEach((plate) => {
-            generatePlate(plate, shopSection);
-            // create a div element for each promo
-          });
-        }
-      }
-    })
-
-    .catch((err) => console.error(err));
+const filterPlates = async (e) => {
+  await resetFilters("", e?.textContent);
 };
 
 // ==============================================================
@@ -45,51 +17,40 @@ country->
 let URL_to_get_all_states = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_DISPLAY_ALL_STATES}`;
 
 // fetch the content
-const displayAll = () =>
-  fetch(URL_to_get_all_states)
-    .then((res) => res.json())
-    .then(({ result }) => {
-      console.log("======================================================D");
-      let shopSection = document.getElementById("shop-bar");
-      shopSection.replaceChildren();
+const displayAll = async () => {
+  removeElements();
+  currentPage = 1;
+  platesStartRange = 0;
+  platesEndRange = 5;
 
-      if (result.length > 0) {
-        plateLastId = result[result.length - 1]._id;
+  const data = await displayMore();
 
-        if (shopSection) {
-          // Get only promo plates
-          result
-
-            .filter((x) => !x.isPromo)
-            .forEach((plate) => {
-              generatePlate(plate, shopSection);
-            });
-        }
-      }
-    })
-
-    .catch((err) => console.error(err));
+  infiniteSCroll(data?.count || 0);
+};
 
 var sortBy = "country.name asc, state.name asc";
-
-// fetch the content
-// && _id > "${
-//   plateLastId || ""
-// }"
-
 var platesStartRange = 0;
 var platesEndRange = 5;
 
-const displayMore = async () => {
+const displayMore = async (countryName, stateName) => {
+  const isFilterByCountryName = countryName
+    ? `[country.name == "${countryName}" && isPromo != true ]`
+    : "";
+  const isFilterByStateName = stateName
+    ? `[state.name == "${stateName}" && isPromo != true ]`
+    : "";
+
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
       "list":*[_type == "plate"  && isPromo != true] {
       ...,
       "state": state->,
       "country": country->
-    } | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
-
-      "count": count(*[_type == "plate" && isPromo != true ]),
-  
+    } ${isFilterByCountryName} ${isFilterByStateName} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
+      "count": count(*[_type == "plate" && isPromo != true ]{
+        ...,
+        "state": state->,
+        "country": country->
+      } ${isFilterByCountryName} ${isFilterByStateName}),
   }
     
   `);

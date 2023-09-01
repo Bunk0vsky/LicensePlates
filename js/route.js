@@ -66,6 +66,7 @@ elPromo.addEventListener("click", function (e) {
 
 elShop.addEventListener("click", async (e) => {
   locationHandler();
+  getStates();
   removeElements();
   currentPage = 1;
   platesStartRange = 0;

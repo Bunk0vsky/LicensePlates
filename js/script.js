@@ -19,14 +19,7 @@ const selectedOption = async (e) => {
   sortBy = e.id;
 
   closeSortingMenu();
-  removeElements();
-  currentPage = 1;
-  platesStartRange = 0;
-  platesEndRange = 5;
-
-  const data = await displayMore();
-
-  infiniteSCroll(data?.count || 0);
+  resetFilters();
 };
 
 const removeElements = () => {
@@ -54,4 +47,15 @@ const debounce = (callback, wait) => {
       callback.apply(null, args);
     }, wait);
   };
+};
+
+const resetFilters = async (countryName, stateName) => {
+  removeElements();
+  currentPage = 1;
+  platesStartRange = 0;
+  platesEndRange = 5;
+
+  const data = await displayMore(countryName, stateName);
+  console.log(data?.count);
+  infiniteSCroll(data?.count || 0);
 };
