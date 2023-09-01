@@ -1,0 +1,96 @@
+<div class="container center-text">
+  <div class="subheading">Sklep</div>
+  <!-- <h2 class="heading-secondary"></h2> -->
+</div>
+<div class="grid grid--2-cols">
+  <section class="section-category el--2">
+    <div class="category-bar">
+      <button class="accordion" onclick="displayAll();">Wszystkie</button>
+      <button class="accordion arrow" onclick="toggleButton(this);">
+        Stany Zjednoczone
+      </button>
+      <div class="panel">
+        <ul class="menu-nav-list" id="usa"></ul>
+      </div>
+
+      <button class="accordion" onclick="getOtherCountry(this);">Meksyk</button>
+
+      <button class="accordion" onclick="getOtherCountry(this);">Kanada</button>
+
+      <button class="accordion" onclick="getOtherCountry(this);">
+        Ramki, tablice motocyklowe
+      </button>
+
+      <button class="accordion" onclick="getOtherCountry(this);">
+        Inne kategorie
+      </button>
+    </div>
+  </section>
+  <section class="section-shop el--3" id="shop">
+    <div class="sorting">
+      <div id="sorting-background" onclick="closeSortingMenu();"></div>
+      <div class="select animated zoomIn">
+        <span class="select-placeholder" onclick="openSortingMenu();"
+          >Sortuj...</span
+        >
+        <div id="options-container">
+          <label
+            class="option"
+            id="country.name asc, state.name asc"
+            onclick="selectedOption(this);"
+          >
+            <span class="title animated fadeIn"
+              ><i class="icon icon-speedometer"></i>Nazwa: A - Z</span
+            >
+          </label>
+          <label
+            class="option"
+            id="country.name desc, state.name desc"
+            onclick="selectedOption(this);"
+          >
+            <span class="title animated fadeIn"
+              ><i class="icon icon-fire"></i>Nazwa: Z - A</span
+            >
+          </label>
+
+          <label class="option" id="price asc" onclick="selectedOption(this);">
+            <span class="title animated fadeIn"
+              ><i class="icon icon-badge"></i>Cena: od najniższej</span
+            >
+          </label>
+          <label class="option" id="price desc" onclick="selectedOption(this);">
+            <span class="title animated fadeIn"
+              ><i class="icon icon-badge"></i>Cena: od najwyższej</span
+            >
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="container center" id="loader">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="shop-bar" id="shop-bar">
+      <!-- script get-all-plates.js -->
+    </div>
+    <div id="scroll-loader">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+    <div class="card-actions">
+      <span
+        >Showing <span id="card-count"></span> of
+        <span id="card-total"></span> cards
+      </span>
+    </div>
+
+    <!-- Infinite scroll -->
+    <!-- <div id="card-container"></div> -->
+  </section>
+</div>

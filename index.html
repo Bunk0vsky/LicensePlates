@@ -4,60 +4,143 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" />
 
     <link rel="stylesheet" href="css/general.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/queries.css" />
-    
-    <title>Nazwa Strony</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:wght@200;400;500;700&family=Kameron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <script
+      defer
+      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    ></script> -->
+
+    <!-- <script defer src="js/routing.js"></script>
+     -->
+    <script defer src="js/route.js"></script>
+    <script defer src="js/script.js"></script>
+    <script defer src="js/menu-bar.js"></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script defer src="js/get-all-plates.js"></script>
+    <script defer src="js/get-all-states.js"></script>
+    <script defer src="js/filter-plates.js"></script>
+    <script defer src="js/infinite-scroll.js"></script>
+    <title>Tablice usa</title>
   </head>
   <body>
+    <header class="header">
+      <a href="#" class="main-nav-link"> Tablice USA </a>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li>
+            <a class="main-nav-link neonText" id="main-nav-main" href="#"
+              >Strona główna</a
+            >
+          </li>
+          <li>
+            <a
+              class="main-nav-link neonTextFlicker"
+              id="main-nav-promo"
+              href="#promo"
+              >Promocje</a
+            >
+          </li>
+          <li>
+            <a class="main-nav-link neonText" id="main-nav-shop" href="#shop"
+              >Sklep</a
+            >
+          </li>
+          <li>
+            <a class="main-nav-link neonText" href="#delivery">Dostawa</a>
+          </li>
+          <li>
+            <a class="main-nav-link nav-cta neonText" href="#contact"
+              >Kontakt</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- -------------------------WHOLE PAGE------------------------------->
 
-<header class="header"></header>
+      <div id="content"></div>
 
-    <h2>Using the <i> fetch() browser method </i> to fetch data from API</h2>
-    <div id = "output"> </div> 
-    <button onclick = "fetchData()"> Fetch API to get data </button>
-    <script>
-       let output = document.getElementById('output');
-       function fetchData() {
-          fetch('http://localhost:1337/api/main-page', {
-      headers: {
-        'Authorization': 'Bearer 82b9f7925262262cfb4d6f33a6123941957072f8b800e11bc469798379eec0cf3109d7175b349608fcb9a1bd8bd35094ecc893b22aa48ee2c9b1e624ea5b18cc524122df00e4711ab3e9995365d76614ffc21e3afeac0c52649d3f4ec4a5008f831e861d71e53292718705c19ae5e5bb327e582559f3c7504de51136895b3571'
-      }})
-          .then(response => response.json())
-          .then(res => {
-            console.log(res);
-             output.innerHTML += "title = " + res.data.attributes.title + "<br/>";
-          })
-       }
-    </script>
+      <!-- -------------------------WHOLE PAGE------------------------------->
+    </main>
 
+    <footer class="footer">
+      <div class="container footer-container flex" id="contact">
+        <div class="address-col">
+          <p class="footer-heading">Kontakt</p>
+          <address class="contacts">
+            <p class="address">
+              ul. Słowackiego 1 <br />Piotrków Trybunalski 97-330
+            </p>
 
+            <p>
+              <a class="footer-link" href="tel:+48 333-333-333">
+                tel: +48 333-333-333</a
+              ><br />
+              <a class="footer-link" href="mailto:tabliceusa-sklep@example.com"
+                >tabliceusa-sklep@example.com</a
+              >
+            </p>
+          </address>
+        </div>
 
-    <section class="section-gallery">
-      <div class="gallery">
-        <figure class="gallery-item">
-          <img
-            src="img/gallery/gallery1.jpg"
-            alt="Photo of license plate"
-          />
-          <figure class="gallery-item">
-            <img
-              src="img/gallery/gallery2.jpg"
-              alt="Photo of front door"
-            />
-            <figure class="gallery-item">
-              <img
-                src="img/gallery/gallery3.jpg"
-                alt="Wall of plates"
-              />
+        <div class="social-col">
+          <p class="footer-heading">Znajdziesz nas również!</p>
+
+          <ul class="social-links">
+            <li class="social-tab">
+              <a class="footer-link" href="#"
+                ><ion-icon
+                  class="social-icon facebook-icon"
+                  name="logo-facebook"
+                ></ion-icon
+              ></a>
+            </li>
+            <li class="social-tab">
+              <a class="footer-link" href="#"
+                ><ion-icon
+                  class="social-icon whatsapp-icon"
+                  name="logo-whatsapp"
+                ></ion-icon
+              ></a>
+            </li>
+            <li class="social-tab">
+              <a class="footer-link" href="#"
+                ><ion-icon
+                  name="mail-outline"
+                  class="social-icon mailbox-icon"
+                ></ion-icon
+              ></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </section>
-
- 
-
-
-
+      <div class="copyright">
+        Copyright &copy; <span class="year"> 2023</span> by tabliceusa-sklep.pl
+        All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>
