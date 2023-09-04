@@ -5,10 +5,8 @@ let QUERY_ALL_STATES = encodeURIComponent(
   }  | order(name)`
 );
 
-// Compose the URL for your project's endpoint and add the query
 let URL_to_get_states = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_ALL_STATES}`;
 
-// fetch the content
 const getStates = () =>
   fetch(URL_to_get_states)
     .then((res) => res.json())
@@ -37,7 +35,6 @@ const getOtherCountry = async (e) => {
   await resetFilters(e?.textContent);
 };
 
-// ===============================================
 window.addEventListener("hashchange", (e) => {
   if (e.newURL.includes("shop")) {
     getStates();

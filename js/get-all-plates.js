@@ -27,6 +27,10 @@ const generatePlate = (plate, shopSection) => {
   const shop = document.createElement("div");
   shop.className = "shop";
   // add the item to the list
+  shop.setAttribute("onclick", "openShopCard(this);");
+  shop.setAttribute("data-modal", plate._id);
+  console.log("Plate:", plate);
+
   shopWrapper.appendChild(shop);
 
   const plateImage = document.createElement("img");
@@ -72,6 +76,24 @@ const generatePlate = (plate, shopSection) => {
   const currentPrice = document.createElement("span");
   currentPrice.textContent = `PLN ${plate.price}`;
   price.appendChild(currentPrice);
+
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.id = plate._id;
+  shopWrapper.appendChild(modal);
+
+  const modalBg = document.createElement("div");
+  modalBg.className = "modal-bg modal-exit";
+  modal.appendChild(modalBg);
+
+  const modalContainer = document.createElement("div");
+  modalContainer.className = "modal-container";
+  modal.appendChild(modalContainer);
+
+  const modalButton = document.createElement("button");
+  modalButton.className = "modal-close modal-exit";
+  modalButton.textContent = "X";
+  modal.appendChild(modalButton);
 };
 
 // fetch the content

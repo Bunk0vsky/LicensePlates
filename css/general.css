@@ -73,10 +73,6 @@ body {
   overflow-x: hidden;
 }
 
-@font-face {
-  font-family: myRetro;
-  src: url(../HAMBH___.TTF);
-}
 /* ****************************************************** */
 /* GENERAL REUSABLE COMPONENTS */
 /* ****************************************************** */
@@ -154,8 +150,6 @@ body {
   padding: 2rem;
   color: black;
   text-shadow: -3px -3px 0px #797676;
-
-  /* margin-bottom: 3.2rem; */
 }
 
 .heading-secondary {

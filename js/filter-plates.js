@@ -2,21 +2,12 @@ const filterPlates = async (e) => {
   await resetFilters("", e?.textContent);
 };
 
-// ==============================================================
-// function displayAll
-
-let plateLastId = "";
-
 let QUERY_DISPLAY_ALL_STATES = encodeURIComponent(`*[_type == "plate"][0...2]{
     ...,
 state->,
 country->
   }`);
 
-// Compose the URL for your project's endpoint and add the query
-let URL_to_get_all_states = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_DISPLAY_ALL_STATES}`;
-
-// fetch the content
 const displayAll = async () => {
   removeElements();
   currentPage = 1;
@@ -55,7 +46,6 @@ const displayMore = async (countryName, stateName) => {
     
   `);
 
-  // Compose the URL for your project's endpoint and add the query
   let URL_to_get_more_states = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_DISPLAY_MORE_STATES}`;
 
   const response = await fetch(URL_to_get_more_states);
@@ -77,5 +67,3 @@ const displayMore = async (countryName, stateName) => {
   }
   return result;
 };
-
-// displayMore();

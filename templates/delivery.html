@@ -11,64 +11,52 @@
       />
     </div>
 
-    <div class="text-delivery">
-      <ul style="list-style: none">
-        <li class="list-delivery">
-          <h3>Sposoby Dostawy:</h3>
-          Opis różnych opcji dostawy, takich jak dostawa kurierem, odbiór
-          osobisty, poczta, itp. Informacje o czasie realizacji zamówienia dla
-          każdej opcji dostawy.
-        </li>
-        <li class="list-delivery">
-          <h3>Koszty Dostawy:</h3>
-          Przedstawienie tabeli lub listy z kosztami dostawy dla różnych
-          regionów lub opcji dostawy. Informacje o ewentualnych promocjach lub
-          zniżkach na dostawę.
-        </li>
-        <li class="list-delivery">
-          <h3>Warunki Dostawy:</h3>
-          Wyjaśnienie warunków, które muszą być spełnione, aby móc skorzystać z
-          danej opcji dostawy (np. minimalna wartość zamówienia dla darmowej
-          dostawy).
-        </li>
-        <li class="list-delivery">
-          <h3>Śledzenie Dostawy:</h3>
-          Jeśli oferujesz usługę śledzenia dostawy, wyjaśnienie, jak klient może
-          śledzić swoje zamówienie po jego wysłaniu.
-        </li>
-        <li class="list-delivery">
-          <h3>Zwroty i Reklamacje:</h3>
-          Informacje dotyczące procedury zwrotów i reklamacji związanych z
-          dostawą. Wymagane dokumenty i kroki do wykonania w przypadku problemów
-          z dostawą.
-        </li>
-        <li class="list-delivery">
-          <h3>Obszary Dostawy:</h3>
-          Lista regionów, w których oferujesz dostawę oraz dodatkowe informacje
-          o dostępności dostawy dla różnych lokalizacji.
-        </li>
-        <li class="list-delivery">
-          <h3>Czas Dostawy:</h3>
-          Przybliżony czas dostawy dla każdej opcji dostawy oraz wyjaśnienie,
-          czy to jest czas szacunkowy czy dokładny.
-        </li>
-        <li class="list-delivery">
-          <h3>Kontakt Dla Pytań:</h3>
-          Udostępnienie kontaktu do obsługi klienta w przypadku pytań lub
-          niejasności związanych z dostawą.
-        </li>
-        <li class="list-delivery">
-          <h3>Informacje o Odbiorze Osobistym:</h3>
-          Jeśli klient ma możliwość odbioru zamówienia osobiście, podaj
-          informacje o miejscu, godzinach i procedurze odbioru.
-        </li>
-        <li class="list-delivery">
-          <h3>Bezpieczeństwo Dostawy:</h3>
-          W przypadku ważnych lub delikatnych przesyłek, opis zabezpieczeń,
-          jakie są stosowane, aby zapewnić bezpieczeństwo produktów podczas
-          dostawy.
-        </li>
-      </ul>
+    <div class="wrapper">
+      <div class="text-delivery">
+        <ul style="list-style: none; width: 100%">
+          <li class="list-delivery">
+            <h3 class="delivery-heading">Koszt Wysyłki Pocztą Polską:</h3>
+
+            <div id="options-delivery">
+              <table class="table-delivery">
+                <thead>
+                  <tr>
+                    <th>Opcje</th>
+                    <th class="price-head">Koszt</th>
+                  </tr>
+                </thead>
+                <tbody id="delivery-table-body"></tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-modal" onclick="handleModal();">
+      <a data-modal="modal-one">Open Modal</a>
+    </div>
+
+    <div class="modal" id="modal-one">
+      <div class="modal-bg modal-exit"></div>
+      <div class="modal-container">
+        <div class="modal-card">
+          <img
+            src="/img/promo/plate-1.jpg"
+            alt="tablica rejestracyjna"
+            class="shop-img"
+            style="width: 100%; height: 100%"
+          />
+        </div>
+        <div class="modal-card">
+          <p><span>Tablica z USA</span></p>
+          <p><span>Kraj:</span> Stany Zjednoczone</p>
+          <p><span>Stan:</span> Pensylwania</p>
+          <p><span>Wymiary tablicy:</span> 30/15</p>
+          <p><span>Rok wydania:</span> 2137</p>
+          <p><span>Stan tablicy:</span> bardzo dobry</p>
+        </div>
+        <button class="modal-close modal-exit">X</button>
+      </div>
     </div>
   </div>
 </section>

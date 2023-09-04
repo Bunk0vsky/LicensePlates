@@ -49,15 +49,17 @@ const locationHandler = async () => {
 };
 
 // create a function that watches the hash and calls the urlLocationHandler
-// window.addEventListener("hashchange", locationHandler);
 
 window.addEventListener("hashchange", function () {
   locationHandler();
 });
 
+const elLogo = document.getElementById("main-nav-logo");
 const elMain = document.getElementById("main-nav-main");
 const elPromo = document.getElementById("main-nav-promo");
 const elShop = document.getElementById("main-nav-shop");
+const elDelivery = document.getElementById("main-nav-delivery");
+const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
   locationHandler();
@@ -77,12 +79,26 @@ elShop.addEventListener("click", async (e) => {
   infiniteSCroll(data?.count || 0);
 });
 
-elMain.addEventListener("click", function (e) {
+elMain.addEventListener("click", function () {
+  locationHandler();
+  getPlates();
+});
+elLogo.addEventListener("click", function () {
   locationHandler();
   getPlates();
 });
 
-// call the urlLocationHandler to load the page
+elContact.addEventListener("click", function () {
+  locationHandler();
+  const footer = document.querySelector("footer");
+  footer.classList.add("no-border");
+});
+
+elDelivery.addEventListener("click", function () {
+  locationHandler();
+  getDelivery();
+});
+
 locationHandler();
 
 const contentDiv = document.getElementById("content");

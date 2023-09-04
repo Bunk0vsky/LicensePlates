@@ -397,18 +397,11 @@ rect.shadow {
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 1.2rem;
   overflow: hidden;
-  transition: all 0.4s;
   background-color: #fff;
   font-family: "Exo", serif;
-
+  cursor: pointer;
   height: 32rem;
   margin: 8px;
-}
-
-.shop:hover {
-  /* transform: translateY(-1.2rem); */
-  transform: scale(1.5);
-  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
 }
 
 .shop-img {
@@ -447,6 +440,96 @@ rect.shadow {
   font-weight: 500;
 }
 
+/* Modal */
+.container-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-modal a {
+  padding: 30px;
+  background: teal;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.modal.open {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+.modal-bg {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+}
+.modal-container {
+  border-radius: 10px;
+  background: #fff;
+  position: relative;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 70%;
+  width: 90%;
+}
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  outline: none;
+  appearance: none;
+  color: #333;
+  background: none;
+  border: 0px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+
+.modal-card:first-of-type {
+  width: 70%;
+  padding-right: 4rem;
+}
+
+.modal-card .shop-title {
+  text-align: start;
+}
+.modal-card p {
+  font-size: 2rem;
+  line-height: 2.6rem;
+}
+.modal-card span {
+  font-weight: bold;
+}
+.modal-card p:first-of-type {
+  font-size: 2.4rem;
+  line-height: 3.8rem;
+}
 /* ****************************************************** */
 /* Sort */
 /* ****************************************************** */
@@ -673,6 +756,9 @@ rect.shadow {
   max-width: 40%;
   border: 2px black solid;
 }
+.delivery-heading {
+  margin-bottom: 3.2rem;
+}
 .text-delivery {
   display: flex;
   background-color: rgb(243, 244, 246);
@@ -690,7 +776,58 @@ rect.shadow {
 
   padding-bottom: 2rem;
 }
-
+#options-delivery {
+  display: flex;
+  justify-content: center;
+}
+table.table-delivery .price-head {
+  text-align: center;
+}
+table.table-delivery {
+  border: 3px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.table-delivery td,
+table.table-delivery th {
+  border: 1px solid #000000;
+  padding: 10px 10px;
+}
+table.table-delivery tbody td {
+  font-size: 13px;
+}
+table.table-delivery thead {
+  background: #cfcfcf;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #cfcfcf 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #dbdbdb 0%,
+    #d3d3d3 66%,
+    #cfcfcf 100%
+  );
+  background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #cfcfcf 100%);
+  border-bottom: 3px solid #000000;
+}
+table.table-delivery thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+table.table-delivery tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
+}
+table.table-delivery tfoot td {
+  font-size: 14px;
+}
+table.table-delivery td.price-column {
+  text-align: center;
+  font-weight: 500;
+}
 /* ****************************************************** */
 /* FOOTER */
 /* ****************************************************** */
@@ -811,4 +948,12 @@ hr {
     rgba(51, 51, 51, 0)
   );
   margin: 6rem 0;
+}
+
+.no-border {
+  border-top: none;
+}
+
+footer.no-border .copyright {
+  display: none;
 }
