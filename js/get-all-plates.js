@@ -76,7 +76,7 @@ const generatePlate = (plate, shopSection) => {
   const currentPrice = document.createElement("span");
   currentPrice.textContent = `PLN ${plate.price}`;
   price.appendChild(currentPrice);
-
+  // =====================MODAL============================
   const modal = document.createElement("div");
   modal.className = "modal";
   modal.id = plate._id;
@@ -90,10 +90,63 @@ const generatePlate = (plate, shopSection) => {
   modalContainer.className = "modal-container";
   modal.appendChild(modalContainer);
 
+  const modalCardImg = document.createElement("div");
+  modalCardImg.className = "modal-card";
+  modalContainer.appendChild(modalCardImg);
+
+  const modalImg = document.createElement("img");
+  modalImg.className = "modal-img";
+  modalImg.src = "/img/promo/plate-1.jpg";
+  modalImg.style = "width: 100%; height: 80%";
+  modalCardImg.appendChild(modalImg);
+
+  const modalCardContent = document.createElement("div");
+  modalCardContent.className = "modal-card";
+  modalContainer.appendChild(modalCardContent);
+
+  const modalText = document.createElement("p");
+  modalCardContent.appendChild(modalText);
+
+  const modalTextSpan = document.createElement("span");
+  modalTextSpan.textContent = plate.alt;
+  modalText.appendChild(modalTextSpan);
+
+  const modalTitle = document.createElement("p");
+  const isState = plate.state?.name;
+  modalTitle.innerHTML = `<span>Kraj:</span> ${plate.country?.name}`;
+  modalCardContent.appendChild(modalTitle);
+
+  const modalTitleState = document.createElement("p");
+  modalTitleState.innerHTML = isState
+    ? `<span>Stan:</span> ${plate.state?.name}`
+    : "";
+  modalCardContent.appendChild(modalTitleState);
+
+  const modalSize = document.createElement("p");
+  modalCardContent.appendChild(modalSize);
+
+  modalSize.innerHTML = `<span>Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+
+  const modalYear = document.createElement("p");
+  modalYear.innerHTML = `<span>Rok wydania:</span> ${plate.year}`;
+  modalCardContent.appendChild(modalYear);
+
+  const modalCondition = document.createElement("p");
+  modalCondition.innerHTML = `<span>Stan:</span> ${plate.condition}`;
+  modalCardContent.appendChild(modalCondition);
+
+  const modalprice = document.createElement("div");
+  modalprice.className = "modal-price";
+  modalCardContent.appendChild(modalprice);
+
+  const modalpriceContent = document.createElement("p");
+  modalpriceContent.textContent = `PLN ${plate.price}`;
+  modalprice.appendChild(modalpriceContent);
+
   const modalButton = document.createElement("button");
   modalButton.className = "modal-close modal-exit";
   modalButton.textContent = "X";
-  modal.appendChild(modalButton);
+  modalContainer.appendChild(modalButton);
 };
 
 // fetch the content
@@ -117,6 +170,8 @@ const getPlates = () => {
             const promo = document.createElement("div");
             promo.className = "promo";
             // add the item to the list
+            promo.setAttribute("onclick", "openShopCard(this);");
+            promo.setAttribute("data-modal", plate._id);
             promoWrapper.appendChild(promo);
 
             const plateImage = document.createElement("img");
@@ -169,6 +224,85 @@ const getPlates = () => {
             currentPrice.textContent = `PLN${plate.price}`;
             price.appendChild(currentPrice);
             // content -------------------------------
+
+            // =====================MODAL============================
+            const promoModal = document.createElement("div");
+            promoModal.className = "modal";
+            promoModal.id = plate._id;
+            promoWrapper.appendChild(promoModal);
+
+            const promoModalBg = document.createElement("div");
+            promoModalBg.className = "modal-bg modal-exit";
+            promoModal.appendChild(promoModalBg);
+
+            const promoModalContainer = document.createElement("div");
+            promoModalContainer.className = "modal-container";
+            promoModal.appendChild(promoModalContainer);
+
+            const promoModalCardImg = document.createElement("div");
+            promoModalCardImg.className = "modal-card";
+            promoModalContainer.appendChild(promoModalCardImg);
+
+            const promoModalImg = document.createElement("img");
+            promoModalImg.className = "modal-img";
+            promoModalImg.src = "/img/promo/plate-1.jpg";
+            promoModalImg.style = "width: 100%; height: 80%";
+            promoModalCardImg.appendChild(promoModalImg);
+
+            const promoModalCardContent = document.createElement("div");
+            promoModalCardContent.className = "modal-card";
+            promoModalContainer.appendChild(promoModalCardContent);
+
+            const promoModalText = document.createElement("p");
+            promoModalCardContent.appendChild(promoModalText);
+
+            const promoModalTextSpan = document.createElement("span");
+            promoModalTextSpan.textContent = plate.alt;
+            promoModalText.appendChild(promoModalTextSpan);
+
+            const promoModalTitle = document.createElement("p");
+            const isState = plate.state?.name;
+            promoModalTitle.innerHTML = `<span>Kraj:</span> ${plate.country?.name}`;
+            promoModalCardContent.appendChild(promoModalTitle);
+
+            const promoModalTitleState = document.createElement("p");
+            promoModalTitleState.textContent = isState
+              ? `Stan: ${plate.state?.name}`
+              : "";
+            promoModalCardContent.appendChild(promoModalTitleState);
+
+            const promoModalSize = document.createElement("p");
+            promoModalCardContent.appendChild(promoModalSize);
+
+            promoModalSize.innerHTML = `<span>Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+
+            const promoModalYear = document.createElement("p");
+            promoModalYear.innerHTML = `<span>Rok wydania:</span> ${plate.year}`;
+            promoModalCardContent.appendChild(promoModalYear);
+
+            const promoModalCondition = document.createElement("p");
+            promoModalCondition.innerHTML = `<span>Stan:</span> ${plate.condition}`;
+            promoModalCardContent.appendChild(promoModalCondition);
+
+            const promoModalprice = document.createElement("div");
+            promoModalprice.className = "promo-modal-price";
+            promoModalCardContent.appendChild(promoModalprice);
+
+            const promoModalpriceOld = document.createElement("p");
+            promoModalpriceOld.className = "old-price";
+            promoModalpriceOld.style = "font-size: 2.2rem";
+            promoModalpriceOld.textContent = `PLN ${plate.oldPrice}`;
+            promoModalprice.appendChild(promoModalpriceOld);
+
+            const promoModalpriceCurrent = document.createElement("p");
+            promoModalpriceCurrent.className = "current-price";
+            promoModalpriceCurrent.textContent = `PLN ${plate.price}`;
+            promoModalprice.appendChild(promoModalpriceCurrent);
+
+            const promoModalButton = document.createElement("button");
+            promoModalButton.className = "modal-close modal-exit";
+            promoModalButton.textContent = "X";
+            promoModalContainer.appendChild(promoModalButton);
           });
         }
       }

@@ -296,18 +296,11 @@ rect.shadow {
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 1.2rem;
   overflow: hidden;
-  transition: all 0.4s;
   background-color: #fff;
   font-family: "Exo", serif;
-
+  cursor: pointer;
   height: 36rem;
   margin: 8px;
-}
-
-.promo:hover {
-  /* transform: translateY(-1.2rem); */
-  transform: scale(1.5);
-  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
 }
 
 .promo-img {
@@ -469,6 +462,7 @@ rect.shadow {
   justify-content: center;
   z-index: 10;
 }
+
 .modal.open {
   visibility: visible;
   opacity: 1;
@@ -489,7 +483,7 @@ rect.shadow {
   flex-wrap: wrap;
   justify-content: center;
   height: 70%;
-  width: 90%;
+  width: 70%;
 }
 .modal-close {
   position: absolute;
@@ -509,11 +503,13 @@ rect.shadow {
   flex-direction: column;
   justify-content: center;
   width: 30%;
+  padding-top: 10rem;
 }
 
 .modal-card:first-of-type {
   width: 70%;
   padding-right: 4rem;
+  padding-top: 0;
 }
 
 .modal-card .shop-title {
@@ -529,6 +525,28 @@ rect.shadow {
 .modal-card p:first-of-type {
   font-size: 2.4rem;
   line-height: 3.8rem;
+}
+.modal-price {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-top: 5rem;
+  font-weight: 700;
+  color: #18a900;
+}
+
+.modal-price p {
+  /* color: #18a900; */
+}
+
+.promo-modal-price {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+  align-items: end;
+  padding-top: 5rem;
+  font-weight: 700;
+  color: #18a900;
 }
 /* ****************************************************** */
 /* Sort */
