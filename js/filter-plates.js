@@ -2,12 +2,6 @@ const filterPlates = async (e) => {
   await resetFilters("", e?.textContent);
 };
 
-let QUERY_DISPLAY_ALL_STATES = encodeURIComponent(`*[_type == "plate"][0...2]{
-    ...,
-state->,
-country->
-  }`);
-
 const displayAll = async () => {
   removeElements();
   currentPage = 1;
@@ -34,6 +28,7 @@ const displayMore = async (countryName, stateName) => {
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
       "list":*[_type == "plate"  && isPromo != true] {
       ...,
+      "imageUrl": src.asset->url,
       "state": state->,
       "country": country->
     } ${isFilterByCountryName} ${isFilterByStateName} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
@@ -54,7 +49,6 @@ const displayMore = async (countryName, stateName) => {
   if (result?.list.length > 0) {
     const loader = document.getElementById("loader");
     loader.classList.add("hidden");
-    console.log(result.list);
     let shopSection = document.getElementById("shop-bar");
     if (shopSection) {
       result.list

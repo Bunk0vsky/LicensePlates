@@ -56,16 +56,10 @@ const resetFilters = async (countryName, stateName) => {
   platesEndRange = 5;
 
   const data = await displayMore(countryName, stateName);
-  console.log(data?.count);
   infiniteSCroll(data?.count || 0);
 };
 
 const openShopCard = (e) => {
-  console.log(e.getAttribute("data-modal"));
-  const modals = document.querySelector(
-    `[data-modal="${e.getAttribute("data-modal")}"]`
-  );
-  console.log("modals", modals);
   const modal = document.getElementById(e.getAttribute("data-modal"));
   modal.classList.add("open");
   const exits = modal.querySelectorAll(".modal-exit");

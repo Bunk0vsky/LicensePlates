@@ -10,7 +10,6 @@ const getDelivery = () => {
     .then((res) => res.json())
     .then(({ result }) => {
       if (result.length > 0) {
-        console.log("result:", result);
         const sectionDelivery = document.getElementById("delivery-table-body");
         if (sectionDelivery && !document.querySelector(".price-column")) {
           result.forEach((delivery) => {
@@ -34,7 +33,6 @@ const getDelivery = () => {
 
 const handleModal = () => {
   const modals = document.querySelectorAll("[data-modal]");
-  console.log("modals", modals);
   modals.forEach(function (event) {
     const modal = document.getElementById(event.dataset.modal);
     modal.classList.add("open");
@@ -49,22 +47,22 @@ const handleModal = () => {
 };
 
 window.addEventListener("hashchange", (e) => {
-  if (e.newURL.includes("delivery")) {
+  if (e.newURL.includes("dostawa")) {
     getDelivery();
     handleModal();
   }
 });
 
-window.onload = (e) => {
-  if (e.currentTarget.location.hash === "#delivery") {
+window.addEventListener("load", (e) => {
+  if (e.currentTarget.location.hash === "#dostawa") {
     getDelivery();
     handleModal();
   }
-};
+});
 
-window.onload = (e) => {
-  if (e.currentTarget.location.hash === "#contact") {
+window.addEventListener("load", (e) => {
+  if (e.currentTarget.location.hash === "#kontakt") {
     const footer = document.querySelector("footer");
     footer.classList.add("no-border");
   }
-};
+});

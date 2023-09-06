@@ -4,22 +4,22 @@ const routes = {
     title: "Home",
     description: "Strona główna",
   },
-  promo: {
+  promocje: {
     template: "/templates/promo.html",
     title: "Promocje",
     description: "Promocje",
   },
-  contact: {
+  kontakt: {
     template: "/templates/contact.html",
     title: "Skontaktuj się",
     description: "Strona kontaktowa",
   },
-  shop: {
+  sklep: {
     template: "/templates/shop.html",
     title: "Sklep",
     description: "Sklep",
   },
-  delivery: {
+  dostawa: {
     template: "/templates/delivery.html",
     title: "Dostawa",
     description: "Dostawa",
@@ -40,6 +40,7 @@ const locationHandler = async () => {
   const html = await fetch(route.template).then((response) => response.text());
   // set the content of the content div to the html
   document.getElementById("content").innerHTML = html;
+
   // set the title of the document to the title of the route
   document.title = route.title;
   // set the description of the document to the description of the route
@@ -63,7 +64,7 @@ const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
   locationHandler();
-  getPlates();
+  getPromoPlates();
 });
 
 elShop.addEventListener("click", async (e) => {
