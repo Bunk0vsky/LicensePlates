@@ -80,7 +80,7 @@ body {
 .container {
   max-width: 120rem;
   padding: 0 3.2rem;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 .grid--center-v {
@@ -172,6 +172,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 1.6rem;
   letter-spacing: 0.75px;
+  padding-top: 4rem;
 }
 /* HELPER/SETTING CLASSES */
 
@@ -266,4 +267,68 @@ body {
 }
 .container.center.hidden {
   display: none;
+}
+
+/* BUTTON */
+/* input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  background-image: "img/flag-pl.svg";
+}
+label:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 18px;
+  height: 14px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+input:checked + label {
+  background: #515152;
+}
+input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+label:active:after {
+  width: 10px;
+} */
+
+/* another */
+
+#flagButton {
+  background-color: #333;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+/* #flag {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+} */
+
+.poland {
+  background-image: url("../img/flag-cz.svg");
+}
+
+.czech {
+  background-image: url("../img/flag-pl.svg");
 }

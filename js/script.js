@@ -57,11 +57,13 @@ const resetFilters = async (countryName, stateName) => {
 
   const data = await displayMore(countryName, stateName);
   infiniteSCroll(data?.count || 0);
+  translation();
 };
 
 const openShopCard = (e) => {
   const modal = document.getElementById(e.getAttribute("data-modal"));
   modal.classList.add("open");
+  translation();
   const exits = modal.querySelectorAll(".modal-exit");
   exits.forEach(function (exit) {
     exit.addEventListener("click", function (event) {
@@ -70,3 +72,19 @@ const openShopCard = (e) => {
     });
   });
 };
+
+const onLoadTranslate = () =>
+  window.addEventListener("load", () => {
+    console.log("ładowanie");
+    translation();
+  });
+
+window.addEventListener("load", () => {
+  console.log("ładowanie");
+  translation();
+});
+
+window.addEventListener("hashchange", function () {
+  onLoadTranslate();
+  console.log("zmiana hashu");
+});

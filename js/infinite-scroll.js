@@ -27,6 +27,7 @@ const infiniteSCroll = async (plateCount) => {
     cardCountElem.innerHTML = endRange;
     if (pageIndex > 1 && pageIndex <= pageCount) {
       await displayMore();
+      translation();
       currentPage = pageIndex;
     }
     if (pageIndex === pageCount) {
@@ -62,6 +63,8 @@ const infiniteSCroll = async (plateCount) => {
 window.addEventListener("load", async (event) => {
   if (event.currentTarget.location.hash === "#sklep") {
     const data = await displayMore();
+    translation();
+
     infiniteSCroll(data?.count || 0);
     getStates();
   }

@@ -65,14 +65,14 @@ const generatePlate = (plate, shopSection) => {
   title.textContent = plate.state?.name || plate.country?.name;
   shopContentWrapper.appendChild(title);
 
-  const text = document.createElement("p");
-  text.className = "shop-text";
-  text.textContent = plate.alt;
-  shopContentWrapper.appendChild(text);
+  // const text = document.createElement("p");
+  // text.className = "shop-text";
+  // text.textContent = plate.alt;
+  // shopContentWrapper.appendChild(text);
 
   const size = document.createElement("p");
   size.className = "shop-size";
-  size.textContent = `Wymiary: ${plate.sizeLength} x ${plate.sizeWidth}`;
+  size.innerHTML = `<span data-translate="shopPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
   shopContentWrapper.appendChild(size);
 
   const year = document.createElement("p");
@@ -82,7 +82,8 @@ const generatePlate = (plate, shopSection) => {
 
   const condition = document.createElement("p");
   condition.className = "shop-condition";
-  condition.textContent = `Stan: ${plate.condition}`;
+  condition.innerHTML = `<span data-translate="shopPlateStatus">Stan:</span> ${plate.condition}`;
+
   shopContentWrapper.appendChild(condition);
 
   const price = document.createElement("p");
@@ -119,37 +120,37 @@ const generatePlate = (plate, shopSection) => {
   modalCardContent.className = "modal-card";
   modalContainer.appendChild(modalCardContent);
 
-  const modalText = document.createElement("p");
-  modalCardContent.appendChild(modalText);
+  // const modalText = document.createElement("p");
+  // modalCardContent.appendChild(modalText);
 
-  const modalTextSpan = document.createElement("span");
-  modalTextSpan.textContent = plate.alt;
-  modalText.appendChild(modalTextSpan);
+  // const modalTextSpan = document.createElement("span");
+  // modalTextSpan.textContent = plate.alt;
+  // modalText.appendChild(modalTextSpan);
 
   const modalTitle = document.createElement("p");
   const isState = plate.state?.name;
-  modalTitle.innerHTML = `<span>Kraj:</span> ${plate.country?.name}`;
+  modalTitle.innerHTML = `<span data-translate="modalShopPlateCountry">Kraj:</span> ${plate.country?.name}`;
   modalCardContent.appendChild(modalTitle);
 
   const modalTitleState = document.createElement("p");
   modalTitleState.innerHTML = isState
-    ? `<span>Stan:</span> ${plate.state?.name}`
+    ? `<span data-translate="modalShopPlateState">Stan:</span> ${plate.state?.name}`
     : "";
   modalCardContent.appendChild(modalTitleState);
 
   const modalSize = document.createElement("p");
   modalCardContent.appendChild(modalSize);
 
-  modalSize.innerHTML = `<span>Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+  modalSize.innerHTML = `<span data-translate="modalShopPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
 
   const modalYear = document.createElement("p");
   modalYear.innerHTML = plate.year
-    ? `<span>Rok wydania:</span> ${plate.year}`
+    ? `<span data-translate="modalShopYear">Rok wydania:</span> ${plate.year}`
     : "";
   modalCardContent.appendChild(modalYear);
 
   const modalCondition = document.createElement("p");
-  modalCondition.innerHTML = `<span>Stan:</span> ${plate.condition}`;
+  modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Stan:</span> ${plate.condition}`;
   modalCardContent.appendChild(modalCondition);
 
   const modalprice = document.createElement("div");
@@ -214,24 +215,25 @@ const getPlates = () => {
             title.textContent = plate.state?.name || plate.country?.name;
             promoContentWrapper.appendChild(title);
 
-            const text = document.createElement("p");
-            text.className = "promo-text";
-            text.textContent = plate.alt;
-            promoContentWrapper.appendChild(text);
+            // const text = document.createElement("p");
+            // text.className = "promo-text";
+            // text.textContent = plate.alt;
+            // promoContentWrapper.appendChild(text);
 
             const size = document.createElement("p");
             size.className = "promo-size";
-            size.textContent = `Wymiary: ${plate.sizeLength} x ${plate.sizeWidth}`;
+            size.innerHTML = `<span data-translate="promoPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
             promoContentWrapper.appendChild(size);
 
             const year = document.createElement("p");
             year.className = "promo-year";
-            year.textContent = `Rok: ${plate.year}`;
+            year.textContent = plate.year && `Rok: ${plate.year}`;
             promoContentWrapper.appendChild(year);
 
             const condition = document.createElement("p");
             condition.className = "promo-condition";
-            condition.textContent = `Stan: ${plate.condition}`;
+            condition.innerHTML = `<span data-translate="promoPlateStatus">Stan:</span> ${plate.condition}`;
+
             promoContentWrapper.appendChild(condition);
 
             const price = document.createElement("p");
@@ -275,16 +277,16 @@ const getPlates = () => {
             promoModalCardContent.className = "modal-card";
             promoModalContainer.appendChild(promoModalCardContent);
 
-            const promoModalText = document.createElement("p");
-            promoModalCardContent.appendChild(promoModalText);
+            // const promoModalText = document.createElement("p");
+            // promoModalCardContent.appendChild(promoModalText);
 
-            const promoModalTextSpan = document.createElement("span");
-            promoModalTextSpan.textContent = plate.alt;
-            promoModalText.appendChild(promoModalTextSpan);
+            // const promoModalTextSpan = document.createElement("span");
+            // promoModalTextSpan.textContent = plate.alt;
+            // promoModalText.appendChild(promoModalTextSpan);
 
             const promoModalTitle = document.createElement("p");
             const isState = plate.state?.name;
-            promoModalTitle.innerHTML = `<span>Kraj:</span> ${plate.country?.name}`;
+            promoModalTitle.innerHTML = `<span data-translate="promoModalPlateCountry">Kraj:</span> ${plate.country?.name}`;
             promoModalCardContent.appendChild(promoModalTitle);
 
             const promoModalTitleState = document.createElement("p");
@@ -295,15 +297,14 @@ const getPlates = () => {
 
             const promoModalSize = document.createElement("p");
             promoModalCardContent.appendChild(promoModalSize);
-
-            promoModalSize.innerHTML = `<span>Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+            promoModalSize.innerHTML = `<span data-translate="promoModalPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
 
             const promoModalYear = document.createElement("p");
             promoModalYear.innerHTML = `<span>Rok wydania:</span> ${plate.year}`;
             promoModalCardContent.appendChild(promoModalYear);
 
             const promoModalCondition = document.createElement("p");
-            promoModalCondition.innerHTML = `<span>Stan:</span> ${plate.condition}`;
+            promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Stan:</span> ${plate.condition}`;
             promoModalCardContent.appendChild(promoModalCondition);
 
             const promoModalprice = document.createElement("div");
@@ -399,14 +400,15 @@ const getPromoPlates = () => {
             title.textContent = plate.state?.name || plate.country?.name;
             promoContentWrapper.appendChild(title);
 
-            const text = document.createElement("p");
-            text.className = "promo-text";
-            text.textContent = plate.alt;
-            promoContentWrapper.appendChild(text);
+            // const text = document.createElement("p");
+            // text.className = "promo-text";
+            // text.textContent = plate.alt;
+            // promoContentWrapper.appendChild(text);
 
             const size = document.createElement("p");
             size.className = "promo-size";
-            size.textContent = `Wymiary: ${plate.sizeLength} x ${plate.sizeWidth}`;
+            size.innerHTML = `<span data-translate="promoMiniPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+
             promoContentWrapper.appendChild(size);
 
             const year = document.createElement("p");
@@ -416,7 +418,8 @@ const getPromoPlates = () => {
 
             const condition = document.createElement("p");
             condition.className = "promo-condition";
-            condition.textContent = `Stan: ${plate.condition}`;
+            condition.innerHTML = `<span data-translate="promoMiniPlateStatus">Stan:</span> ${plate.condition}`;
+
             promoContentWrapper.appendChild(condition);
 
             const price = document.createElement("p");
@@ -460,16 +463,16 @@ const getPromoPlates = () => {
             promoModalCardContent.className = "modal-card";
             promoModalContainer.appendChild(promoModalCardContent);
 
-            const promoModalText = document.createElement("p");
-            promoModalCardContent.appendChild(promoModalText);
+            // const promoModalText = document.createElement("p");
+            // promoModalCardContent.appendChild(promoModalText);
 
-            const promoModalTextSpan = document.createElement("span");
-            promoModalTextSpan.textContent = plate.alt;
-            promoModalText.appendChild(promoModalTextSpan);
+            // const promoModalTextSpan = document.createElement("span");
+            // promoModalTextSpan.textContent = plate.alt;
+            // promoModalText.appendChild(promoModalTextSpan);
 
             const promoModalTitle = document.createElement("p");
             const isState = plate.state?.name;
-            promoModalTitle.innerHTML = `<span>Kraj:</span> ${plate.country?.name}`;
+            promoModalTitle.innerHTML = `<span data-translate="modalPromoPlateCountry">Kraj:</span> ${plate.country?.name}`;
             promoModalCardContent.appendChild(promoModalTitle);
 
             const promoModalTitleState = document.createElement("p");
@@ -480,15 +483,14 @@ const getPromoPlates = () => {
 
             const promoModalSize = document.createElement("p");
             promoModalCardContent.appendChild(promoModalSize);
-
-            promoModalSize.innerHTML = `<span>Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+            promoModalSize.innerHTML = `<span data-translate="modalPromoPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
 
             const promoModalYear = document.createElement("p");
-            promoModalYear.innerHTML = `<span>Rok wydania:</span> ${plate.year}`;
+            promoModalYear.innerHTML = `<span data-translate="modalPromoYear">Rok wydania:</span> ${plate.year}`;
             promoModalCardContent.appendChild(promoModalYear);
 
             const promoModalCondition = document.createElement("p");
-            promoModalCondition.innerHTML = `<span>Stan:</span> ${plate.condition}`;
+            promoModalCondition.innerHTML = `<span data-translate="modalPromoPlateStatus">Stan:</span> ${plate.condition}`;
             promoModalCardContent.appendChild(promoModalCondition);
 
             const promoModalprice = document.createElement("div");

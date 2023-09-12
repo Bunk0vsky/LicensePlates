@@ -29,6 +29,7 @@
     <script defer src="js/route.js"></script>
     <script defer src="js/script.js"></script>
     <script defer src="js/menu-bar.js"></script>
+    <script defer src="js/translation.js"></script>
 
     <script
       type="module"
@@ -51,26 +52,36 @@
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li>
-            <a class="main-nav-link neonText" id="main-nav-main" href="#"
+            <a
+              class="main-nav-link neonText"
+              data-translate="mainPage"
+              id="main-nav-main"
+              href="#"
               >Strona główna</a
             >
           </li>
           <li>
             <a
               class="main-nav-link neonTextFlicker"
+              data-translate="promo"
               id="main-nav-promo"
               href="#promocje"
               >Promocje</a
             >
           </li>
           <li>
-            <a class="main-nav-link neonText" id="main-nav-shop" href="#sklep"
+            <a
+              class="main-nav-link neonText"
+              data-translate="shop"
+              id="main-nav-shop"
+              href="#sklep"
               >Sklep</a
             >
           </li>
           <li>
             <a
               class="main-nav-link neonText"
+              data-translate="delivery"
               id="main-nav-delivery"
               href="#dostawa"
               >Dostawa</a
@@ -79,10 +90,16 @@
           <li>
             <a
               class="main-nav-link nav-cta neonText"
+              data-translate="contact"
               id="main-nav-contact"
               href="#kontakt"
               >Kontakt</a
             >
+          </li>
+          <li>
+            <div id="language-toggle">
+              <button id="flagButton" class="poland"></button>
+            </div>
           </li>
         </ul>
       </nav>
@@ -98,7 +115,7 @@
     <footer class="footer">
       <div class="container footer-container flex" id="contact">
         <div class="address-col">
-          <p class="footer-heading">Kontakt</p>
+          <p class="footer-heading" data-translate="footerContact">Kontakt</p>
           <address class="contacts">
             <p class="address">
               ul. Słowackiego 1 <br />Piotrków Trybunalski 97-330
@@ -116,7 +133,9 @@
         </div>
 
         <div class="social-col">
-          <p class="footer-heading">Znajdziesz nas również!</p>
+          <p class="footer-heading" data-translate="footerHeading">
+            Znajdziesz nas również!
+          </p>
 
           <ul class="social-links">
             <li class="social-tab">

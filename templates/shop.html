@@ -1,29 +1,35 @@
+<script type="text/javascript">
+  translation();
+</script>
 <div class="container center-text">
-  <div class="subheading">Sklep</div>
+  <div class="subheading"
+  data-translate="shopSubheading">Sklep</div>
   <!-- <h2 class="heading-secondary"></h2> -->
 </div>
 
 <div class="grid grid--2-cols">
   <section class="section-category el--2">
     <div class="category-bar">
-      <button class="accordion" onclick="displayAll();">Wszystkie</button>
-      <button class="accordion arrow" onclick="toggleButton(this);">
+      <button class="accordion" onclick="displayAll();" data-translate="shopAllBtn">Wszystkie</button>
+      <div>
+      <button class="accordion arrow" onclick="toggleButton(this);" data-translate="shopUsaBtn">
         Stany Zjednoczone
       </button>
+    </div>
       <div class="panel">
         <ul class="menu-nav-list" id="usa"></ul>
       </div>
 
-      <button class="accordion" onclick="getOtherCountry(this);">Meksyk</button>
+      <button class="accordion" onclick="getOtherCountry(this);" data-translate="shopMexicoBtn">Meksyk</button>
 
-      <button class="accordion" onclick="getOtherCountry(this);">Kanada</button>
-      <button class="accordion" onclick="getOtherCountry(this);">
+      <button class="accordion" onclick="getOtherCountry(this);" data-translate="shopCanadaBtn">Kanada</button>
+      <button class="accordion" onclick="getOtherCountry(this);" data-translate="shopRestBtn">
         Reszta Świata
       </button>
 
-      <button class="accordion">Ramki, tablice motocyklowe</button>
+      <button class="accordion" data-translate="shopFramesBtn">Ramki, tablice motocyklowe</button>
 
-      <button class="accordion">Inne kategorie</button>
+      <button class="accordion" data-translate="shopOthersBtn">Inne kategorie</button>
     </div>
   </section>
 
@@ -32,7 +38,7 @@
       <div id="sorting-background" onclick="closeSortingMenu();"></div>
       <div class="select animated zoomIn">
         <span class="select-placeholder" onclick="openSortingMenu();"
-          >Sortuj...</span
+        data-translate="shopSortBar">Sortuj...</span
         >
         <div id="options-container">
           <label
@@ -41,7 +47,7 @@
             onclick="selectedOption(this);"
           >
             <span class="title animated fadeIn"
-              ><i class="icon icon-speedometer"></i>Nazwa: A - Z</span
+              ><i class="icon icon-speedometer"></i data-translate="">Nazwa: A - Z</span
             >
           </label>
           <label
@@ -50,28 +56,28 @@
             onclick="selectedOption(this);"
           >
             <span class="title animated fadeIn"
-              ><i class="icon icon-fire"></i>Nazwa: Z - A</span
+              ><i class="icon icon-fire"></i data-translate="">Nazwa: Z - A</span
             >
           </label>
 
           <label class="option" id="price asc" onclick="selectedOption(this);">
             <span class="title animated fadeIn"
-              ><i class="icon icon-badge"></i>Cena: od najniższej</span
+              ><i class="icon icon-badge"></i data-translate="">Cena: od najniższej</span
             >
           </label>
           <label class="option" id="price desc" onclick="selectedOption(this);">
             <span class="title animated fadeIn"
-              ><i class="icon icon-badge"></i>Cena: od najwyższej</span
+              ><i class="icon icon-badge"></i data-translate="">Cena: od najwyższej</span
             >
           </label>
           <label class="option" id="year asc" onclick="selectedOption(this);">
             <span class="title animated fadeIn"
-              ><i class="icon icon-badge"></i>Rok: rosnąco</span
+              ><i class="icon icon-badge"></i data-translate="">Rok: rosnąco</span
             >
           </label>
           <label class="option" id="year desc" onclick="selectedOption(this);">
             <span class="title animated fadeIn"
-              ><i class="icon icon-badge"></i>Rok: malejąco</span
+              ><i class="icon icon-badge"></i data-translate="">Rok: malejąco</span
             >
           </label>
         </div>
@@ -96,8 +102,8 @@
     </div>
     <div class="card-actions">
       <span
-        >Showing <span id="card-count"></span> of
-        <span id="card-total"></span> cards
+        >Oferty <span id="card-count"></span> z
+        <span id="card-total"></span> ofert
       </span>
     </div>
 

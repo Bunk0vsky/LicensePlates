@@ -41,6 +41,7 @@ const locationHandler = async () => {
   // set the content of the content div to the html
   document.getElementById("content").innerHTML = html;
 
+  translation();
   // set the title of the document to the title of the route
   document.title = route.title;
   // set the description of the document to the description of the route
@@ -53,6 +54,7 @@ const locationHandler = async () => {
 
 window.addEventListener("hashchange", function () {
   locationHandler();
+  translation();
 });
 
 const elLogo = document.getElementById("main-nav-logo");
@@ -71,6 +73,7 @@ elShop.addEventListener("click", async (e) => {
   locationHandler();
   getStates();
   removeElements();
+
   currentPage = 1;
   platesStartRange = 0;
   platesEndRange = 5;
