@@ -1,8 +1,12 @@
 const filterPlates = async (e) => {
-  await resetFilters("", e?.textContent);
+  selectState(e?.textContent);
+  await resetFilters("Stany Zjednoczone", e?.textContent);
 };
-
+// Function for display all countries
 const displayAll = async () => {
+  selectCategory("");
+  selectState("");
+
   removeElements();
   currentPage = 1;
   platesStartRange = 0;
@@ -16,18 +20,29 @@ const displayAll = async () => {
 var sortBy = "country.name asc, state.name asc";
 var platesStartRange = 0;
 var platesEndRange = 5;
+var selectedCategory = "";
+var selectedState = "";
 
 const displayMore = async (countryName, stateName) => {
-  const isFilterByCountryName = countryName
-    ? `[country.name == "${countryName}" && isPromo != true ]`
+  const defaultCountryName = countryName || selectedCategory;
+  const isFilterByCountryName = defaultCountryName
+    ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
     : "";
 
   const isFilterByRestWorldCountryName =
-    countryName === "Reszta Świata"
-      ? `[country.name == "${countryName}" && isPromo != true ]`
+    defaultCountryName === "Reszta Świata"
+      ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
       : "";
-  const isFilterByStateName = stateName
-    ? `[state.name == "${stateName}" && isPromo != true ]`
+
+  const isFilterByPlateSet =
+    defaultCountryName === "Zestawy tablic"
+      ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
+      : "";
+
+  const defaultStateName = stateName || selectedState;
+
+  const isFilterByStateName = defaultStateName
+    ? `[state.name == "${defaultStateName}" && isPromo != true ]`
     : "";
 
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
@@ -36,12 +51,12 @@ const displayMore = async (countryName, stateName) => {
       "imageUrl": src.asset->url,
       "state": state->,
       "country": country->
-    } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
+    } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
       "count": count(*[_type == "plate" && isPromo != true ]{
         ...,
         "state": state->,
         "country": country->
-      } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName}),
+      } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet}),
   }
     
   `);

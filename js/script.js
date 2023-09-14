@@ -12,14 +12,28 @@ const openSortingMenu = () => {
   optionsContainer.style = "display:block";
 };
 
+var content = "";
 const selectedOption = async (e) => {
-  const content = e.textContent;
-  const placeHolder = document.querySelector(".select-placeholder");
-  placeHolder.textContent = content;
-  sortBy = e.id;
+  content = e.textContent;
+
+  if (selectedCategory === "Reszta Świata") {
+    sortBy = "alt asc";
+  } else {
+    sortBy = e.id;
+  }
 
   closeSortingMenu();
-  resetFilters();
+  await resetFilters();
+  const placeHolder = document.querySelector(".select-placeholder");
+  placeHolder.textContent = content;
+};
+
+const selectCategory = (parametr) => {
+  selectedCategory = parametr;
+};
+
+const selectState = (parametr) => {
+  selectedState = parametr;
 };
 
 const removeElements = () => {
@@ -75,16 +89,13 @@ const openShopCard = (e) => {
 
 const onLoadTranslate = () =>
   window.addEventListener("load", () => {
-    console.log("ładowanie");
     translation();
   });
 
 window.addEventListener("load", () => {
-  console.log("ładowanie");
   translation();
 });
 
 window.addEventListener("hashchange", function () {
   onLoadTranslate();
-  console.log("zmiana hashu");
 });

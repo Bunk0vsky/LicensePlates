@@ -62,10 +62,15 @@ const generatePlate = (plate, shopSection) => {
 
   let isRestCountry = plate.country.name === "Reszta Świata" ? plate.alt : "";
   let isNormalCountry =
-    plate.country.name !== "Reszta Świata" ? plate.country.name : "";
+    plate.country.name !== "Reszta Świata" &&
+    plate.country.name !== "Zestawy tablic"
+      ? plate.country.name
+      : "";
+  let isPlateSet = plate.country.name === "Zestawy tablic" ? plate.alt : "";
   const title = document.createElement("p");
   title.className = "shop-title";
-  title.innerHTML = plate.state?.name || isNormalCountry || isRestCountry;
+  title.innerHTML =
+    plate.state?.name || isNormalCountry || isRestCountry || isPlateSet;
 
   shopContentWrapper.appendChild(title);
 
@@ -126,11 +131,17 @@ const generatePlate = (plate, shopSection) => {
   // modalTextSpan.textContent = plate.alt;
   // modalText.appendChild(modalTextSpan);
 
+  let restWorldCountry =
+    plate.country.name === "Reszta Świata" ||
+    plate.country.name === "Zestawy tablic"
+      ? `${plate.alt}`
+      : `${plate.country?.name}`;
+
   const modalTitle = document.createElement("p");
-  const isState = plate.state?.name;
-  modalTitle.innerHTML = `<span data-translate="modalShopPlateCountry">Kraj:</span> ${plate.country?.name}`;
+  modalTitle.innerHTML = `<span data-translate="modalShopPlateCountry">Kraj:</span> ${restWorldCountry}`;
   modalCardContent.appendChild(modalTitle);
 
+  const isState = plate.state?.name;
   const modalTitleState = document.createElement("p");
   modalTitleState.innerHTML = isState
     ? `<span data-translate="modalShopPlateState">Stan:</span> ${plate.state?.name}`

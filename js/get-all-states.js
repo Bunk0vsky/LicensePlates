@@ -31,6 +31,8 @@ const getStates = () =>
     .catch((err) => console.error(err));
 
 const getOtherCountry = async (e) => {
+  selectState("");
+  selectCategory(e?.textContent);
   await resetFilters(e?.textContent);
 };
 
