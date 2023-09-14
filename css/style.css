@@ -144,7 +144,7 @@ rect.shadow {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url("../img/us-flag.jpg");
+  background-image: url("../img/plates.jpg");
   background-size: cover;
   background-position: center;
   top: 0;
@@ -208,16 +208,23 @@ rect.shadow {
   border-bottom: 1px solid #333;
 }
 
-.accordion.arrow:after {
-  content: "\02C5";
-  font-size: 1rem;
-  color: #333;
-  float: right;
-  margin-left: 5px;
+.accordion-arrow-container {
+  position: relative;
 }
 
-.active.arrow:after {
-  content: "\02C4";
+.accordion-arrow-container.active .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.arrow-icon {
+  height: 2rem;
+  width: 2rem;
+  color: #333;
+  position: absolute;
+  right: 5%;
+  top: 33%;
+  transition: transform 0.3s;
+  cursor: pointer;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */

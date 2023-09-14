@@ -98,6 +98,16 @@ elContact.addEventListener("click", function () {
   footer.classList.add("no-border");
 });
 
+const addBorder = () => {
+  window.addEventListener("hashchange", (e) => {
+    if (e.currentTarget.location.hash !== "#kontakt") {
+      const footer = document.querySelector("footer");
+      footer.classList.remove("no-border");
+    }
+  });
+};
+addBorder();
+
 elDelivery.addEventListener("click", function () {
   locationHandler();
   getDelivery();

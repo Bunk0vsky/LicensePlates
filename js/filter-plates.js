@@ -21,6 +21,11 @@ const displayMore = async (countryName, stateName) => {
   const isFilterByCountryName = countryName
     ? `[country.name == "${countryName}" && isPromo != true ]`
     : "";
+
+  const isFilterByRestWorldCountryName =
+    countryName === "Reszta Świata"
+      ? `[country.name == "${countryName}" && isPromo != true ]`
+      : "";
   const isFilterByStateName = stateName
     ? `[state.name == "${stateName}" && isPromo != true ]`
     : "";
@@ -31,12 +36,12 @@ const displayMore = async (countryName, stateName) => {
       "imageUrl": src.asset->url,
       "state": state->,
       "country": country->
-    } ${isFilterByCountryName} ${isFilterByStateName} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
+    } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
       "count": count(*[_type == "plate" && isPromo != true ]{
         ...,
         "state": state->,
         "country": country->
-      } ${isFilterByCountryName} ${isFilterByStateName}),
+      } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName}),
   }
     
   `);

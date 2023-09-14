@@ -60,15 +60,14 @@ const generatePlate = (plate, shopSection) => {
   const shopContentWrapper = document.createElement("div");
   shopContent.appendChild(shopContentWrapper);
 
+  let isRestCountry = plate.country.name === "Reszta Świata" ? plate.alt : "";
+  let isNormalCountry =
+    plate.country.name !== "Reszta Świata" ? plate.country.name : "";
   const title = document.createElement("p");
   title.className = "shop-title";
-  title.textContent = plate.state?.name || plate.country?.name;
-  shopContentWrapper.appendChild(title);
+  title.innerHTML = plate.state?.name || isNormalCountry || isRestCountry;
 
-  // const text = document.createElement("p");
-  // text.className = "shop-text";
-  // text.textContent = plate.alt;
-  // shopContentWrapper.appendChild(text);
+  shopContentWrapper.appendChild(title);
 
   const size = document.createElement("p");
   size.className = "shop-size";

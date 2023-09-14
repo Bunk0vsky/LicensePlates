@@ -59,10 +59,3 @@ window.addEventListener("load", (e) => {
     handleModal();
   }
 });
-
-window.addEventListener("load", (e) => {
-  if (e.currentTarget.location.hash === "#kontakt") {
-    const footer = document.querySelector("footer");
-    footer.classList.add("no-border");
-  }
-});

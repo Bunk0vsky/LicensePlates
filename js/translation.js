@@ -26,6 +26,7 @@ const translations = {
     shopMexicoBtn: "Meksyk",
     shopCanadaBtn: "Kanada",
     shopRestBtn: "Reszta Świata",
+    shopSetsBtn: "Zestawy tablic",
     shopFramesBtn: "Ramki, tablice motocyklowe",
     shopOthersBtn: "Inne kategorie",
     shopSortBar: "Sortuj...",
@@ -75,6 +76,7 @@ const translations = {
     shopMexicoBtn: "Mexico",
     shopCanadaBtn: "Kanada",
     shopRestBtn: "Zbytek světa",
+    shopSetsBtn: "Sady desek",
     shopFramesBtn: "Rámy, motocyklové desky",
     shopOthersBtn: "Ostatní kategorie",
     shopSortBar: "Seřadit...",
@@ -103,16 +105,13 @@ const translations = {
 const flagButton = document.getElementById("flagButton");
 let currentLanguage =
   window.navigator.userLanguage || window.navigator.language;
-console.log(currentLanguage);
 
 if (currentLanguage === "pl") {
   flagButton.classList.add("poland");
   flagButton.classList.remove("czech");
-  console.log("Wyświetl flagę Czech");
 } else if (currentLanguage === "cs") {
   flagButton.classList.remove("poland");
   flagButton.classList.add("czech");
-  console.log("Wyświetl flagę Polski");
 }
 
 flagButton.addEventListener("click", () => {
@@ -131,13 +130,10 @@ flagButton.addEventListener("click", () => {
 
 // var languageBrowser =
 //   window.navigator.userLanguage || window.navigator.language;
-// console.log(languageBrowser);
 
 const translation = () => {
   function translatePage(language) {
     const elementsToTranslate = document.querySelectorAll("[data-translate]");
-    console.log("jestem w funkcji translate");
-    console.log(elementsToTranslate);
     elementsToTranslate.forEach((element) => {
       const key = element.getAttribute("data-translate");
       if (translations[language] && translations[language][key]) {
@@ -146,7 +142,6 @@ const translation = () => {
     });
   }
   const selectedLanguage = currentLanguage;
-  console.log(selectedLanguage);
   translatePage(selectedLanguage);
 };
 
