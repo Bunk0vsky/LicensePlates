@@ -31,9 +31,10 @@ const getStates = () =>
     .catch((err) => console.error(err));
 
 const getOtherCountry = async (e) => {
+  console.log("e.id", e.id);
   selectState("");
-  selectCategory(e?.textContent);
-  await resetFilters(e?.textContent);
+  selectCategory(e?.id);
+  await resetFilters(e?.id);
 };
 
 window.addEventListener("hashchange", (e) => {

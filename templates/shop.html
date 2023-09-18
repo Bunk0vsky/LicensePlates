@@ -10,7 +10,7 @@
 <div class="grid grid--2-cols">
   <section class="section-category el--2">
     <div class="category-bar">
-      <button type="button" class="accordion" onclick="displayAll();" data-translate="shopAllBtn">Wszystkie</button>
+      <button type="button" class="accordion" onclick="displayAll();" id="Wszystkie" data-translate="shopAllBtn">Wszystkie</button>
       <div class="accordion-arrow-container" onclick="toggleButton(this);">
         <button type="button" class="accordion" data-translate="shopUsaBtn">
           Stany Zjednoczone
@@ -21,17 +21,17 @@
         <ul class="menu-nav-list" id="usa"></ul>
       </div>
 
-      <button type="button" class="accordion" onclick="getOtherCountry(this);" data-translate="shopMexicoBtn">Meksyk</button>
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Meksyk" data-translate="shopMexicoBtn">Meksyk</button>
 
-      <button type="button" class="accordion" onclick="getOtherCountry(this);" data-translate="shopCanadaBtn">Kanada</button>
-      <button type="button" class="accordion" onclick="getOtherCountry(this);" data-translate="shopRestBtn">
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Kanada" data-translate="shopCanadaBtn">Kanada</button>
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Reszta Świata" data-translate="shopRestBtn">
         Reszta Świata
       </button>
-      <button type="button" class="accordion" onclick="getOtherCountry(this);" data-translate="shopSetsBtn">
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Zestawy tablic" data-translate="shopSetsBtn">
         Zestawy tablic
       </button>
 
-      <button type="button" class="accordion" data-translate="shopFramesBtn">Ramki, tablice motocyklowe</button>
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Ramki" data-translate="shopFramesBtn">Ramki, tablice motocyklowe</button>
 
       <button type="button" class="accordion" data-translate="shopOthersBtn">Inne kategorie</button>
     </div>

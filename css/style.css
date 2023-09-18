@@ -445,6 +445,15 @@ rect.shadow {
   font-weight: 500;
 }
 
+.shop-condition {
+  display: flex;
+  align-items: center;
+}
+
+.condition-bar {
+  display: flex;
+  flex-direction: row;
+}
 /* Modal */
 .container-modal {
   display: flex;

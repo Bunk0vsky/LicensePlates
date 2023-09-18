@@ -61,22 +61,30 @@ const generatePlate = (plate, shopSection) => {
   shopContent.appendChild(shopContentWrapper);
 
   let isRestCountry = plate.country.name === "Reszta Świata" ? plate.alt : "";
+  let isPlateSet = plate.country.name === "Zestawy tablic" ? plate.alt : "";
+  let isFrame = plate.country.name === "Ramki" ? plate.alt : "";
   let isNormalCountry =
     plate.country.name !== "Reszta Świata" &&
-    plate.country.name !== "Zestawy tablic"
+    plate.country.name !== "Zestawy tablic" &&
+    plate.country.name !== "Ramki"
       ? plate.country.name
       : "";
-  let isPlateSet = plate.country.name === "Zestawy tablic" ? plate.alt : "";
   const title = document.createElement("p");
   title.className = "shop-title";
   title.innerHTML =
-    plate.state?.name || isNormalCountry || isRestCountry || isPlateSet;
+    plate.state?.name ||
+    isNormalCountry ||
+    isRestCountry ||
+    isPlateSet ||
+    isFrame;
 
   shopContentWrapper.appendChild(title);
 
   const size = document.createElement("p");
   size.className = "shop-size";
-  size.innerHTML = `<span data-translate="shopPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+  size.innerHTML = plate.sizeLength
+    ? `<span data-translate="shopPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+    : "";
   shopContentWrapper.appendChild(size);
 
   const year = document.createElement("p");
@@ -86,9 +94,27 @@ const generatePlate = (plate, shopSection) => {
 
   const condition = document.createElement("p");
   condition.className = "shop-condition";
-  condition.innerHTML = `<span data-translate="shopPlateStatus">Stan:</span> ${plate.condition}`;
-
+  // let conditionBarClass = plate.condition === "Dobry" ? "" : "";
+  condition.innerHTML = `<span data-translate="shopPlateStatus">Stan:</span>`;
   shopContentWrapper.appendChild(condition);
+
+  const conditionBar = document.createElement("div");
+  let conditionStatus =
+    (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+    (plate.condition === "Dobry" ? "good" : "") ||
+    (plate.condition === "Bardzo dobry" ? "very-good" : "");
+  conditionBar.classList = `condition-bar ${conditionStatus}`;
+  conditionBar.innerHTML = `<div class="element"></div> 
+  <div class="element"></div> 
+  <div class="element"></div>`;
+  condition.appendChild(conditionBar);
+
+  //   <div class="condition-bar good">
+  //     <div class="element"></div>
+  //     <div class="element"></div>
+  //     <div class="element"></div>
+  //   </div>
+  //  `;
 
   const price = document.createElement("p");
   price.className = "shop-pricing";
@@ -124,21 +150,29 @@ const generatePlate = (plate, shopSection) => {
   modalCardContent.className = "modal-card";
   modalContainer.appendChild(modalCardContent);
 
-  // const modalText = document.createElement("p");
-  // modalCardContent.appendChild(modalText);
-
-  // const modalTextSpan = document.createElement("span");
-  // modalTextSpan.textContent = plate.alt;
-  // modalText.appendChild(modalTextSpan);
-
   let restWorldCountry =
-    plate.country.name === "Reszta Świata" ||
+    plate.country.name === "Reszta Świata"
+      ? ` <span data-translate="modalShopPlateCountry">Kraj: </span>${plate.alt}`
+      : "";
+  let setPlates =
     plate.country.name === "Zestawy tablic"
-      ? `${plate.alt}`
-      : `${plate.country?.name}`;
+      ? `<span data-translate="modalShopPlateItem">Przedmiot: </span>${plate.alt}`
+      : "";
+
+  let frames =
+    plate.country.name === "Ramki"
+      ? `<span data-translate="modalShopPlateItem">Przedmiot: </span>${plate.alt}`
+      : "";
+
+  let normalCountryName =
+    plate.country.name !== "Reszta Świata" &&
+    plate.country.name !== "Zestawy tablic" &&
+    plate.country.name !== "Ramki"
+      ? ` <span data-translate="modalShopPlateCountry">Kraj: </span>${plate.country?.name}`
+      : "";
 
   const modalTitle = document.createElement("p");
-  modalTitle.innerHTML = `<span data-translate="modalShopPlateCountry">Kraj:</span> ${restWorldCountry}`;
+  modalTitle.innerHTML = `${restWorldCountry} ${setPlates} ${frames} ${normalCountryName}`;
   modalCardContent.appendChild(modalTitle);
 
   const isState = plate.state?.name;
@@ -149,9 +183,11 @@ const generatePlate = (plate, shopSection) => {
   modalCardContent.appendChild(modalTitleState);
 
   const modalSize = document.createElement("p");
-  modalCardContent.appendChild(modalSize);
 
-  modalSize.innerHTML = `<span data-translate="modalShopPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+  modalSize.innerHTML = plate.sizeLength
+    ? `<span data-translate="modalShopPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+    : "";
+  modalCardContent.appendChild(modalSize);
 
   const modalYear = document.createElement("p");
   modalYear.innerHTML = plate.year
@@ -160,8 +196,20 @@ const generatePlate = (plate, shopSection) => {
   modalCardContent.appendChild(modalYear);
 
   const modalCondition = document.createElement("p");
-  modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Stan:</span> ${plate.condition}`;
+  modalCondition.style = "display: flex; align-items: center; ";
+  modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Stan:</span>`;
   modalCardContent.appendChild(modalCondition);
+
+  const modalConditionBar = document.createElement("div");
+  let modalConditionStatus =
+    (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+    (plate.condition === "Dobry" ? "good" : "") ||
+    (plate.condition === "Bardzo dobry" ? "very-good" : "");
+  modalConditionBar.classList = `condition-bar ${modalConditionStatus}`;
+  modalConditionBar.innerHTML = `<div class="element"></div> 
+  <div class="element"></div> 
+  <div class="element"></div>`;
+  modalCondition.appendChild(modalConditionBar);
 
   const modalprice = document.createElement("div");
   modalprice.className = "modal-price";
@@ -220,9 +268,27 @@ const getPlates = () => {
             promoContent.appendChild(promoContentWrapper);
 
             // content -------------------------------
+
+            let isRestCountry =
+              plate.country.name === "Reszta Świata" ? plate.alt : "";
+            let isPlateSet =
+              plate.country.name === "Zestawy tablic" ? plate.alt : "";
+            let isFrame = plate.country.name === "Ramki" ? plate.alt : "";
+            let isNormalCountry =
+              plate.country.name !== "Reszta Świata" &&
+              plate.country.name !== "Zestawy tablic" &&
+              plate.country.name !== "Ramki"
+                ? plate.country.name
+                : "";
+
             const title = document.createElement("p");
             title.className = "promo-title";
-            title.textContent = plate.state?.name || plate.country?.name;
+            title.innerHTML =
+              plate.state?.name ||
+              isNormalCountry ||
+              isRestCountry ||
+              isPlateSet ||
+              isFrame;
             promoContentWrapper.appendChild(title);
 
             // const text = document.createElement("p");
@@ -232,7 +298,9 @@ const getPlates = () => {
 
             const size = document.createElement("p");
             size.className = "promo-size";
-            size.innerHTML = `<span data-translate="promoPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+            size.innerHTML = plate.sizeLength
+              ? `<span data-translate="promoPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+              : "";
             promoContentWrapper.appendChild(size);
 
             const year = document.createElement("p");
@@ -241,10 +309,21 @@ const getPlates = () => {
             promoContentWrapper.appendChild(year);
 
             const condition = document.createElement("p");
+            condition.style = "display: flex; align-items: center; ";
             condition.className = "promo-condition";
-            condition.innerHTML = `<span data-translate="promoPlateStatus">Stan:</span> ${plate.condition}`;
-
+            condition.innerHTML = `<span data-translate="promoPlateStatus">Stan:</span>`;
             promoContentWrapper.appendChild(condition);
+
+            const conditionBar = document.createElement("div");
+            let conditionStatus =
+              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+              (plate.condition === "Dobry" ? "good" : "") ||
+              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            conditionBar.classList = `condition-bar ${conditionStatus}`;
+            conditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div> 
+            <div class="element"></div>`;
+            condition.appendChild(conditionBar);
 
             const price = document.createElement("p");
             price.className = "promo-pricing";
@@ -294,9 +373,31 @@ const getPlates = () => {
             // promoModalTextSpan.textContent = plate.alt;
             // promoModalText.appendChild(promoModalTextSpan);
 
+            let restWorldCountry =
+              plate.country.name === "Reszta Świata"
+                ? ` <span data-translate="promoModalShopPlateCountry">Kraj: </span>${plate.alt}`
+                : "";
+            let setPlates =
+              plate.country.name === "Zestawy tablic"
+                ? `<span data-translate="promoModalodalShopPlateItem">Przedmiot: </span>${plate.alt}`
+                : "";
+
+            let frames =
+              plate.country.name === "Ramki"
+                ? `<span data-translate="promoModalodalShopPlateItem">Przedmiot: </span>${plate.alt}`
+                : "";
+
+            let normalCountryName =
+              plate.country.name !== "Reszta Świata" &&
+              plate.country.name !== "Zestawy tablic" &&
+              plate.country.name !== "Ramki"
+                ? ` <span data-translate="promoModalPlateCountry">Kraj: </span>${plate.country?.name}`
+                : "";
+
             const promoModalTitle = document.createElement("p");
             const isState = plate.state?.name;
-            promoModalTitle.innerHTML = `<span data-translate="promoModalPlateCountry">Kraj:</span> ${plate.country?.name}`;
+            promoModalTitle.innerHTML = `${restWorldCountry} ${setPlates} ${frames} ${normalCountryName}`;
+
             promoModalCardContent.appendChild(promoModalTitle);
 
             const promoModalTitleState = document.createElement("p");
@@ -306,16 +407,31 @@ const getPlates = () => {
             promoModalCardContent.appendChild(promoModalTitleState);
 
             const promoModalSize = document.createElement("p");
+            promoModalSize.innerHTML = plate.sizeLength
+              ? `<span data-translate="promoModalPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+              : "";
             promoModalCardContent.appendChild(promoModalSize);
-            promoModalSize.innerHTML = `<span data-translate="promoModalPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
 
             const promoModalYear = document.createElement("p");
-            promoModalYear.innerHTML = `<span>Rok wydania:</span> ${plate.year}`;
+            let isYear = plate.year ? plate.year : "---";
+            promoModalYear.innerHTML = `<span>Rok wydania:</span> ${isYear}`;
             promoModalCardContent.appendChild(promoModalYear);
 
             const promoModalCondition = document.createElement("p");
-            promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Stan:</span> ${plate.condition}`;
+            promoModalCondition.style = "display: flex; align-items: center; ";
+            promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Stan:</span>`;
             promoModalCardContent.appendChild(promoModalCondition);
+
+            const promoModalConditionBar = document.createElement("div");
+            let promoModalConditionStatus =
+              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+              (plate.condition === "Dobry" ? "good" : "") ||
+              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            promoModalConditionBar.classList = `condition-bar ${promoModalConditionStatus}`;
+            promoModalConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div> 
+            <div class="element"></div>`;
+            promoModalCondition.appendChild(promoModalConditionBar);
 
             const promoModalprice = document.createElement("div");
             promoModalprice.className = "promo-modal-price";
@@ -405,9 +521,28 @@ const getPromoPlates = () => {
             promoContent.appendChild(promoContentWrapper);
 
             // content -------------------------------
+
+            let isRestCountry =
+              plate.country.name === "Reszta Świata" ? plate.alt : "";
+            let isPlateSet =
+              plate.country.name === "Zestawy tablic" ? plate.alt : "";
+            let isFrame = plate.country.name === "Ramki" ? plate.alt : "";
+            let isNormalCountry =
+              plate.country.name !== "Reszta Świata" &&
+              plate.country.name !== "Zestawy tablic" &&
+              plate.country.name !== "Ramki"
+                ? plate.country.name
+                : "";
+
             const title = document.createElement("p");
             title.className = "promo-title";
-            title.textContent = plate.state?.name || plate.country?.name;
+            title.innerHTML =
+              plate.state?.name ||
+              isNormalCountry ||
+              isRestCountry ||
+              isPlateSet ||
+              isFrame;
+            // title.textContent = plate.state?.name || plate.country?.name;
             promoContentWrapper.appendChild(title);
 
             // const text = document.createElement("p");
@@ -417,20 +552,32 @@ const getPromoPlates = () => {
 
             const size = document.createElement("p");
             size.className = "promo-size";
-            size.innerHTML = `<span data-translate="promoMiniPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
-
+            size.innerHTML = plate.sizeLength
+              ? `<span data-translate="promoMiniPlateSize">Wymiary:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+              : "";
             promoContentWrapper.appendChild(size);
 
             const year = document.createElement("p");
             year.className = "promo-year";
-            year.textContent = `Rok: ${plate.year}`;
+            year.textContent = plate.year ? `Rok: ${plate.year}` : "";
             promoContentWrapper.appendChild(year);
 
             const condition = document.createElement("p");
+            condition.style = "display: flex; align-items: center; ";
             condition.className = "promo-condition";
-            condition.innerHTML = `<span data-translate="promoMiniPlateStatus">Stan:</span> ${plate.condition}`;
-
+            condition.innerHTML = `<span data-translate="promoMiniPlateStatus">Stan:</span>`;
             promoContentWrapper.appendChild(condition);
+
+            const promoConditionBar = document.createElement("div");
+            let promoConditionStatus =
+              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+              (plate.condition === "Dobry" ? "good" : "") ||
+              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            promoConditionBar.classList = `condition-bar ${promoConditionStatus}`;
+            promoConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div> 
+            <div class="element"></div>`;
+            condition.appendChild(promoConditionBar);
 
             const price = document.createElement("p");
             price.className = "promo-pricing";
@@ -473,13 +620,6 @@ const getPromoPlates = () => {
             promoModalCardContent.className = "modal-card";
             promoModalContainer.appendChild(promoModalCardContent);
 
-            // const promoModalText = document.createElement("p");
-            // promoModalCardContent.appendChild(promoModalText);
-
-            // const promoModalTextSpan = document.createElement("span");
-            // promoModalTextSpan.textContent = plate.alt;
-            // promoModalText.appendChild(promoModalTextSpan);
-
             const promoModalTitle = document.createElement("p");
             const isState = plate.state?.name;
             promoModalTitle.innerHTML = `<span data-translate="modalPromoPlateCountry">Kraj:</span> ${plate.country?.name}`;
@@ -493,15 +633,31 @@ const getPromoPlates = () => {
 
             const promoModalSize = document.createElement("p");
             promoModalCardContent.appendChild(promoModalSize);
-            promoModalSize.innerHTML = `<span data-translate="modalPromoPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`;
+            promoModalSize.innerHTML = plate.sizeLength
+              ? `<span data-translate="modalPromoPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+              : "";
 
             const promoModalYear = document.createElement("p");
-            promoModalYear.innerHTML = `<span data-translate="modalPromoYear">Rok wydania:</span> ${plate.year}`;
+            promoModalYear.innerHTML = plate.year
+              ? `<span data-translate="modalPromoYear">Rok wydania:</span> ${plate.year}`
+              : "";
             promoModalCardContent.appendChild(promoModalYear);
 
             const promoModalCondition = document.createElement("p");
-            promoModalCondition.innerHTML = `<span data-translate="modalPromoPlateStatus">Stan:</span> ${plate.condition}`;
+            promoModalCondition.style = "display: flex; align-items: center; ";
+            promoModalCondition.innerHTML = `<span data-translate="modalPromoPlateStatus">Stan:</span>`;
             promoModalCardContent.appendChild(promoModalCondition);
+
+            const promoModalConditionBar = document.createElement("div");
+            let promoModalConditionStatus =
+              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+              (plate.condition === "Dobry" ? "good" : "") ||
+              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            promoModalConditionBar.classList = `condition-bar ${promoModalConditionStatus}`;
+            promoModalConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div> 
+            <div class="element"></div>`;
+            promoModalCondition.appendChild(promoModalConditionBar);
 
             const promoModalprice = document.createElement("div");
             promoModalprice.className = "promo-modal-price";

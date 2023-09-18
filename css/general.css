@@ -332,3 +332,37 @@ label:active:after {
 .czech {
   background-image: url("../img/flag-pl.svg");
 }
+
+/* Condition Bar */
+.element {
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  margin-right: 2px;
+  border: #a3a0a0 1.8px solid;
+}
+
+.element:first-child {
+  margin-left: 6px;
+}
+
+.sufficent {
+  .element:first-child {
+    border: 1.8px solid red;
+    background-color: #ee3434ce;
+  }
+}
+
+.good {
+  .element:not(:last-child) {
+    border: 1.8px solid orange;
+    background-color: #f5cc18ce;
+  }
+}
+
+.very-good {
+  .element {
+    border: 1.8px solid green;
+    background-color: #49ee49ce;
+  }
+}
