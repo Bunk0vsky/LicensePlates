@@ -50,12 +50,14 @@ const displayMore = async (countryName, stateName) => {
       ...,
       "imageUrl": src.asset->url,
       "state": state->,
-      "country": country->
+      "country": country->,
+      "condition": condition->
     } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
       "count": count(*[_type == "plate" && isPromo != true ]{
         ...,
         "state": state->,
-        "country": country->
+        "country": country->,
+        "condition": condition->
       } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet}),
   }
     

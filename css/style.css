@@ -545,8 +545,8 @@ rect.shadow {
   font-weight: bold;
 }
 .modal-card p:first-of-type {
-  font-size: 2.4rem;
-  line-height: 3.8rem;
+  font-size: 2rem;
+  line-height: 2.6rem;
 }
 .modal-price {
   display: flex;
@@ -911,6 +911,13 @@ table.table-delivery td.price-column {
   display: flex;
   flex-direction: column;
   justify-self: flex-start;
+}
+
+.counter-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-logo {

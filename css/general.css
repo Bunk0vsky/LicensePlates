@@ -269,46 +269,6 @@ body {
   display: none;
 }
 
-/* BUTTON */
-/* input[type="checkbox"] {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-label {
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 40px;
-  height: 20px;
-  display: block;
-  border-radius: 100px;
-  position: relative;
-  background-image: "img/flag-pl.svg";
-}
-label:after {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 18px;
-  height: 14px;
-  background: #fff;
-  border-radius: 90px;
-  transition: 0.3s;
-}
-input:checked + label {
-  background: #515152;
-}
-input:checked + label:after {
-  left: calc(100% - 5px);
-  transform: translateX(-100%);
-}
-label:active:after {
-  width: 10px;
-} */
-
-/* another */
-
 #flagButton {
   background-color: #333;
   width: 24px;
@@ -318,12 +278,6 @@ label:active:after {
   border: none;
   cursor: pointer;
 }
-/* #flag {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-size: cover;
-} */
 
 .poland {
   background-image: url("../img/flag-cz.svg");
@@ -346,17 +300,33 @@ label:active:after {
   margin-left: 6px;
 }
 
-.sufficent {
+.road-kill {
   .element:first-child {
     border: 1.8px solid red;
     background-color: #ee3434ce;
   }
 }
 
-.good {
-  .element:not(:last-child) {
+.poor {
+  .element:first-child,
+  .element:nth-child(2) {
     border: 1.8px solid orange;
     background-color: #f5cc18ce;
+  }
+}
+.sufficent {
+  .element:first-child,
+  .element:nth-child(2),
+  .element:nth-child(3) {
+    border: 1.8px solid #f1ee07ce;
+    background-color: yellow;
+  }
+}
+
+.good {
+  .element:not(:last-child) {
+    border: 1.8px solid rgb(166, 255, 0);
+    background-color: rgb(218, 255, 151);
   }
 }
 
@@ -365,4 +335,18 @@ label:active:after {
     border: 1.8px solid green;
     background-color: #49ee49ce;
   }
+}
+
+.website-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25px;
+  width: 80px;
+  color: #333;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 10px;
 }

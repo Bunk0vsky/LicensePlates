@@ -6,7 +6,8 @@ let QUERY_ALL_PLATES_PROMO =
 ...,
 "imageUrl": src.asset->url,
 state->,
-country->
+country->,
+condition->
 } | order(_createdAt asc)`);
 
 let QUERY_ALL_PLATES_NEW =
@@ -14,7 +15,8 @@ let QUERY_ALL_PLATES_NEW =
 ...,
 "imageUrl": src.asset->url,
 state->,
-country->
+country->,
+condition->
 } | order(_createdAt asc)`);
 
 let QUERY_ONLY_PLATES_PROMO =
@@ -22,7 +24,8 @@ let QUERY_ONLY_PLATES_PROMO =
   ...,
   "imageUrl": src.asset->url,
   state->,
-  country->
+  country->,
+  condition->
   } | order(_createdAt asc)`);
 
 // Compose the URL for your project's endpoint and add the query
@@ -98,13 +101,36 @@ const generatePlate = (plate, shopSection) => {
   condition.innerHTML = `<span data-translate="shopPlateStatus">Stan:</span>`;
   shopContentWrapper.appendChild(condition);
 
+  // (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+  // (plate.condition === "Dobry" ? "good" : "") ||
+  // (plate.condition === "Bardzo dobry" ? "very-good" : "");
   const conditionBar = document.createElement("div");
-  let conditionStatus =
-    (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-    (plate.condition === "Dobry" ? "good" : "") ||
-    (plate.condition === "Bardzo dobry" ? "very-good" : "");
+  let conditionStatus = "";
+
+  switch (plate.condition.name) {
+    case "Roadkill":
+      conditionStatus = "road-kill";
+      break;
+    case "Słaby":
+      conditionStatus = "poor";
+      break;
+    case "Dostateczny":
+      conditionStatus = "sufficent";
+      break;
+    case "Dobry":
+      conditionStatus = "good";
+      break;
+    case "Bardzo dobry":
+      conditionStatus = "very-good";
+      break;
+    default:
+      console.log("Brak stanu tablicy");
+  }
+
   conditionBar.classList = `condition-bar ${conditionStatus}`;
   conditionBar.innerHTML = `<div class="element"></div> 
+  <div class="element"></div>
+  <div class="element"></div>
   <div class="element"></div> 
   <div class="element"></div>`;
   condition.appendChild(conditionBar);
@@ -201,12 +227,37 @@ const generatePlate = (plate, shopSection) => {
   modalCardContent.appendChild(modalCondition);
 
   const modalConditionBar = document.createElement("div");
-  let modalConditionStatus =
-    (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-    (plate.condition === "Dobry" ? "good" : "") ||
-    (plate.condition === "Bardzo dobry" ? "very-good" : "");
+  // let modalConditionStatus =
+  //   (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+  //   (plate.condition === "Dobry" ? "good" : "") ||
+  //   (plate.condition === "Bardzo dobry" ? "very-good" : "");
+
+  let modalConditionStatus = "";
+
+  switch (plate.condition.name) {
+    case "road kill":
+      modalConditionStatus = "roadkill";
+      break;
+    case "słaby":
+      modalConditionStatus = "poor";
+      break;
+    case "dostateczny":
+      modalConditionStatus = "sufficent";
+      break;
+    case "dobry":
+      modalConditionStatus = "good";
+      break;
+    case "bardzo dobry":
+      modalConditionStatus = "very-good";
+      break;
+    default:
+      console.log("Brak stanu tablicy");
+  }
+
   modalConditionBar.classList = `condition-bar ${modalConditionStatus}`;
   modalConditionBar.innerHTML = `<div class="element"></div> 
+  <div class="element"></div>
+  <div class="element"></div>
   <div class="element"></div> 
   <div class="element"></div>`;
   modalCondition.appendChild(modalConditionBar);
@@ -315,12 +366,37 @@ const getPlates = () => {
             promoContentWrapper.appendChild(condition);
 
             const conditionBar = document.createElement("div");
-            let conditionStatus =
-              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-              (plate.condition === "Dobry" ? "good" : "") ||
-              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            // let conditionStatus =
+            //   (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+            //   (plate.condition === "Dobry" ? "good" : "") ||
+            //   (plate.condition === "Bardzo dobry" ? "very-good" : "");
+
+            let conditionStatus = "";
+
+            switch (plate.condition.name) {
+              case "road kill":
+                conditionStatus = "roadkill";
+                break;
+              case "słaby":
+                conditionStatus = "poor";
+                break;
+              case "dostateczny":
+                conditionStatus = "sufficent";
+                break;
+              case "dobry":
+                conditionStatus = "good";
+                break;
+              case "bardzo dobry":
+                conditionStatus = "very-good";
+                break;
+              default:
+                console.log("Brak stanu tablicy");
+            }
+
             conditionBar.classList = `condition-bar ${conditionStatus}`;
             conditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div>
+            <div class="element"></div>
             <div class="element"></div> 
             <div class="element"></div>`;
             condition.appendChild(conditionBar);
@@ -413,8 +489,9 @@ const getPlates = () => {
             promoModalCardContent.appendChild(promoModalSize);
 
             const promoModalYear = document.createElement("p");
-            let isYear = plate.year ? plate.year : "---";
-            promoModalYear.innerHTML = `<span>Rok wydania:</span> ${isYear}`;
+            promoModalYear.innerHTML = plate.year
+              ? `<span>Rok wydania:</span> ${plate.year}`
+              : "";
             promoModalCardContent.appendChild(promoModalYear);
 
             const promoModalCondition = document.createElement("p");
@@ -423,12 +500,37 @@ const getPlates = () => {
             promoModalCardContent.appendChild(promoModalCondition);
 
             const promoModalConditionBar = document.createElement("div");
-            let promoModalConditionStatus =
-              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-              (plate.condition === "Dobry" ? "good" : "") ||
-              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            // let promoModalConditionStatus =
+            //   (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+            //   (plate.condition === "Dobry" ? "good" : "") ||
+            //   (plate.condition === "Bardzo dobry" ? "very-good" : "");
+
+            let promoModalConditionStatus = "";
+
+            switch (plate.condition.name) {
+              case "road kill":
+                promoModalConditionStatus = "roadkill";
+                break;
+              case "słaby":
+                promoModalConditionStatus = "poor";
+                break;
+              case "dostateczny":
+                promoModalConditionStatus = "sufficent";
+                break;
+              case "dobry":
+                promoModalConditionStatus = "good";
+                break;
+              case "bardzo dobry":
+                promoModalConditionStatus = "very-good";
+                break;
+              default:
+                console.log("Brak stanu tablicy");
+            }
+
             promoModalConditionBar.classList = `condition-bar ${promoModalConditionStatus}`;
             promoModalConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div>
+            <div class="element"></div>
             <div class="element"></div> 
             <div class="element"></div>`;
             promoModalCondition.appendChild(promoModalConditionBar);
@@ -569,12 +671,37 @@ const getPromoPlates = () => {
             promoContentWrapper.appendChild(condition);
 
             const promoConditionBar = document.createElement("div");
-            let promoConditionStatus =
-              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-              (plate.condition === "Dobry" ? "good" : "") ||
-              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            // let promoConditionStatus =
+            //   (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+            //   (plate.condition === "Dobry" ? "good" : "") ||
+            //   (plate.condition === "Bardzo dobry" ? "very-good" : "");
+
+            let promoConditionStatus = "";
+
+            switch (plate.condition.name) {
+              case "road kill":
+                promoConditionStatus = "roadkill";
+                break;
+              case "słaby":
+                promoConditionStatus = "poor";
+                break;
+              case "dostateczny":
+                promoConditionStatus = "sufficent";
+                break;
+              case "dobry":
+                promoConditionStatus = "good";
+                break;
+              case "bardzo dobry":
+                promoConditionStatus = "very-good";
+                break;
+              default:
+                console.log("Brak stanu tablicy");
+            }
+
             promoConditionBar.classList = `condition-bar ${promoConditionStatus}`;
             promoConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div>
+            <div class="element"></div>
             <div class="element"></div> 
             <div class="element"></div>`;
             condition.appendChild(promoConditionBar);
@@ -649,12 +776,37 @@ const getPromoPlates = () => {
             promoModalCardContent.appendChild(promoModalCondition);
 
             const promoModalConditionBar = document.createElement("div");
-            let promoModalConditionStatus =
-              (plate.condition === "Dostateczny" ? "sufficent" : "") ||
-              (plate.condition === "Dobry" ? "good" : "") ||
-              (plate.condition === "Bardzo dobry" ? "very-good" : "");
+            // let promoModalConditionStatus =
+            //   (plate.condition === "Dostateczny" ? "sufficent" : "") ||
+            //   (plate.condition === "Dobry" ? "good" : "") ||
+            //   (plate.condition === "Bardzo dobry" ? "very-good" : "");
+
+            let promoModalConditionStatus = "";
+
+            switch (plate.condition.name) {
+              case "road kill":
+                promoModalConditionStatus = "roadkill";
+                break;
+              case "słaby":
+                promoModalConditionStatus = "poor";
+                break;
+              case "dostateczny":
+                promoModalConditionStatus = "sufficent";
+                break;
+              case "dobry":
+                promoModalConditionStatus = "good";
+                break;
+              case "bardzo dobry":
+                promoModalConditionStatus = "very-good";
+                break;
+              default:
+                console.log("Brak stanu tablicy");
+            }
+
             promoModalConditionBar.classList = `condition-bar ${promoModalConditionStatus}`;
             promoModalConditionBar.innerHTML = `<div class="element"></div> 
+            <div class="element"></div>
+            <div class="element"></div>
             <div class="element"></div> 
             <div class="element"></div>`;
             promoModalCondition.appendChild(promoModalConditionBar);
