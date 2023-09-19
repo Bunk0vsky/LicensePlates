@@ -114,7 +114,7 @@ const generatePlate = (plate, shopSection) => {
     case "Słaby":
       conditionStatus = "poor";
       break;
-    case "Dostateczny":
+    case "dostateczny":
       conditionStatus = "sufficent";
       break;
     case "Dobry":
