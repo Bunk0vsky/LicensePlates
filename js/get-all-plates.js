@@ -34,6 +34,7 @@ let URL_to_get_new_plates = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/dat
 let URL_to_get_promo_plates = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_ONLY_PLATES_PROMO}`;
 
 const generatePlate = (plate, shopSection) => {
+  console.log("sdsfsfsfffs", plate);
   const shopWrapper = document.createElement("div");
   shopWrapper.className = "shop-wrapper";
   shopSection.appendChild(shopWrapper);
@@ -114,7 +115,7 @@ const generatePlate = (plate, shopSection) => {
     case "Słaby":
       conditionStatus = "poor";
       break;
-    case "dostateczny":
+    case "Dostateczny":
       conditionStatus = "sufficent";
       break;
     case "Dobry":
@@ -235,19 +236,19 @@ const generatePlate = (plate, shopSection) => {
   let modalConditionStatus = "";
 
   switch (plate.condition.name) {
-    case "road kill":
-      modalConditionStatus = "roadkill";
+    case "Roadkill":
+      modalConditionStatus = "road-kill";
       break;
-    case "słaby":
+    case "Słaby":
       modalConditionStatus = "poor";
       break;
-    case "dostateczny":
+    case "Dostateczny":
       modalConditionStatus = "sufficent";
       break;
-    case "dobry":
+    case "Dobry":
       modalConditionStatus = "good";
       break;
-    case "bardzo dobry":
+    case "Bardzo dobry":
       modalConditionStatus = "very-good";
       break;
     default:
@@ -289,6 +290,7 @@ const getPlates = () => {
         if (promoSection) {
           // Get only promo plates
           result.forEach((plate) => {
+            console.log(plate);
             // create a div element for each promo
             const promoWrapper = document.createElement("div");
             promoWrapper.className = "promo-wrapper";
@@ -373,25 +375,27 @@ const getPlates = () => {
 
             let conditionStatus = "";
 
+            console.log(plate.condition.name);
             switch (plate.condition.name) {
-              case "road kill":
-                conditionStatus = "roadkill";
+              case "Roadkill":
+                conditionStatus = "road-kill";
                 break;
-              case "słaby":
+              case "Słaby":
                 conditionStatus = "poor";
                 break;
-              case "dostateczny":
+              case "Dostateczny":
                 conditionStatus = "sufficent";
                 break;
-              case "dobry":
+              case "Dobry":
                 conditionStatus = "good";
                 break;
-              case "bardzo dobry":
+              case "Bardzo dobry":
                 conditionStatus = "very-good";
                 break;
               default:
                 console.log("Brak stanu tablicy");
             }
+            console.log(conditionStatus);
 
             conditionBar.classList = `condition-bar ${conditionStatus}`;
             conditionBar.innerHTML = `<div class="element"></div> 
@@ -508,19 +512,19 @@ const getPlates = () => {
             let promoModalConditionStatus = "";
 
             switch (plate.condition.name) {
-              case "road kill":
-                promoModalConditionStatus = "roadkill";
+              case "Roadkill":
+                promoModalConditionStatus = "road-kill";
                 break;
-              case "słaby":
+              case "Słaby":
                 promoModalConditionStatus = "poor";
                 break;
-              case "dostateczny":
+              case "Dostateczny":
                 promoModalConditionStatus = "sufficent";
                 break;
-              case "dobry":
+              case "Dobry":
                 promoModalConditionStatus = "good";
                 break;
-              case "bardzo dobry":
+              case "Bardzo dobry":
                 promoModalConditionStatus = "very-good";
                 break;
               default:
@@ -679,19 +683,19 @@ const getPromoPlates = () => {
             let promoConditionStatus = "";
 
             switch (plate.condition.name) {
-              case "road kill":
-                promoConditionStatus = "roadkill";
+              case "Roadkill":
+                promoConditionStatus = "road-kill";
                 break;
-              case "słaby":
+              case "Słaby":
                 promoConditionStatus = "poor";
                 break;
-              case "dostateczny":
+              case "Dostateczny":
                 promoConditionStatus = "sufficent";
                 break;
-              case "dobry":
+              case "Dobry":
                 promoConditionStatus = "good";
                 break;
-              case "bardzo dobry":
+              case "Bardzo dobry":
                 promoConditionStatus = "very-good";
                 break;
               default:
@@ -784,19 +788,19 @@ const getPromoPlates = () => {
             let promoModalConditionStatus = "";
 
             switch (plate.condition.name) {
-              case "road kill":
-                promoModalConditionStatus = "roadkill";
+              case "Roadkill":
+                promoModalConditionStatus = "road-kill";
                 break;
-              case "słaby":
+              case "Słaby":
                 promoModalConditionStatus = "poor";
                 break;
-              case "dostateczny":
+              case "Dostateczny":
                 promoModalConditionStatus = "sufficent";
                 break;
-              case "dobry":
+              case "Dobry":
                 promoModalConditionStatus = "good";
                 break;
-              case "bardzo dobry":
+              case "Bardzo dobry":
                 promoModalConditionStatus = "very-good";
                 break;
               default:
