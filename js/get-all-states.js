@@ -1,8 +1,7 @@
 let QUERY_ALL_STATES = encodeURIComponent(
-  `*[_type == "state"] {
-    ...,
-    "count": count(*[_type == "plate" && references(^._id) && isPromo != true ])
-  }  | order(name)`
+  `*[_type == "plate" && isPromo != true && country == "Stany Zjednoczone"] {
+    state,
+  }  | order(state)`
 );
 
 let URL_to_get_states = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY_ALL_STATES}`;
@@ -14,16 +13,17 @@ const getStates = () =>
       let stateList = document.getElementById("usa");
 
       if (result.length > 0) {
+        const filteredResult = [
+          ...new Map(result.map((item) => [item.state, item])).values(),
+        ];
         if (stateList) {
-          result
-            .filter((x) => x.count)
-            .forEach((state) => {
-              const list = document.createElement("li");
-              list.className = "menu-nav-link";
-              list.textContent = `${state.name}`;
-              list.setAttribute("onclick", "filterPlates(this);");
-              stateList.appendChild(list);
-            });
+          filteredResult.forEach((value) => {
+            const list = document.createElement("li");
+            list.className = "menu-nav-link";
+            list.textContent = `${value.state}`;
+            list.setAttribute("onclick", "filterPlates(this);");
+            stateList.appendChild(list);
+          });
         }
       }
     })
