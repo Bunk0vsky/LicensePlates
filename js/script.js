@@ -124,3 +124,24 @@ function counter() {
 }
 
 counter();
+
+//Make mobile navigation work
+
+const btnNavEl = document.querySelector(".btn-mobile-nav");
+const headerEl = document.querySelector(".header");
+
+btnNavEl.addEventListener("click", function () {
+  headerEl.classList.toggle("nav-open");
+});
+
+const allLinks = document.querySelectorAll("a:link");
+
+console.log("kupa", allLinks);
+
+allLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    // Close mobile naviagtion
+    if (link.classList.contains("main-nav-link"))
+      headerEl.classList.toggle("nav-open");
+  });
+});

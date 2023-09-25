@@ -29,6 +29,7 @@ const displayMore = async (countryName, stateName) => {
     ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
     : "";
 
+<<<<<<< Updated upstream
   const isFilterByRestWorldCountryName =
     defaultCountryName === "Reszta Świata"
       ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
@@ -39,6 +40,8 @@ const displayMore = async (countryName, stateName) => {
       ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
       : "";
 
+=======
+>>>>>>> Stashed changes
   const defaultStateName = stateName || selectedState;
 
   const isFilterByStateName = defaultStateName
@@ -70,7 +73,7 @@ const displayMore = async (countryName, stateName) => {
   let { result } = await response.json();
   if (result?.list.length > 0) {
     const loader = document.getElementById("loader");
-    loader.classList.add("hidden");
+    loader?.classList?.add("hidden");
     let shopSection = document.getElementById("shop-bar");
     if (shopSection) {
       result.list

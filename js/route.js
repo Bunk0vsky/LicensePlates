@@ -29,7 +29,7 @@ const routes = {
 const locationHandler = async () => {
   // get the url path, replace hash with empty string
   var location = window.location.hash.replace("#", "");
-
+  console.log("locationHandler", location);
   // if the path length is 0, set it to primary page route
   if (location.length == 0) {
     location = "/";
@@ -67,12 +67,14 @@ const elContact = document.getElementById("main-nav-contact");
 elPromo.addEventListener("click", function (e) {
   locationHandler();
   getPromoPlates();
+  console.log("wcosnąłem");
 });
 
 elShop.addEventListener("click", async (e) => {
   locationHandler();
   getStates();
   removeElements();
+  console.log("wcosnąłem");
 
   currentPage = 1;
   platesStartRange = 0;
