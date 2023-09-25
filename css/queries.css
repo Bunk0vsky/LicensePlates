@@ -303,7 +303,7 @@
     flex-wrap: wrap;
   }
   .skeleton-card {
-    width: calc((100% / 4) - 16px);
+    width: calc((100% / 2) - 16px);
   }
 
   .select {
@@ -439,6 +439,10 @@
 
   .shop-wrapper,
   .promo-wrapper {
+    width: 25%;
+  }
+
+  #shop-bar-main .shop-wrapper {
     width: 25%;
   }
 
