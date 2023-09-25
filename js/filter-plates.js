@@ -17,7 +17,7 @@ const displayAll = async () => {
   infiniteSCroll(data?.count || 0);
 };
 
-var sortBy = "country.name asc, state.name asc";
+var sortBy = "country asc, state asc";
 var platesStartRange = 0;
 var platesEndRange = 5;
 var selectedCategory = "";
@@ -26,42 +26,23 @@ var selectedState = "";
 const displayMore = async (countryName, stateName) => {
   const defaultCountryName = countryName || selectedCategory;
   const isFilterByCountryName = defaultCountryName
-    ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
+    ? `&& country == "${defaultCountryName}"`
     : "";
 
-<<<<<<< Updated upstream
-  const isFilterByRestWorldCountryName =
-    defaultCountryName === "Reszta Świata"
-      ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
-      : "";
-
-  const isFilterByPlateSet =
-    defaultCountryName === "Zestawy tablic"
-      ? `[country.name == "${defaultCountryName}" && isPromo != true ]`
-      : "";
-
-=======
->>>>>>> Stashed changes
   const defaultStateName = stateName || selectedState;
 
   const isFilterByStateName = defaultStateName
-    ? `[state.name == "${defaultStateName}" && isPromo != true ]`
+    ? `&& state == "${defaultStateName}"`
     : "";
 
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
-      "list":*[_type == "plate"  && isPromo != true] {
+      "list":*[_type == "plate" && isPromo != true ${isFilterByCountryName} ${isFilterByStateName}] {
       ...,
-      "imageUrl": src.asset->url,
-      "state": state->,
-      "country": country->,
-      "condition": condition->
-    } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet} | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
-      "count": count(*[_type == "plate" && isPromo != true ]{
+      "imageUrl": src.asset->url
+    } | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
+      "count": count(*[_type == "plate" && isPromo != true ${isFilterByCountryName} ${isFilterByStateName}]{
         ...,
-        "state": state->,
-        "country": country->,
-        "condition": condition->
-      } ${isFilterByCountryName} ${isFilterByStateName} ${isFilterByRestWorldCountryName} ${isFilterByPlateSet}),
+      }),
   }
     
   `);
