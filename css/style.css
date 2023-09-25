@@ -57,18 +57,12 @@
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
 }
 
-.sticky .section-main {
-  margin-top: 9.6rem;
-}
-
 .section-main {
   position: relative;
 
   display: flex;
   align-items: center;
-
-  padding: 4.8rem 9.6rem;
-  height: calc(100vh - 9.6rem);
+  height: calc(60vh - 9.6rem);
 }
 
 .neonTextFlicker {
@@ -103,6 +97,23 @@
     0 0 102px rgb(4, 88, 245), 0 0 151px rgb(4, 88, 245);
 }
 
+/* MOBILE */
+.btn-mobile-nav {
+  border: none;
+  border-color: none;
+  cursor: pointer;
+
+  display: none;
+}
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+  color: #333;
+}
+
+.icon-mobile-nav[name="close-outline"] {
+  display: none;
+}
 /* ****************************************************** */
 /* MAIN */
 /* ****************************************************** */
@@ -141,14 +152,16 @@ rect.shadow {
 }
 
 .main-background {
-  position: absolute;
+  display: flex;
+  justify-items: center;
+  /* position: absolute; */
   height: 100%;
   width: 100%;
   background-image: url("../img/plates.jpg");
   background-size: cover;
   background-position: center;
-  top: 0;
-  left: 0;
+  /* top: 0;
+  left: 0; */
   z-index: -1;
   opacity: 0.7;
 }
@@ -159,8 +172,8 @@ rect.shadow {
 
 .main-background-img {
   position: absolute;
-  left: 0;
-  top: 0;
+  /* left: 0;
+  top: 0; */
   opacity: 0.8;
   width: 100%;
   max-height: 100%;

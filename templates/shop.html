@@ -33,7 +33,7 @@
 
       <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Ramki" data-translate="shopFramesBtn">Ramki, tablice motocyklowe</button>
 
-      <button type="button" class="accordion" data-translate="shopOthersBtn">Inne kategorie</button>
+      <button type="button" class="accordion" onclick="getOtherCountry(this);" id="Inne" data-translate="shopOthersBtn">Inne kategorie</button>
     </div>
   </section>
 
@@ -94,6 +94,13 @@
         <div></div>
         <div></div>
       </div>
+    </div>
+    <div class="out-of-stock-banner" id="banner">
+      <p style="margin-top: 5px">
+        Przepraszamy, aktualnie brak produktów na stanie.
+      </p>
+
+      <img src="../img/sad-face.svg" alt="sad face" class="sad-face" />
     </div>
     <div class="shop-bar" id="shop-bar">
       <!-- script get-all-plates.js -->

@@ -49,6 +49,8 @@ const translations = {
     modalPromoPlateSize: "Wymiary tablicy: ",
     modalPromoYear: "Rok wydania: ",
     modalPromoPlateStatus: "Stan: ",
+    outOfStock:
+      "Przepraszamy, aktualnie brak promocyjnych produktów na stanie.",
   },
   cs: {
     mainPage: "Úvodní stránka",
@@ -100,6 +102,8 @@ const translations = {
     modalPromoPlateSize: "Rozměry desky: ",
     modalPromoYear: "Datum publikace: ",
     modalPromoPlateStatus: "Kondice: ",
+    outOfStock:
+      "Omlouváme se, momentálně nejsou na skladě žádné akční produkty.",
   },
 };
 

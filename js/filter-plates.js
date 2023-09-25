@@ -29,16 +29,6 @@ const displayMore = async (countryName, stateName) => {
     ? `&& country == "${defaultCountryName}"`
     : "";
 
-  // const isFilterByRestWorldCountryName =
-  //   defaultCountryName === "Reszta Świata"
-  //     ? `&& country == "${defaultCountryName}"`
-  //     : "";
-
-  // const isFilterByPlateSet =
-  //   defaultCountryName === "Zestawy tablic"
-  //     ? `&& country == "${defaultCountryName}"`
-  //     : "";
-
   const defaultStateName = stateName || selectedState;
 
   const isFilterByStateName = defaultStateName
@@ -64,7 +54,7 @@ const displayMore = async (countryName, stateName) => {
   let { result } = await response.json();
   if (result?.list.length > 0) {
     const loader = document.getElementById("loader");
-    loader.classList.add("hidden");
+    loader?.classList?.add("hidden");
     let shopSection = document.getElementById("shop-bar");
     if (shopSection) {
       result.list

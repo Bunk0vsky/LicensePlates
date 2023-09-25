@@ -427,10 +427,16 @@ const getPlates = () => {
   fetch(URL_to_get_plates)
     .then((res) => res.json())
     .then(({ result }) => {
+      console.log(result);
+
+      const banner = document.getElementById("banner-index");
+      const loader = document.getElementById("loader-index");
+      console.log(result);
+      console.log(banner);
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar");
-        const loader = document.getElementById("loader");
         loader?.classList?.add("hidden");
+        banner?.classList.remove("visible");
 
         if (promoSection) {
           // Get only promo plates
@@ -438,6 +444,10 @@ const getPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
+      } else if (result.length === 0 && banner) {
+        console.log("weszlo");
+        banner?.classList.add("visible");
+        loader?.classList?.add("hidden");
       }
     })
 
@@ -446,8 +456,12 @@ const getPlates = () => {
   fetch(URL_to_get_new_plates)
     .then((res) => res.json())
     .then(({ result }) => {
+      const banner = document.getElementById("banner");
       if (result?.length > 0) {
         const shopSection = document.getElementById("shop-bar-main");
+        console.log("tutaj");
+        banner?.classList?.remove("visible");
+
         if (shopSection) {
           result
             .filter((x) => !x.isPromo)
@@ -457,6 +471,8 @@ const getPlates = () => {
               }
             });
         }
+      } else if (result.length === 0) {
+        banner?.classList?.add("visible");
       }
     });
 };
@@ -467,10 +483,12 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
+      const loader = document.getElementById("loader-promo");
+      const banner = document.getElementById("banner-promo");
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar-page");
-        const loader = document.getElementById("loader");
         loader?.classList?.add("hidden");
+        banner?.classList.remove("visible");
 
         if (promoSection) {
           // Get only promo plates
@@ -478,6 +496,9 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
+      } else if (result.length === 0) {
+        loader?.classList?.add("hidden");
+        banner?.classList?.add("visible");
       }
     })
 
