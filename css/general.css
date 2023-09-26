@@ -289,9 +289,11 @@ body {
 }
 
 .czech {
+  background-image: url("../img/flag-us.svg");
+}
+.usa {
   background-image: url("../img/flag-pl.svg");
 }
-
 /* Condition Bar */
 .element {
   border-radius: 50%;

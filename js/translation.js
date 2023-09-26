@@ -51,6 +51,7 @@ const translations = {
     modalPromoPlateStatus: "Stan: ",
     outOfStock:
       "Przepraszamy, aktualnie brak promocyjnych produktów na stanie.",
+    footerCounter: "Odwiedziło nas już:",
   },
   cs: {
     mainPage: "Úvodní stránka",
@@ -104,6 +105,60 @@ const translations = {
     modalPromoPlateStatus: "Kondice: ",
     outOfStock:
       "Omlouváme se, momentálně nejsou na skladě žádné akční produkty.",
+    footerCounter: "Už nás navštívili:",
+  },
+  en: {
+    mainPage: "Home",
+    promo: "Sale",
+    shop: "Shop",
+    delivery: "Delivery",
+    contact: "Contact",
+    footerHeading: "You will find us too!",
+    footerContact: "Contact",
+    headingPrimary: "US license plates.",
+    subheading: "Sale",
+    headingSecondary: "The best offers on the site!",
+    shopHeading: "Shop",
+    checkOut: "Check out our new products!",
+    viewMore: "See more!",
+    promoHeading: "Sale",
+    promoHeadingSecondary: "The best offers on the site!",
+    promoCheck: "Check out other offers!",
+    deliveryPayForm: "Delivery and payment methods",
+    deliverySendCosts: "Shipping cost by Poczta Polska:",
+    deliveryOptions: "Options",
+    deliveryCost: "Cost",
+    shopSubheading: "Shop",
+    shopAllBtn: "All",
+    shopUsaBtn: "United States",
+    shopMexicoBtn: "Mexico",
+    shopCanadaBtn: "Canada",
+    shopRestBtn: "Rest of the world",
+    shopSetsBtn: "Plate sets",
+    shopFramesBtn: "Frames, motorcycle license plates",
+    shopOthersBtn: "Other categories ",
+    shopSortBar: "Sort...",
+    shopPlateSize: "Dimensions: ",
+    shopPlateStatus: "Status: ",
+    modalShopPlateCountry: "Country: ",
+    modalShopPlateItem: "Item: ",
+    modalShopPlateState: "State: ",
+    modalShopPlateSize: "Dimensions: ",
+    modalShopPlateStatus: "Status: ",
+    modalShopYear: "Publication date: ",
+    promoPlateSize: "Dimensions: ",
+    promoPlateStatus: "Status: ",
+    promoModalPlateCountry: "Country: ",
+    promoModalPlateSize: "Dimensions: ",
+    promoModalPlateStatus: "Status: ",
+    promoMiniPlateSize: "Dimensions: ",
+    promoMiniPlateStatus: "Status: ",
+    modalPromoPlateCountry: "Country: ",
+    modalPromoPlateSize: "Dimensions: ",
+    modalPromoYear: "Publication date: ",
+    modalPromoPlateStatus: "Status: ",
+    outOfStock: "Sorry, no promotional products currently in stock.",
+    footerCounter: "We have already been visited by:",
   },
 };
 
@@ -112,22 +167,36 @@ const flagButton = document.getElementById("flagButton");
 let currentLanguage =
   window.navigator.userLanguage || window.navigator.language;
 
-if (currentLanguage === "pl") {
-  flagButton.classList.add("poland");
-  flagButton.classList.remove("czech");
-} else if (currentLanguage === "cs") {
-  flagButton.classList.remove("poland");
-  flagButton.classList.add("czech");
-}
+// if (currentLanguage === "pl") {
+//   flagButton.classList.add("czech");
+//   flagButton.classList.remove("poland");
+//   flagButton.classList.remove("usa");
+// } else if (currentLanguage === "cs") {
+//   flagButton.classList.add("usa");
+//   flagButton.classList.remove("poland");
+//   flagButton.classList.remove("czech");
+// } else if (currentLanguage === "en") {
+//   flagButton.classList.add("poland");
+//   flagButton.classList.remove("usa");
+//   flagButton.classList.remove("czech");
+// }
 
 flagButton.addEventListener("click", () => {
   if (currentLanguage === "pl") {
     currentLanguage = "cs";
     flagButton.classList.remove("poland");
+    flagButton.classList.remove("usa");
     flagButton.classList.add("czech");
     translation();
-  } else {
+  } else if (currentLanguage === "cs") {
+    currentLanguage = "en";
+    flagButton.classList.remove("czech");
+    flagButton.classList.remove("poland");
+    flagButton.classList.add("usa");
+    translation();
+  } else if (currentLanguage === "en") {
     currentLanguage = "pl";
+    flagButton.classList.remove("usa");
     flagButton.classList.remove("czech");
     flagButton.classList.add("poland");
     translation();

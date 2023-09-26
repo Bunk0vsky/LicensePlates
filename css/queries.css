@@ -122,6 +122,9 @@
     width: 85%;
   }
 
+  .modal-img {
+    height: 85%;
+  }
   .modal-card:first-of-type {
     width: 100%;
     padding-right: 0rem;
