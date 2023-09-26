@@ -6,6 +6,10 @@
     margin-right: auto;
     margin-left: auto;
   }
+
+  .section-main {
+    height: calc(35vh - 9.6rem);
+  }
   .shop-wrapper,
   .promo-wrapper {
     width: 100%;
@@ -152,8 +156,15 @@
     padding: 0 5rem 0 4rem;
     margin: 0 0;
   }
-  .accordion {
+  .accordion,
+  .ccordion-arrow-container,
+  .panel {
     width: 94%;
+  }
+
+  .active,
+  .accordion:hover {
+    background-color: #f3f4f6;
   }
 
   .text-delivery {

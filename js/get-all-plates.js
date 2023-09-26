@@ -374,7 +374,9 @@ function generatePromoPlate(plate, promoSection) {
   promoModalCardContent.appendChild(promoModalTitle);
 
   const promoModalTitleState = document.createElement("p");
-  promoModalTitleState.textContent = isState ? `Stan: ${plate.state}` : "";
+  promoModalTitleState.innerHTML = isState
+    ? `<span data-translate="promoModalPlateState">Stan: </span> ${plate.state}`
+    : "";
   promoModalCardContent.appendChild(promoModalTitleState);
 
   const promoModalSize = document.createElement("p");
@@ -408,12 +410,13 @@ function generatePromoPlate(plate, promoSection) {
 
   const promoModalpriceOld = document.createElement("p");
   promoModalpriceOld.className = "old-price";
-  promoModalpriceOld.style = "font-size: 2.2rem";
+  promoModalpriceOld.style = "font-size: 1.4rem";
   promoModalpriceOld.textContent = `PLN ${plate.oldPrice}`;
   promoModalprice.appendChild(promoModalpriceOld);
 
   const promoModalpriceCurrent = document.createElement("p");
   promoModalpriceCurrent.className = "current-price";
+  promoModalpriceCurrent.style = "font-size: 2.0rem";
   promoModalpriceCurrent.textContent = `PLN ${plate.price}`;
   promoModalprice.appendChild(promoModalpriceCurrent);
 
