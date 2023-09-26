@@ -123,6 +123,11 @@ body {
   row-gap: 2rem;
 }
 
+.shopSideBar {
+  grid-template-columns: 1fr 4fr;
+  display: grid;
+}
+
 .grid--3-cols {
   grid-template-columns: repeat(3, 1fr);
 }
