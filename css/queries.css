@@ -117,10 +117,13 @@
     flex-direction: column;
     flex-wrap: initial;
     align-items: center;
+    padding: 15px;
+    height: 60%;
+    width: 85%;
   }
 
   .modal-card:first-of-type {
-    width: 55%;
+    width: 100%;
     padding-right: 0rem;
   }
 
@@ -131,9 +134,9 @@
 
   .modal-card:nth-child(2) {
     width: 100%;
-    padding-top: 2rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-top: 0rem;
+    padding-left: 4rem;
+    padding-right: 2rem;
   }
 
   .shopSideBar {
