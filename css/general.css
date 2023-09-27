@@ -67,7 +67,8 @@ body {
   font-weight: 400;
 
   color: #555;
-  background-color: #f3f4f6;
+  /* background-color: #f3f4f6; */
+  background-color: #dee2e6;
 
   /* Only works if there is nothing absolutely positioned in relation to body */
   overflow-x: hidden;
@@ -276,6 +277,7 @@ body {
 
 #flagButton {
   background-color: #333;
+  color: #333;
   width: 24px;
   height: 24px;
   background-size: cover;

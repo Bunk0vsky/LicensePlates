@@ -157,7 +157,7 @@ rect.shadow {
   /* position: absolute; */
   height: 100%;
   width: 100%;
-  background-image: url("../img/background/license-plates-3614254_1920.jpg");
+  background-image: url("../img/background/license-plates-3614254_1920.webp");
   background-size: cover;
   background-position: center;
   /* top: 0;
@@ -342,7 +342,8 @@ rect.shadow {
 
 .promo-pricing {
   font-size: 1.6rem;
-  color: #18a900;
+  /* color: #18a900; */
+  color: #06780f;
   text-align: right;
   font-weight: 700;
 }
@@ -444,7 +445,9 @@ rect.shadow {
 
 .shop-pricing {
   font-size: 1.6rem;
-  color: #18a900;
+  /* color: #18a900; */
+  color: #06780f;
+
   text-align: right;
   font-weight: 700;
 }
@@ -567,7 +570,8 @@ rect.shadow {
   align-items: end;
   padding-top: 5rem;
   font-weight: 700;
-  color: #18a900;
+  /* color: #18a900; */
+  color: #06780f;
 }
 .modal-img {
   height: 100%;
@@ -581,10 +585,11 @@ rect.shadow {
   align-items: center;
   padding-top: 5rem;
   font-weight: 700;
-  color: #18a900;
+  /* color: #18a900; */
+  color: #06780f;
 }
 
-.modal-card .promo-modal-price  {
+.modal-card .promo-modal-price {
   font-size: 1.8rem;
 }
 /* ****************************************************** */
@@ -893,13 +898,16 @@ table.table-delivery td.price-column {
   padding-bottom: 1rem;
   border-top: 1px solid #524f4f54;
 }
-
+.counter {
+  color: #474040;
+}
 .copyright {
   display: flex;
   justify-content: center;
   width: 100%;
   font-size: 1rem;
-  color: #767676;
+  /* color: #767676; */
+  color: #474040;
   line-height: 1.6;
   margin-top: auto;
 }
@@ -917,7 +925,8 @@ table.table-delivery td.price-column {
 }
 
 .address {
-  color: #767676;
+  /* color: #767676; */
+  color: #474040;
 }
 
 .social-col {

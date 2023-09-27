@@ -76,6 +76,7 @@ const generatePlate = (plate, shopSection) => {
   plateImage.className = "shop-img";
   plateImage.src = plate.imageUrl || "/img/no-image.svg";
   plateImage.alt = plate.alt;
+  plateImage.loading = "lazy";
   divImage.appendChild(plateImage);
 
   const shopContent = document.createElement("div");
@@ -115,7 +116,7 @@ const generatePlate = (plate, shopSection) => {
 
   const condition = document.createElement("p");
   condition.className = "shop-condition";
-  condition.innerHTML = `<span data-translate="shopPlateStatus">Stan:</span>`;
+  condition.innerHTML = `<span data-translate="shopPlateStatus">Status: </span>`;
   shopContentWrapper.appendChild(condition);
 
   const conditionBar = document.createElement("div");
@@ -155,6 +156,8 @@ const generatePlate = (plate, shopSection) => {
   const modalImg = document.createElement("img");
   modalImg.className = "modal-img";
   modalImg.src = plate.imageUrl || "/img/no-image.svg";
+  modalImg.alt = plate.alt;
+  modalImg.loading = "lazy";
   modalCardImg.appendChild(modalImg);
 
   const modalCardContent = document.createElement("div");
@@ -188,14 +191,14 @@ const generatePlate = (plate, shopSection) => {
   const isState = plate.state;
   const modalTitleState = document.createElement("p");
   modalTitleState.innerHTML = isState
-    ? `<span data-translate="modalShopPlateState">Stan:</span> ${plate.state}`
+    ? `<span data-translate="modalShopPlateState">Stan: </span> ${plate.state}`
     : "";
   modalCardContent.appendChild(modalTitleState);
 
   const modalSize = document.createElement("p");
 
   modalSize.innerHTML = plate.sizeLength
-    ? `<span data-translate="modalShopPlateSize">Wymiary tablicy:</span> ${plate.sizeLength} x ${plate.sizeWidth}`
+    ? `<span data-translate="modalShopPlateSize">Wymiary tablicy: </span> ${plate.sizeLength} x ${plate.sizeWidth}`
     : "";
   modalCardContent.appendChild(modalSize);
 
@@ -207,7 +210,7 @@ const generatePlate = (plate, shopSection) => {
 
   const modalCondition = document.createElement("p");
   modalCondition.style = "display: flex; align-items: center; ";
-  modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Stan:</span>`;
+  modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Status: </span>`;
   modalCardContent.appendChild(modalCondition);
 
   const modalConditionBar = document.createElement("div");
@@ -253,6 +256,7 @@ function generatePromoPlate(plate, promoSection) {
   plateImage.className = "promo-img";
   plateImage.src = plate.imageUrl || "/img/no-image.svg";
   plateImage.alt = plate.alt;
+  plateImage.loading = "lazy";
   divImage.appendChild(plateImage);
 
   const promoContent = document.createElement("div");
@@ -295,7 +299,7 @@ function generatePromoPlate(plate, promoSection) {
   const condition = document.createElement("p");
   condition.style = "display: flex; align-items: center; ";
   condition.className = "promo-condition";
-  condition.innerHTML = `<span data-translate="promoPlateStatus">Stan:</span>`;
+  condition.innerHTML = `<span data-translate="promoPlateStatus">Status: </span>`;
   promoContentWrapper.appendChild(condition);
 
   const conditionBar = document.createElement("div");
@@ -340,6 +344,8 @@ function generatePromoPlate(plate, promoSection) {
   const promoModalImg = document.createElement("img");
   promoModalImg.className = "modal-img";
   promoModalImg.src = plate.imageUrl || "/img/no-image.svg";
+  promoModalImg.alt = plate.alt;
+  promoModalImg.loading = "lazy";
   promoModalCardImg.appendChild(promoModalImg);
 
   const promoModalCardContent = document.createElement("div");
@@ -393,7 +399,7 @@ function generatePromoPlate(plate, promoSection) {
 
   const promoModalCondition = document.createElement("p");
   promoModalCondition.style = "display: flex; align-items: center; ";
-  promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Stan:</span>`;
+  promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Status: </span>`;
   promoModalCardContent.appendChild(promoModalCondition);
 
   const promoModalConditionBar = document.createElement("div");

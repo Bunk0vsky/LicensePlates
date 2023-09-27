@@ -1,5 +1,6 @@
 const toggleButton = (e) => {
   e.classList.toggle("active");
+  console.log("Wyświetl:", e);
 
   let panel = e.nextElementSibling;
   if (panel.style.maxHeight) {
@@ -8,5 +9,18 @@ const toggleButton = (e) => {
   } else {
     panel.style.maxHeight = panel.scrollHeight + "px";
     selectCategory("Stany Zjednoczone");
+  }
+
+  // MOJE
+  const windowWidth = document.documentElement.scrollWidth;
+  let states = document.querySelectorAll(".menu-nav-link");
+  console.log(states);
+  if (windowWidth < 636) {
+    states.forEach(function (element) {
+      element.addEventListener("click", function () {
+        e.classList.toggle("active");
+        panel.style.maxHeight = null;
+      });
+    });
   }
 };
