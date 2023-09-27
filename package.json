@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "strapi-plugin-vercel-deploy": "^1.4.0"
-  }
-}

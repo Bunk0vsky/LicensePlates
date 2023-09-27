@@ -8,7 +8,6 @@
   align-items: center;
   background-color: #333;
 
-  /*  !!! Because we want header to be sticky later that's why we are using "height" and not margin */
   height: 9.6rem;
   padding: 0 4.8rem;
   position: relative;
@@ -121,24 +120,6 @@
 #content {
   padding-bottom: 4rem;
 }
-.plate-svg {
-  box-shadow: 0px 0px 0px 6px rgb(252, 252, 252);
-  border: 6px solid black;
-  border-radius: 6px;
-}
-
-.main-plate {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 140rem;
-  min-width: 72rem;
-  min-height: 38rem;
-}
-rect.shadow {
-  fill: black;
-}
 
 .main {
   display: flex;
@@ -222,16 +203,13 @@ rect.shadow {
   cursor: pointer;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .accordion:hover {
   background-color: #33333334;
 }
 
-/* Style the accordion panel. Note: hidden by default */
 .panel {
   padding: 0rem 1rem 0 1rem;
-
   background-color: white;
   max-height: 0;
   overflow: hidden;
@@ -427,7 +405,6 @@ rect.shadow {
 
 .shop-pricing {
   font-size: 1.6rem;
-  /* color: #18a900; */
   color: #06780f;
 
   text-align: right;
@@ -552,7 +529,6 @@ rect.shadow {
   align-items: end;
   padding-top: 5rem;
   font-weight: 700;
-  /* color: #18a900; */
   color: #06780f;
 }
 .modal-img {
@@ -567,7 +543,6 @@ rect.shadow {
   align-items: center;
   padding-top: 5rem;
   font-weight: 700;
-  /* color: #18a900; */
   color: #06780f;
 }
 
