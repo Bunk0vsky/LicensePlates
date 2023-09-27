@@ -822,7 +822,6 @@ rect.shadow {
 }
 .text-delivery {
   display: flex;
-  background-color: rgb(243, 244, 246);
   align-content: flex-start;
   justify-content: center;
   margin: 0 8rem;

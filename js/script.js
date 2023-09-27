@@ -136,8 +136,6 @@ btnNavEl.addEventListener("click", function () {
 
 const allLinks = document.querySelectorAll("a:link");
 
-console.log("kupa", allLinks);
-
 allLinks.forEach(function (link) {
   link.addEventListener("click", function (e) {
     // Close mobile naviagtion

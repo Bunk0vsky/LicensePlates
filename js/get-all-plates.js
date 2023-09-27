@@ -18,7 +18,6 @@ function getConditionStatus(condition) {
       conditionStatus = "very-good";
       break;
     default:
-      console.log("Brak stanu tablicy");
   }
   return conditionStatus;
 }
@@ -436,12 +435,8 @@ const getPlates = () => {
   fetch(URL_to_get_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      console.log(result);
-
       const banner = document.getElementById("banner-index");
       const loader = document.getElementById("loader-index");
-      console.log(result);
-      console.log(banner);
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar");
         loader?.classList?.add("hidden");
@@ -454,7 +449,6 @@ const getPlates = () => {
           });
         }
       } else if (result.length === 0 && banner) {
-        console.log("weszlo");
         banner?.classList.add("visible");
         loader?.classList?.add("hidden");
       }
@@ -468,7 +462,6 @@ const getPlates = () => {
       const banner = document.getElementById("banner");
       if (result?.length > 0) {
         const shopSection = document.getElementById("shop-bar-main");
-        console.log("tutaj");
         banner?.classList?.remove("visible");
 
         if (shopSection) {

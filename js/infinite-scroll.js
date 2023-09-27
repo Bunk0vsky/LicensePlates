@@ -63,7 +63,6 @@ const infiniteSCroll = async (plateCount) => {
 window.addEventListener("load", async (event) => {
   if (event.currentTarget.location.hash === "#sklep") {
     const data = await displayMore();
-    console.log(data);
     translation();
 
     infiniteSCroll(data?.count || 0);
