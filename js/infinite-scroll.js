@@ -60,12 +60,20 @@ const infiniteSCroll = async (plateCount) => {
   await addCards(currentPage);
 };
 
+const shopActions = async () => {
+  const data = await displayMore();
+  translation();
+
+  infiniteSCroll(data?.count || 0);
+  getStates();
+};
+
+if (window.location.hash === "#sklep") {
+  shopActions();
+}
+
 window.addEventListener("load", async (event) => {
   if (event.currentTarget.location.hash === "#sklep") {
-    const data = await displayMore();
-    translation();
-
-    infiniteSCroll(data?.count || 0);
-    getStates();
+    await shopActions();
   }
 });

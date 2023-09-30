@@ -203,6 +203,12 @@ flagButton.addEventListener("click", () => {
     flagButton.classList.remove("czech");
     flagButton.classList.add("poland");
     translation();
+  } else {
+    currentLanguage = "pl";
+    flagButton.classList.remove("usa");
+    flagButton.classList.remove("czech");
+    flagButton.classList.add("poland");
+    translation();
   }
 });
 

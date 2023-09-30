@@ -16,6 +16,7 @@ const routes = {
   },
   sklep: {
     template: "/templates/shop.html",
+    script: "/js/infinite-scroll.js",
     title: "Sklep",
     description: "Sklep",
   },
@@ -26,20 +27,23 @@ const routes = {
   },
 };
 
-const locationHandler = async () => {
+const locationHandler = async (hash, isEval = true) => {
   // get the url path, replace hash with empty string
-  var location = window.location.hash.replace("#", "");
+  var location = hash || window.location.hash.replace("#", "");
   // if the path length is 0, set it to primary page route
   if (location.length == 0) {
     location = "/";
   }
   // get the route object from the routes object
-  const route = routes[location] || routes["404"];
+  const route = routes[location];
+  const routeScript = routes[location]?.script || "";
   // get the html from the template
   const html = await fetch(route.template).then((response) => response.text());
+  const script =
+    routeScript &&
+    (await fetch(routeScript).then((response) => response.text()));
   // set the content of the content div to the html
   document.getElementById("content").innerHTML = html;
-
   translation();
   // set the title of the document to the title of the route
   document.title = route.title;
@@ -47,9 +51,10 @@ const locationHandler = async () => {
   document
     .querySelector('meta[name="description"]')
     .setAttribute("content", route.description);
+  if (script && isEval) {
+    eval(script);
+  }
 };
-
-// create a function that watches the hash and calls the urlLocationHandler
 
 window.addEventListener("hashchange", function () {
   locationHandler();
@@ -64,12 +69,12 @@ const elDelivery = document.getElementById("main-nav-delivery");
 const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
-  locationHandler();
+  locationHandler("promocje");
   getPromoPlates();
 });
 
 elShop.addEventListener("click", async (e) => {
-  locationHandler();
+  locationHandler("sklep");
   getStates();
   removeElements();
 
@@ -83,16 +88,16 @@ elShop.addEventListener("click", async (e) => {
 });
 
 elMain.addEventListener("click", function () {
-  locationHandler();
+  locationHandler("/");
   getPlates();
 });
 elLogo.addEventListener("click", function () {
-  locationHandler();
+  locationHandler("/");
   getPlates();
 });
 
 elContact.addEventListener("click", function () {
-  locationHandler();
+  locationHandler("kontakt");
   const footer = document.querySelector("footer");
   footer.classList.add("no-border");
 });
@@ -108,7 +113,7 @@ const addBorder = () => {
 addBorder();
 
 elDelivery.addEventListener("click", function () {
-  locationHandler();
+  locationHandler("dostawa");
   getDelivery();
 });
 

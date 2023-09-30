@@ -56,9 +56,17 @@ const displayMore = async (countryName, stateName) => {
     const loader = document.getElementById("loader");
     loader?.classList?.add("hidden");
     let shopSection = document.getElementById("shop-bar");
-    if (shopSection) {
-      result.list
 
+    if (shopSection) {
+      const shopElements = shopSection.querySelectorAll(".shop");
+      const ids = [];
+      shopElements.forEach((x) => ids.push(x.getAttribute("data-modal")));
+      console.log(ids, result.list);
+      const filteredResult = result.list.filter(
+        (item) => ids.indexOf(item._id) === -1
+      );
+
+      filteredResult
         .filter((x) => !x.isPromo)
         .forEach((plate) => {
           generatePlate(plate, shopSection);
