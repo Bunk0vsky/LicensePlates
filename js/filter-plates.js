@@ -61,7 +61,6 @@ const displayMore = async (countryName, stateName) => {
       const shopElements = shopSection.querySelectorAll(".shop");
       const ids = [];
       shopElements.forEach((x) => ids.push(x.getAttribute("data-modal")));
-      console.log(ids, result.list);
       const filteredResult = result.list.filter(
         (item) => ids.indexOf(item._id) === -1
       );

@@ -18,11 +18,15 @@ const getStates = () =>
         ];
         if (stateList) {
           filteredResult.forEach((value) => {
-            const list = document.createElement("li");
-            list.className = "menu-nav-link";
-            list.textContent = `${value.state}`;
-            list.setAttribute("onclick", "filterPlates(this);");
-            stateList.appendChild(list);
+            const listStates = document.getElementById(`${value.state}`);
+            if (!listStates) {
+              const list = document.createElement("li");
+              list.className = "menu-nav-link";
+              list.textContent = `${value.state}`;
+              list.id = `${value.state}`;
+              list.setAttribute("onclick", "filterPlates(this);");
+              stateList.appendChild(list);
+            }
           });
         }
       }
@@ -35,9 +39,3 @@ const getOtherCountry = async (e) => {
   selectCategory(e?.id);
   await resetFilters(e?.id);
 };
-
-// window.addEventListener("hashchange", (e) => {
-//   if (e.newURL.includes("sklep")) {
-//     // getStates();
-//   }
-// });

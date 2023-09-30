@@ -53,7 +53,7 @@ const infiniteSCroll = async (plateCount) => {
   };
 
   const removeInfiniteScroll = () => {
-    loader.remove();
+    loader?.remove();
     window.removeEventListener("scroll", handleInfiniteScroll);
   };
   window.addEventListener("scroll", handleInfiniteScroll);
