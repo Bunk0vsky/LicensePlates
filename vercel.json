@@ -9,12 +9,5 @@
         }
       ]
     }
-  ],
-
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    },
-    "postbuild": "npm run minify"
-  }
+  ]
 }
