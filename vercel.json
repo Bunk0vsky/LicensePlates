@@ -9,5 +9,12 @@
         }
       ]
     }
-  ]
+  ],
+
+  "build": {
+    "env": {
+      "NODE_ENV": "production" // Ustawienie środowiska produkcyjnego
+    },
+    "postbuild": "npm run minify" // Skrypt do uruchomienia po zakończeniu budowania
+  }
 }
