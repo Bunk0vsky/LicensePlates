@@ -10,7 +10,7 @@ const displayAll = async () => {
   removeElements();
   currentPage = 1;
   platesStartRange = 0;
-  platesEndRange = 5;
+  platesEndRange = 20;
 
   const data = await displayMore();
 
@@ -19,7 +19,7 @@ const displayAll = async () => {
 
 var sortBy = "country asc, state asc";
 var platesStartRange = 0;
-var platesEndRange = 5;
+var platesEndRange = 20;
 var selectedCategory = "";
 var selectedState = "";
 

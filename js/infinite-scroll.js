@@ -1,11 +1,12 @@
 var currentPage = 1;
+var pageDisplay = 20;
 
 const infiniteSCroll = async (plateCount) => {
   const cardCountElem = document.getElementById("card-count");
   const cardTotalElem = document.getElementById("card-total");
   const loader = document.getElementById("scroll-loader");
   let cardLimit = plateCount;
-  const cardIncrease = 5;
+  const cardIncrease = pageDisplay;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
   cardTotalElem.innerHTML = cardLimit;
 
@@ -41,8 +42,8 @@ const infiniteSCroll = async (plateCount) => {
         window.innerHeight + window.pageYOffset + 360 >=
         document.body.offsetHeight;
       if (endOfPage && currentPage < pageCount) {
-        platesStartRange += 5;
-        platesEndRange += 5;
+        platesStartRange += pageDisplay;
+        platesEndRange += pageDisplay;
         addCards(currentPage + 1);
       }
 
