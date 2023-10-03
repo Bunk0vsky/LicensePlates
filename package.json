@@ -18,6 +18,7 @@
   "description": "��#\u0000 \u0000L\u0000i\u0000c\u0000e\u0000n\u0000s\u0000e\u0000P\u0000l\u0000a\u0000t\u0000e\u0000s\u0000\r\u0000 \u0000",
   "version": "1.0.0",
   "main": "webpack.config.js",
+  "homepage": "https://license-plates-ten.vercel.app/",
   "dependencies": {
     "acorn": "^8.10.0",
     "ajv": "^6.12.6",
