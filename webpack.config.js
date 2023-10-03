@@ -4,7 +4,7 @@ module.exports = {
   entry: "./index.html",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.html",
+    filename: "index.html",
     clean: true,
     assetModuleFilename: "[path][name][ext]",
   },
