@@ -8,7 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     clean: true,
     assetModuleFilename: "[path][name][ext]",
+    publicPath: "/",
   },
+  mode: "production",
   plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
