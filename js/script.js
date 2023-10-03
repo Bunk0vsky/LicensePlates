@@ -67,7 +67,7 @@ const resetFilters = async (countryName, stateName) => {
   removeElements();
   currentPage = 1;
   platesStartRange = 0;
-  platesEndRange = 5;
+  platesEndRange = 20;
 
   const data = await displayMore(countryName, stateName);
   infiniteSCroll(data?.count || 0);
