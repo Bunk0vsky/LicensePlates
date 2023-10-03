@@ -11,6 +11,6 @@
   },
   "scripts": {
     "prod": "webpack --mode production --env production",
-    "build": "webpack build --output public"
+    "build": "webpack --mode production --output-path=build"
   }
 }
