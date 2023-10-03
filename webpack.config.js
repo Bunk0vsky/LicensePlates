@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: "./index.html",
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     filename: "index.html",
     clean: true,
     assetModuleFilename: "[path][name][ext]",
