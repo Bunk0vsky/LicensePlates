@@ -1,27 +1,27 @@
 const routes = {
   "/": {
-    template: "/templates/index.html",
+    template: "/templates/index.min.html",
     title: "Home",
     description: "Strona główna",
   },
   promocje: {
-    template: "/templates/promo.html",
+    template: "/templates/promo.min.html",
     title: "Promocje",
     description: "Promocje",
   },
   kontakt: {
-    template: "/templates/contact.html",
+    template: "/templates/contact.min.html",
     title: "Skontaktuj się",
     description: "Strona kontaktowa",
   },
   sklep: {
-    template: "/templates/shop.html",
+    template: "/templates/shop.min.html",
     script: "/js/infinite-scroll.js",
     title: "Sklep",
     description: "Sklep",
   },
   dostawa: {
-    template: "/templates/delivery.html",
+    template: "/templates/delivery.min.html",
     title: "Dostawa",
     description: "Dostawa",
   },
