@@ -482,7 +482,7 @@ const getPlates = () => {
 getPlates();
 
 const getPromoPlates = () => {
-  const res = fetch(URL_to_get_promo_plates)
+  fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
       console.log("Wyświetlam resulta", result);
@@ -497,16 +497,16 @@ const getPromoPlates = () => {
       }
       return result;
     })
-    .finally((data) => {
+    .then(({ result }) => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
-      console.log(data);
+      console.log(result);
 
       if (loader) {
         loader.classList.add("hidden");
       }
 
-      if (data.length === 0 && banner) {
+      if (result.length === 0 && banner) {
         banner.classList.add("visible");
       }
     })
