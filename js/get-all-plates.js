@@ -507,6 +507,7 @@ const getPromoPlates = () => {
         if (banner.classList.contains("visible")) {
           console.log("Dodajemy klasę hiddens");
           loader.classList.add("hidden");
+          console.log(loader);
         }
       }
     })
