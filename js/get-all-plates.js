@@ -487,7 +487,6 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       console.log("Wyświetlam resulta", result);
       const banner = document.getElementById("banner-promo");
-      console.log("Stan loadera", loader);
       if (result.length > 0) {
         console.log("Wynik jest result", result);
 
