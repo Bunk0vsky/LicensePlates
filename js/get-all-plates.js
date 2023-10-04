@@ -509,7 +509,7 @@ const getPromoPlates = () => {
         }
       } else if (result.length === 0) {
         const loader = document.getElementById("loader-promo");
-
+        console.log("Wynik result", result);
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
         banner.classList.add("visible");
