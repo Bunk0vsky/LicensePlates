@@ -507,8 +507,8 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       const dd = setInterval(() => {
         const promoSection = document.getElementById("promo-bar-page");
+        const banner = document.getElementById("banner-promo");
 
-        console.log(promoSection);
         if (promoSection) {
           if (result.length > 0) {
             result.forEach((plate) => {
@@ -518,8 +518,11 @@ const getPromoPlates = () => {
             const empty = document.createElement("p");
             empty.innerText = "jdkjsandjksandkjsa";
             promoSection.appendChild(empty);
+            if (banner) {
+              banner.classList.add("visible");
+              clearInterval(dd);
+            }
           }
-          clearInterval(dd);
         }
       }, 2000);
     })
