@@ -506,6 +506,7 @@ const getPromoPlates = () => {
         if (loader.classList.contains("hidden")) {
           console.log("Posiada");
         } else {
+          console.log("Już nie posiada");
           loader.classList.add("hidden");
         }
       }
@@ -516,9 +517,7 @@ const getPromoPlates = () => {
 
 window.addEventListener("load", (event) => {
   if (event.currentTarget.location.hash === "#promocje") {
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("DOMContentLoaded załadowany");
-      getPromoPlates();
-    });
+    console.log("Z załadowania");
+    getPromoPlates();
   }
 });
