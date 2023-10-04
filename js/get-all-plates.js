@@ -506,9 +506,9 @@ const getPromoPlates = () => {
     .then((res) => res.json())
     .then(({ result }) => {
       const promoSection = document.getElementById("promo-bar-page");
-      console.log(promoSection);
 
       const dd = setInterval(() => {
+        console.log(promoSection);
         if (promoSection) {
           if (result.length > 0) {
             result.forEach((plate) => {
