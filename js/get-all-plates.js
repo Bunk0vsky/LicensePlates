@@ -507,17 +507,21 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       const promoSection = document.getElementById("promo-bar-page");
       console.log(promoSection);
-      if (promoSection) {
-        if (result.length > 0) {
-          result.forEach((plate) => {
-            generatePromoPlate(plate, promoSection);
-          });
-        } else {
-          const empty = document.createElement("p");
-          empty.innerText = "jdkjsandjksandkjsa";
-          promoSection.appendChild(empty);
+
+      const dd = setInterval(() => {
+        if (promoSection) {
+          if (result.length > 0) {
+            result.forEach((plate) => {
+              generatePromoPlate(plate, promoSection);
+            });
+          } else {
+            const empty = document.createElement("p");
+            empty.innerText = "jdkjsandjksandkjsa";
+            promoSection.appendChild(empty);
+          }
+          clearInterval(dd);
         }
-      }
+      }, 2000);
     })
     .catch((err) => console.error(err));
 };
