@@ -70,6 +70,7 @@ const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
   locationHandler("promocje");
+  console.log("Przed załadowaniem");
   document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded załadowany z klik");
     getPromoPlates();
