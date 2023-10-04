@@ -503,7 +503,11 @@ const getPromoPlates = () => {
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
         banner.classList.add("visible");
-        loader.classList.add("hidden");
+        if (loader.classList.contains("hidden")) {
+          console.log("Posiada");
+        } else {
+          loader.classList.add("hidden");
+        }
       }
     })
 
