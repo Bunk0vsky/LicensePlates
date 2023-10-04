@@ -487,11 +487,11 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
-      if (result.length > 0 && loader) {
+      if (result.length > 0 && loader && banner) {
         console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
         loader.classList.add("hidden");
-        banner?.classList.remove("visible");
+        banner.classList.remove("visible");
 
         if (promoSection) {
           // Get only promo plates
@@ -499,11 +499,11 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result.length === 0 && loader) {
+      } else if (result.length === 0 && loader && banner) {
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
+        banner.classList.add("visible");
         loader.classList.add("hidden");
-        banner?.classList?.add("visible");
       }
     })
 
