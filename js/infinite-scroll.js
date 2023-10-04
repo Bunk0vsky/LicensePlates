@@ -4,7 +4,7 @@ var pageDisplay = 20;
 const infiniteSCroll = async (plateCount) => {
   const cardCountElem = document.getElementById("card-count");
   const cardTotalElem = document.getElementById("card-total");
-  const loader = document.getElementById("scroll-loader");
+  const scrollLoader = document.getElementById("scroll-loader");
   let cardLimit = plateCount;
   const cardIncrease = pageDisplay;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
@@ -54,7 +54,7 @@ const infiniteSCroll = async (plateCount) => {
   };
 
   const removeInfiniteScroll = () => {
-    loader?.remove();
+    scrollLoader?.remove();
     window.removeEventListener("scroll", handleInfiniteScroll);
   };
   window.addEventListener("scroll", handleInfiniteScroll);
