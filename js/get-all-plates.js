@@ -485,7 +485,7 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("load", function () {
         console.log("Załadowałem się...");
       });
 
