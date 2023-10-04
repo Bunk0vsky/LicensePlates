@@ -504,7 +504,7 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result?.length === 0) {
+      } else if (result === null || result === undefined) {
         const loader = document.getElementById("loader-promo");
         console.log("Wynik nie ma result", result);
         console.log("weszło tutaj result === 0", loader.classList);
