@@ -5,7 +5,7 @@ const routes = {
     description: "Strona główna",
   },
   promocje: {
-    template: "/templates/promo.min.html",
+    template: "/templates/promo.html",
     title: "Promocje",
     description: "Promocje",
   },
