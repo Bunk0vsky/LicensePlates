@@ -485,15 +485,12 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      document.addEventListener("load", function () {
-        console.log("Załadowałem się...");
-      });
-
-      // Tutaj umieść kod, który ma zostać wykonany po pewnym czasie
-
+      console.log("Wyświetlam resulta", result);
       const banner = document.getElementById("banner-promo");
       console.log("Stan loadera", loader);
       if (result.length > 0) {
+        console.log("Wynik jest result", result);
+
         const loader = document.getElementById("loader-promo");
 
         console.log("weszło tutaj result > 0");
@@ -507,9 +504,9 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result.length === 0) {
+      } else if (result?.length === 0) {
         const loader = document.getElementById("loader-promo");
-        console.log("Wynik result", result);
+        console.log("Wynik nie ma result", result);
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
         banner.classList.add("visible");
