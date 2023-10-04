@@ -485,31 +485,35 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      const loader = document.getElementById("loader-promo");
-      const banner = document.getElementById("banner-promo");
-      console.log("Stan loadera", loader);
-      if (result.length > 0 && loader && banner) {
-        console.log("weszło tutaj result > 0");
-        const promoSection = document.getElementById("promo-bar-page");
-        loader.classList.add("hidden");
-        banner.classList.remove("visible");
+      setTimeout(function () {
+        // Tutaj umieść kod, który ma zostać wykonany po pewnym czasie
 
-        if (promoSection) {
-          // Get only promo plates
-          result.forEach((plate) => {
-            generatePromoPlate(plate, promoSection);
-          });
-        }
-      } else if (result.length === 0 && loader && banner) {
-        console.log("weszło tutaj result === 0", loader.classList);
-        console.log(loader);
-        banner.classList.add("visible");
-        if (banner.classList.contains("visible")) {
-          console.log("Dodajemy klasę hiddens");
+        const loader = document.getElementById("loader-promo");
+        const banner = document.getElementById("banner-promo");
+        console.log("Stan loadera", loader);
+        if (result.length > 0 && loader && banner) {
+          console.log("weszło tutaj result > 0");
+          const promoSection = document.getElementById("promo-bar-page");
           loader.classList.add("hidden");
+          banner.classList.remove("visible");
+
+          if (promoSection) {
+            // Get only promo plates
+            result.forEach((plate) => {
+              generatePromoPlate(plate, promoSection);
+            });
+          }
+        } else if (result.length === 0 && loader && banner) {
+          console.log("weszło tutaj result === 0", loader.classList);
           console.log(loader);
+          banner.classList.add("visible");
+          if (banner.classList.contains("visible")) {
+            console.log("Dodajemy klasę hiddens");
+            loader.classList.add("hidden");
+            console.log(loader);
+          }
         }
-      }
+      }, 1000);
     })
 
     .catch((err) => console.error(err));
