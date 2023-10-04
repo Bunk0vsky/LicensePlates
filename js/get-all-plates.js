@@ -506,9 +506,7 @@ const getPromoPlates = () => {
         }
       } else if (result === null || result === undefined) {
         const loader = document.getElementById("loader-promo");
-        console.log("Wynik nie ma result", result);
         console.log("weszło tutaj result === 0", loader.classList);
-        console.log(loader);
         banner.classList.add("visible");
         if (banner.classList.contains("visible")) {
           console.log("Dodajemy klasę hiddens");
