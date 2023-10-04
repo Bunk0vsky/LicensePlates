@@ -505,9 +505,9 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      const promoSection = document.getElementById("promo-bar-page");
-
       const dd = setInterval(() => {
+        const promoSection = document.getElementById("promo-bar-page");
+
         console.log(promoSection);
         if (promoSection) {
           if (result.length > 0) {
