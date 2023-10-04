@@ -487,7 +487,7 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
-      if (result.length > 0) {
+      if (result.length > 0 && loader) {
         console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
         loader?.classList?.add("hidden");
@@ -499,8 +499,9 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result.length === 0) {
+      } else if (result.length === 0 && loader) {
         console.log("weszło tutaj result === 0", loader.classList);
+        console.log("loader");
         loader.classList.add("hidden");
         banner?.classList?.add("visible");
       }
