@@ -481,14 +481,31 @@ const getPlates = () => {
 
 getPlates();
 
+function waitForElementToExist(selector) {
+  return new Promise((resolve) => {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector));
+    }
+
+    const observer = new MutationObserver(() => {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector));
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+    });
+  });
+}
+
 const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
       console.log("Wyświetlam resulta", result);
-      const loader = document.getElementById("loader-promo");
-      const banner = document.getElementById("banner-promo");
-
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar-page");
 
@@ -497,19 +514,14 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
+      } else {
+        waitForElementToExist("#banner-promo").then((element) => {
+          element.classList.add("visible");
+        });
       }
-      return { result, loader, banner };
-    })
-    .then((result) => {
-      console.log(result);
-
-      if (result?.loader) {
-        loader.classList.add("hidden");
-      }
-
-      if (result?.result.length === 0 && result?.banner) {
-        banner.classList.add("visible");
-      }
+      waitForElementToExist("#loader-promo").then((element) => {
+        element.classList.add("hidden");
+      });
     })
     .catch((err) => console.error(err));
 };
