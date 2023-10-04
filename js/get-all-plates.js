@@ -507,7 +507,7 @@ const getPromoPlates = () => {
           console.log("Posiada");
         } else {
           console.log("Już nie posiada");
-          loader.classList.add("hidden");
+          this.loader.classList.add("hidden");
         }
       }
     })
