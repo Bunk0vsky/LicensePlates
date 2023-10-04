@@ -500,8 +500,8 @@ const getPromoPlates = () => {
           });
         }
       } else if (result.length === 0) {
-        console.log("weszło tutaj result === 0");
-        loader?.classList?.add("hidden");
+        console.log("weszło tutaj result === 0", loader);
+        loader.classList.add("hidden");
         banner?.classList?.add("visible");
       }
     })
