@@ -485,35 +485,37 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      setTimeout(function () {
-        // Tutaj umieść kod, który ma zostać wykonany po pewnym czasie
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Załadowałem się...");
+      });
 
-        const loader = document.getElementById("loader-promo");
-        const banner = document.getElementById("banner-promo");
-        console.log("Stan loadera", loader);
-        if (result.length > 0 && loader && banner) {
-          console.log("weszło tutaj result > 0");
-          const promoSection = document.getElementById("promo-bar-page");
-          loader.classList.add("hidden");
-          banner.classList.remove("visible");
+      // Tutaj umieść kod, który ma zostać wykonany po pewnym czasie
 
-          if (promoSection) {
-            // Get only promo plates
-            result.forEach((plate) => {
-              generatePromoPlate(plate, promoSection);
-            });
-          }
-        } else if (result.length === 0 && loader && banner) {
-          console.log("weszło tutaj result === 0", loader.classList);
-          console.log(loader);
-          banner.classList.add("visible");
-          if (banner.classList.contains("visible")) {
-            console.log("Dodajemy klasę hiddens");
-            loader.classList.add("hidden");
-            console.log(loader);
-          }
+      const loader = document.getElementById("loader-promo");
+      const banner = document.getElementById("banner-promo");
+      console.log("Stan loadera", loader);
+      if (result.length > 0 && loader && banner) {
+        console.log("weszło tutaj result > 0");
+        const promoSection = document.getElementById("promo-bar-page");
+        loader.classList.add("hidden");
+        banner.classList.remove("visible");
+
+        if (promoSection) {
+          // Get only promo plates
+          result.forEach((plate) => {
+            generatePromoPlate(plate, promoSection);
+          });
         }
-      }, 1000);
+      } else if (result.length === 0 && loader && banner) {
+        console.log("weszło tutaj result === 0", loader.classList);
+        console.log(loader);
+        banner.classList.add("visible");
+        if (banner.classList.contains("visible")) {
+          console.log("Dodajemy klasę hiddens");
+          loader.classList.add("hidden");
+          console.log(loader);
+        }
+      }
     })
 
     .catch((err) => console.error(err));
