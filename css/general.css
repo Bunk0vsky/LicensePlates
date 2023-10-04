@@ -307,10 +307,6 @@ body {
   margin-top: 5px;
 }
 
-.out-of-stock-banner {
-  display: none;
-}
-
 .out-of-stock-banner.visible {
   display: flex;
   flex-direction: column;

@@ -514,11 +514,13 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
+        waitForElementToExist("#banner-promo").then((element) => {
+          element.style.display = "none";
+        });
       } else {
         waitForElementToExist("#banner-promo").then((element) => {
           console.log(element);
-          element.style.display = "block";
-          element.classList.add("visible");
+          element.style.display = "flex";
         });
       }
       waitForElementToExist("#loader-promo").then((element) => {
