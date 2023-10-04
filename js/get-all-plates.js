@@ -487,6 +487,7 @@ const getPromoPlates = () => {
     .then(({ result }) => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
+      console.log("Stan loadera", loader);
       if (result.length > 0 && loader && banner) {
         console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
@@ -503,11 +504,9 @@ const getPromoPlates = () => {
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
         banner.classList.add("visible");
-        if (loader.classList.contains("hidden")) {
-          console.log("Posiada");
-        } else {
-          console.log("Już nie posiada");
-          this.loader.classList.add("hidden");
+        if (banner.classList.contains("visible")) {
+          console.log("Dodajemy klasę hidden");
+          loader.classList.add("hidden");
         }
       }
     })
