@@ -512,8 +512,9 @@ const getPromoPlates = () => {
           generatePromoPlate(plate, promoSection);
         });
       }
+      console.log(result);
 
-      if (result.length === 0 && promoSection) {
+      if (!result.length && promoSection) {
         const empty = document.createElement("p");
         empty.innerText = "jdkjsandjksandkjsa";
         promoSection.appendChild(empty);
