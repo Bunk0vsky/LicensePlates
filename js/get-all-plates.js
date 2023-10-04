@@ -495,6 +495,7 @@ const getPromoPlates = () => {
           });
         }
       }
+      return result;
     })
     .finally((data) => {
       const loader = document.getElementById("loader-promo");
