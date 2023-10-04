@@ -503,11 +503,12 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result === null || result === undefined) {
+      } else if (result.length === 0) {
         const loader = document.getElementById("loader-promo");
         console.log("weszło tutaj result === 0", loader.classList);
         banner.classList.add("visible");
         if (banner.classList.contains("visible")) {
+          console.log(banner.classList);
           console.log("Dodajemy klasę hiddens");
           loader.classList.add("hidden");
           console.log(loader);
