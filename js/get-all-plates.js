@@ -516,6 +516,7 @@ const getPromoPlates = () => {
         }
       } else {
         waitForElementToExist("#banner-promo").then((element) => {
+          console.log(element);
           element.classList.add("visible");
         });
       }
