@@ -505,28 +505,19 @@ const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      console.log("Wyświetlam resulta", result);
-      if (result.length > 0) {
-        const promoSection = document.getElementById("promo-bar-page");
+      const promoSection = document.getElementById("promo-bar-page");
 
-        if (promoSection) {
-          result.forEach((plate) => {
-            generatePromoPlate(plate, promoSection);
-          });
-        }
-        waitForElementToExist("#banner-promo").then((element) => {
-          element.style.display = "none";
-        });
-      } else {
-        waitForElementToExist("#banner-promo").then((element) => {
-          console.log(element);
-          element.style.display = "flex";
+      if (result.length > 0 && promoSection) {
+        result.forEach((plate) => {
+          generatePromoPlate(plate, promoSection);
         });
       }
-      waitForElementToExist("#loader-promo").then((element) => {
-        element.style.display = "none";
-        element.classList.add("hidden");
-      });
+
+      if (result.length === 0 && promoSection) {
+        const empty = document.createElement("p");
+        empty.innerText = "jdkjsandjksandkjsa";
+        promoSection.appendChild(empty);
+      }
     })
     .catch((err) => console.error(err));
 };
