@@ -490,7 +490,7 @@ const getPromoPlates = () => {
       if (result.length > 0 && loader) {
         console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
-        loader?.classList?.add("hidden");
+        loader.classList.add("hidden");
         banner?.classList.remove("visible");
 
         if (promoSection) {
@@ -501,7 +501,7 @@ const getPromoPlates = () => {
         }
       } else if (result.length === 0 && loader) {
         console.log("weszło tutaj result === 0", loader.classList);
-        console.log("loader");
+        console.log(loader);
         loader.classList.add("hidden");
         banner?.classList?.add("visible");
       }
