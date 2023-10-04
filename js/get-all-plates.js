@@ -517,12 +517,12 @@ const getPromoPlates = () => {
       } else {
         waitForElementToExist("#banner-promo").then((element) => {
           console.log(element);
-          elem.style.display = "block";
+          element.style.display = "block";
           element.classList.add("visible");
         });
       }
       waitForElementToExist("#loader-promo").then((element) => {
-        elem.style.display = "none";
+        element.style.display = "none";
         element.classList.add("hidden");
       });
     })
