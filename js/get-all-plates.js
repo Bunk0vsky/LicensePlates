@@ -486,8 +486,6 @@ const getPromoPlates = () => {
     .then((res) => res.json())
     .then(({ result }) => {
       console.log("Wyświetlam resulta", result);
-      const banner = document.getElementById("banner-promo");
-      const loader = document.getElementById("loader-promo");
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar-page");
 
@@ -498,14 +496,20 @@ const getPromoPlates = () => {
         }
       }
     })
-    .finally(() => loader.classList.add("hidden"))
+    .finally((data) => {
+      const loader = document.getElementById("loader-promo");
+      const banner = document.getElementById("banner-promo");
+      console.log(data);
+
+      if (loader) {
+        loader.classList.add("hidden");
+      }
+
+      if (data.length === 0 && banner) {
+        banner.classList.add("visible");
+      }
+    })
     .catch((err) => console.error(err));
-
-  console.log(res);
-
-  if (res.length === 0) {
-    banner.classList.add("visible");
-  }
 };
 
 window.addEventListener("load", (event) => {
