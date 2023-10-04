@@ -491,10 +491,11 @@ const getPromoPlates = () => {
 
       // Tutaj umieść kod, który ma zostać wykonany po pewnym czasie
 
-      const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
       console.log("Stan loadera", loader);
-      if (result.length > 0 && loader && banner) {
+      if (result.length > 0) {
+        const loader = document.getElementById("loader-promo");
+
         console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
         loader.classList.add("hidden");
@@ -506,7 +507,9 @@ const getPromoPlates = () => {
             generatePromoPlate(plate, promoSection);
           });
         }
-      } else if (result.length === 0 && loader && banner) {
+      } else if (result.length === 0) {
+        const loader = document.getElementById("loader-promo");
+
         console.log("weszło tutaj result === 0", loader.classList);
         console.log(loader);
         banner.classList.add("visible");
