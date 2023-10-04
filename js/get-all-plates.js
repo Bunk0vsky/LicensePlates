@@ -512,6 +512,8 @@ const getPromoPlates = () => {
 window.addEventListener("load", (event) => {
   if (event.currentTarget.location.hash === "#promocje") {
     document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOMContentLoaded załadowany");
+
       getPromoPlates();
     });
   }
