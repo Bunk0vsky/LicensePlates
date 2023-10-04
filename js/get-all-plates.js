@@ -488,6 +488,7 @@ const getPromoPlates = () => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
       if (result.length > 0) {
+        console.log("weszło tutaj result > 0");
         const promoSection = document.getElementById("promo-bar-page");
         loader?.classList?.add("hidden");
         banner?.classList.remove("visible");
@@ -499,6 +500,7 @@ const getPromoPlates = () => {
           });
         }
       } else if (result.length === 0) {
+        console.log("weszło tutaj result === 0");
         loader?.classList?.add("hidden");
         banner?.classList?.add("visible");
       }
@@ -509,6 +511,8 @@ const getPromoPlates = () => {
 
 window.addEventListener("load", (event) => {
   if (event.currentTarget.location.hash === "#promocje") {
-    getPromoPlates();
+    document.addEventListener("DOMContentLoaded", () => {
+      getPromoPlates();
+    });
   }
 });
