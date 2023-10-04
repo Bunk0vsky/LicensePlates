@@ -488,6 +488,8 @@ const getPromoPlates = () => {
       console.log("Wyświetlam resulta", result);
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar-page");
+        const loader = document.getElementById("loader-promo");
+        const banner = document.getElementById("banner-promo");
 
         if (promoSection) {
           result.forEach((plate) => {
@@ -495,18 +497,16 @@ const getPromoPlates = () => {
           });
         }
       }
-      return result;
+      return { result, loader, banner };
     })
     .then((result) => {
-      const loader = document.getElementById("loader-promo");
-      const banner = document.getElementById("banner-promo");
       console.log(result);
 
-      if (loader) {
+      if (result?.loader) {
         loader.classList.add("hidden");
       }
 
-      if (result.length === 0 && banner) {
+      if (result?.result.length === 0 && result?.banner) {
         banner.classList.add("visible");
       }
     })
