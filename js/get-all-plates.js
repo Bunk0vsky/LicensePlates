@@ -495,8 +495,9 @@ const getPromoPlates = () => {
           });
         }
       }
+      return result;
     })
-    .then(({ result }) => {
+    .then((result) => {
       const loader = document.getElementById("loader-promo");
       const banner = document.getElementById("banner-promo");
       console.log(result);
