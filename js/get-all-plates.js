@@ -486,10 +486,11 @@ const getPromoPlates = () => {
     .then((res) => res.json())
     .then(({ result }) => {
       console.log("Wyświetlam resulta", result);
+      const loader = document.getElementById("loader-promo");
+      const banner = document.getElementById("banner-promo");
+
       if (result.length > 0) {
         const promoSection = document.getElementById("promo-bar-page");
-        const loader = document.getElementById("loader-promo");
-        const banner = document.getElementById("banner-promo");
 
         if (promoSection) {
           result.forEach((plate) => {
