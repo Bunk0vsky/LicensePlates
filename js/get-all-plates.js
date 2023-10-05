@@ -456,7 +456,7 @@ const getPlates = () => {
             }
           }
         }
-      }, 2000);
+      }, 1000);
     })
 
     .catch((err) => console.error(err));
@@ -511,7 +511,7 @@ const getPromoPlates = () => {
             }
           }
         }
-      }, 2000);
+      }, 1000);
     })
     .catch((err) => console.error(err));
 };
