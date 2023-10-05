@@ -492,6 +492,8 @@ const getPromoPlates = () => {
 
         if (promoSection) {
           if (result.length > 0) {
+            loader.classList.add("hidden");
+            clearInterval(dd);
             result.forEach((plate) => {
               generatePromoPlate(plate, promoSection);
             });
