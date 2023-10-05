@@ -36,11 +36,11 @@ const displayMore = async (countryName, stateName) => {
     : "";
 
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
-      "list":*[_type == "plate" && isPromo != true ${isFilterByCountryName} ${isFilterByStateName}] {
+      "list":*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}] {
       ...,
       "imageUrl": src.asset->url
     } | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
-      "count": count(*[_type == "plate" && isPromo != true ${isFilterByCountryName} ${isFilterByStateName}]{
+      "count": count(*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}]{
         ...,
       }),
   }
@@ -64,9 +64,9 @@ const displayMore = async (countryName, stateName) => {
       const filteredResult = result.list.filter(
         (item) => ids.indexOf(item._id) === -1
       );
-
+      console.log("wyswietl", filteredResult);
       filteredResult
-        .filter((x) => !x.isPromo)
+        // .filter((x) => !x.isPromo)
         .forEach((plate) => {
           generatePlate(plate, shopSection);
         });

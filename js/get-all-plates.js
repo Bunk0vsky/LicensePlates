@@ -32,13 +32,13 @@ let PROJECT_ID = "3gobi7i4";
 let DATASET = "production";
 let lastId = "";
 let QUERY_ALL_PLATES_PROMO =
-  encodeURIComponent(`*[_type == "plate" && isPromo == true][0...4]{
+  encodeURIComponent(`*[_type == "plate" && isPromo == true][0...8]{
 ...,
 "imageUrl": src.asset->url
 } | order(_createdAt asc)`);
 
 let QUERY_ALL_PLATES_NEW =
-  encodeURIComponent(`*[_type == "plate" && isPromo != true][0...4]{
+  encodeURIComponent(`*[_type == "plate" && isPromo != true][0...8]{
 ...,
 "imageUrl": src.asset->url
 } | order(_createdAt asc)`);
@@ -61,10 +61,12 @@ const generatePlate = (plate, shopSection) => {
 
   const shop = document.createElement("div");
   shop.className = "shop";
-  // add the item to the list
   shop.setAttribute("onclick", "openShopCard(this);");
   shop.setAttribute("data-modal", plate._id);
 
+  if (plate.isPromo) {
+    shop.classList.add("discount");
+  }
   shopWrapper.appendChild(shop);
 
   const divImage = document.createElement("div");
@@ -129,6 +131,13 @@ const generatePlate = (plate, shopSection) => {
   const price = document.createElement("p");
   price.className = "shop-pricing";
   shopContent.appendChild(price);
+
+  if (plate.isPromo) {
+    const oldPrice = document.createElement("span");
+    oldPrice.className = "old-price";
+    oldPrice.textContent = `PLN ${plate.oldPrice}`;
+    price.appendChild(oldPrice);
+  }
 
   const currentPrice = document.createElement("span");
   currentPrice.textContent = `PLN ${plate.price}`;
@@ -224,7 +233,15 @@ const generatePlate = (plate, shopSection) => {
   modalprice.className = "modal-price";
   modalCardContent.appendChild(modalprice);
 
-  const modalpriceContent = document.createElement("p");
+  if (plate.isPromo) {
+    const modalOldPrice = document.createElement("span");
+    modalOldPrice.className = "old-price";
+    modalOldPrice.textContent = `PLN ${plate.oldPrice}`;
+    modalprice.appendChild(modalOldPrice);
+  }
+
+  const modalpriceContent = document.createElement("span");
+  modalpriceContent.className = "current-price";
   modalpriceContent.textContent = `PLN ${plate.price}`;
   modalprice.appendChild(modalpriceContent);
 

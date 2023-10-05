@@ -1,5 +1,5 @@
 let QUERY_ALL_STATES = encodeURIComponent(
-  `*[_type == "plate" && isPromo != true && country == "Stany Zjednoczone"] {
+  `*[_type == "plate" && country == "Stany Zjednoczone"] {
     state,
   }  | order(state)`
 );
