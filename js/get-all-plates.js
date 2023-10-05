@@ -435,23 +435,28 @@ const getPlates = () => {
   fetch(URL_to_get_plates)
     .then((res) => res.json())
     .then(({ result }) => {
-      const banner = document.getElementById("banner-index");
-      const loader = document.getElementById("loader-index");
-      if (result.length > 0) {
+      const dd = setInterval(() => {
+        const banner = document.getElementById("banner-index");
+        const loader = document.getElementById("loader-index");
         const promoSection = document.getElementById("promo-bar");
-        loader?.classList?.add("hidden");
-        banner?.classList.remove("visible");
 
         if (promoSection) {
-          // Get only promo plates
-          result.forEach((plate) => {
-            generatePromoPlate(plate, promoSection);
-          });
+          if (result.length > 0) {
+            loader?.classList?.add("hidden");
+            banner?.classList.remove("visible");
+            clearInterval(dd);
+            result.forEach((plate) => {
+              generatePromoPlate(plate, promoSection);
+            });
+          } else {
+            if (banner) {
+              banner?.classList.add("visible");
+              loader?.classList?.add("hidden");
+              clearInterval(dd);
+            }
+          }
         }
-      } else if (result.length === 0 && banner) {
-        banner?.classList.add("visible");
-        loader?.classList?.add("hidden");
-      }
+      }, 2000);
     })
 
     .catch((err) => console.error(err));
