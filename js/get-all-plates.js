@@ -481,26 +481,6 @@ const getPlates = () => {
 
 getPlates();
 
-function waitForElementToExist(selector) {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
-    }
-
-    const observer = new MutationObserver(() => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-    });
-  });
-}
-
 const getPromoPlates = () => {
   fetch(URL_to_get_promo_plates)
     .then((res) => res.json())
@@ -508,6 +488,7 @@ const getPromoPlates = () => {
       const dd = setInterval(() => {
         const promoSection = document.getElementById("promo-bar-page");
         const banner = document.getElementById("banner-promo");
+        const loader = document.getElementById("loader-promo");
 
         if (promoSection) {
           if (result.length > 0) {
@@ -515,11 +496,10 @@ const getPromoPlates = () => {
               generatePromoPlate(plate, promoSection);
             });
           } else {
-            const empty = document.createElement("p");
-            empty.innerText = "jdkjsandjksandkjsa";
-            promoSection.appendChild(empty);
             if (banner) {
               banner.classList.add("visible");
+              loader.classList.add("hidden");
+
               clearInterval(dd);
             }
           }
