@@ -23,7 +23,7 @@ const toggleButton = (e) => {
   } else if (windowWidth > 636) {
     states.forEach(function (element) {
       element.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "instant" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       });
     });
   }
