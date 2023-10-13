@@ -64,7 +64,6 @@ const displayMore = async (countryName, stateName) => {
       const filteredResult = result.list.filter(
         (item) => ids.indexOf(item._id) === -1
       );
-      console.log("wyswietl", filteredResult);
       filteredResult
         // .filter((x) => !x.isPromo)
         .forEach((plate) => {

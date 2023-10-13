@@ -120,6 +120,11 @@ const generatePlate = (plate, shopSection) => {
   condition.innerHTML = `<span data-translate="shopPlateStatus">Status: </span>`;
   shopContentWrapper.appendChild(condition);
 
+  const id = document.createElement("p");
+  id.className = "shop-id";
+  id.innerHTML = `<span data-translate="shopPlateId">Nr. oferty:</span> ${plate.plateId}`;
+  shopContentWrapper.appendChild(id);
+
   const conditionBar = document.createElement("div");
 
   const conditionStatus = getConditionStatus(plate.condition);
@@ -221,6 +226,11 @@ const generatePlate = (plate, shopSection) => {
   modalCondition.innerHTML = `<span data-translate="modalShopPlateStatus">Status: </span>`;
   modalCardContent.appendChild(modalCondition);
 
+  const modalId = document.createElement("p");
+  modalId.className = "shop-id";
+  modalId.innerHTML = `<span data-translate="modalShopId">Nr. oferty: </span> ${plate.plateId} `;
+  modalCardContent.appendChild(modalId);
+
   const modalConditionBar = document.createElement("div");
 
   const modalConditionStatus = getConditionStatus(plate.condition);
@@ -317,6 +327,11 @@ function generatePromoPlate(plate, promoSection) {
   condition.className = "promo-condition";
   condition.innerHTML = `<span data-translate="promoPlateStatus">Status: </span>`;
   promoContentWrapper.appendChild(condition);
+
+  const id = document.createElement("p");
+  id.className = "promo-id";
+  id.innerHTML = `<span data-translate="promoPlateId">Nr. oferty:</span> ${plate.plateId}`;
+  promoContentWrapper.appendChild(id);
 
   const conditionBar = document.createElement("div");
 
@@ -417,6 +432,11 @@ function generatePromoPlate(plate, promoSection) {
   promoModalCondition.style = "display: flex; align-items: center; ";
   promoModalCondition.innerHTML = `<span data-translate="promoModalPlateStatus">Status: </span>`;
   promoModalCardContent.appendChild(promoModalCondition);
+
+  const promoModalId = document.createElement("p");
+  promoModalId.className = "shop-id";
+  promoModalId.innerHTML = `<span data-translate="promoModalPlateId">Nr. oferty: </span> ${plate.plateId} `;
+  promoModalCardContent.appendChild(promoModalId);
 
   const promoModalConditionBar = document.createElement("div");
 
