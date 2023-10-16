@@ -16,6 +16,7 @@ const toggleButton = (e) => {
   if (windowWidth < 636) {
     states.forEach(function (element) {
       element.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "instant" });
         e.classList.toggle("active");
         panel.style.maxHeight = null;
       });
@@ -24,6 +25,8 @@ const toggleButton = (e) => {
     states.forEach(function (element) {
       element.addEventListener("click", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        e.classList.toggle("active");
+        panel.style.maxHeight = null;
       });
     });
   }

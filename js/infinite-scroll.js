@@ -1,21 +1,22 @@
 var currentPage = 1;
 var pageDisplay = 20;
+var cardLimit;
 
 const infiniteSCroll = async (plateCount) => {
   const cardCountElem = document.getElementById("card-count");
   const cardTotalElem = document.getElementById("card-total");
-  const scrollLoader = document.getElementById("scroll-loader");
-  let cardLimit = plateCount;
+  let scrollLoader = document.getElementById("scroll-loader");
+  cardLimit = plateCount;
   const cardIncrease = pageDisplay;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
+
   cardTotalElem.innerHTML = cardLimit;
 
-  var throttleTimer;
+  let throttleTimer;
   const throttle = (callback, time) => {
     if (throttleTimer) return;
 
     throttleTimer = true;
-
     setTimeout(() => {
       callback();
       throttleTimer = false;
@@ -24,12 +25,17 @@ const infiniteSCroll = async (plateCount) => {
 
   const addCards = async (pageIndex) => {
     const endRange =
-      pageIndex == pageCount ? cardLimit : pageIndex * cardIncrease;
+      pageIndex === pageCount ? cardLimit : pageIndex * cardIncrease;
     cardCountElem.innerHTML = endRange;
+
     if (pageIndex > 1 && pageIndex <= pageCount) {
-      await displayMore();
+      const items = await displayMore();
       translation();
-      currentPage = pageIndex;
+      if (items.list.length === 0) {
+        removeInfiniteScroll();
+      } else {
+        currentPage = pageIndex;
+      }
     }
     if (pageIndex === pageCount) {
       removeInfiniteScroll();
@@ -39,25 +45,29 @@ const infiniteSCroll = async (plateCount) => {
   const handleInfiniteScroll = () => {
     throttle(() => {
       const endOfPage =
-        window.innerHeight + window.pageYOffset + 360 >=
+        window.innerHeight + window.pageYOffset + 400 >=
         document.body.offsetHeight;
-      if (endOfPage && currentPage < pageCount) {
+
+      const pageMax = Math.ceil(cardLimit / cardIncrease);
+
+      if (endOfPage && currentPage < pageMax) {
         platesStartRange += pageDisplay;
         platesEndRange += pageDisplay;
         addCards(currentPage + 1);
       }
 
-      if (currentPage === pageCount) {
+      if (currentPage === pageMax) {
         removeInfiniteScroll();
       }
     }, 1000);
   };
 
   const removeInfiniteScroll = () => {
-    scrollLoader?.remove();
+    scrollLoader.remove();
     window.removeEventListener("scroll", handleInfiniteScroll);
   };
   window.addEventListener("scroll", handleInfiniteScroll);
+
   await addCards(currentPage);
 };
 
