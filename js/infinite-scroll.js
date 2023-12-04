@@ -5,6 +5,7 @@ var cardLimit;
 const infiniteSCroll = async (plateCount) => {
   const cardCountElem = document.getElementById("card-count");
   const cardTotalElem = document.getElementById("card-total");
+  const cardActions = document.querySelector(".card-actions");
   let scrollLoader = document.getElementById("scroll-loader");
   cardLimit = plateCount;
   const cardIncrease = pageDisplay;
@@ -42,11 +43,12 @@ const infiniteSCroll = async (plateCount) => {
     }
   };
 
-  const handleInfiniteScroll = () => {
+  const handleInfiniteScroll = (e) => {
     throttle(() => {
-      const endOfPage =
-        window.innerHeight + window.pageYOffset + 400 >=
-        document.body.offsetHeight;
+      // window.innerHeight + window.pageYOffset + 400 >=
+      // document.body.offsetHeight;
+      const cardsCoords = cardActions.getBoundingClientRect();
+      const endOfPage = cardsCoords.top < window.innerHeight;
 
       const pageMax = Math.ceil(cardLimit / cardIncrease);
 
