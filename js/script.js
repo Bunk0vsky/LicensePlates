@@ -69,6 +69,20 @@ const resetFilters = async (countryName, stateName) => {
   platesStartRange = 0;
   platesEndRange = 20;
 
+  let params = new URLSearchParams(document.location.search);
+
+  const url = new URL(window.location.href);
+
+  if (countryName && !stateName) {
+    url.searchParams.set("country", countryName);
+    url.searchParams.delete("state");
+  } else if (stateName) {
+    url.searchParams.set("country", countryName);
+    url.searchParams.set("state", stateName);
+  }
+
+  window.history.pushState(null, "", url.toString());
+
   const data = await displayMore(countryName, stateName);
   infiniteSCroll(data?.count || 0);
   translation();

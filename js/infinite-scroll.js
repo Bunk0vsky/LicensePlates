@@ -65,7 +65,7 @@ const infiniteSCroll = async (plateCount) => {
   };
 
   const removeInfiniteScroll = () => {
-    scrollLoader.remove();
+    scrollLoader?.remove();
     window.removeEventListener("scroll", handleInfiniteScroll);
   };
   window.addEventListener("scroll", handleInfiniteScroll);
@@ -74,7 +74,18 @@ const infiniteSCroll = async (plateCount) => {
 };
 
 const shopActions = async () => {
-  const data = await displayMore();
+  const url = new URL(window.location.href);
+
+  const [countryName, stateName] = url.search
+    .replace("?country=", "")
+    .replace("state=", "")
+    .replaceAll("+", " ")
+    .split("&");
+
+  const countryNameURL = decodeURIComponent(countryName);
+  const stateNameURL = decodeURIComponent(stateName);
+
+  const data = await displayMore(countryNameURL, stateNameURL);
   translation();
 
   infiniteSCroll(data?.count || 0);

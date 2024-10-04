@@ -13,6 +13,7 @@ const toggleButton = (e) => {
   // MOJE
   const windowWidth = document.documentElement.scrollWidth;
   let states = document.querySelectorAll(".menu-nav-link");
+
   if (windowWidth < 636) {
     states.forEach(function (element) {
       element.addEventListener("click", function () {

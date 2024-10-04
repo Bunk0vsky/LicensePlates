@@ -2,6 +2,7 @@ const filterPlates = async (e) => {
   selectState(e?.textContent);
   await resetFilters("Stany Zjednoczone", e?.textContent);
 };
+
 // Function for display all countries
 const displayAll = async () => {
   selectCategory("");
@@ -15,6 +16,13 @@ const displayAll = async () => {
   const data = await displayMore();
 
   infiniteSCroll(data?.count || 0);
+
+  let params = new URLSearchParams(document.location.search);
+  const url = new URL(window.location.href);
+
+  url.searchParams.delete("country");
+  url.searchParams.delete("state");
+  window.history.pushState(null, "", url.toString());
 };
 
 var sortBy = "country asc, state asc";
@@ -29,7 +37,11 @@ const displayMore = async (countryName, stateName) => {
     ? `&& country == "${defaultCountryName}"`
     : "";
 
-  const defaultStateName = stateName || selectedState;
+  const stateNameTemp =
+    typeof stateName === "undefined" || stateName === "undefined"
+      ? null
+      : stateName;
+  const defaultStateName = stateNameTemp || selectedState;
 
   const isFilterByStateName = defaultStateName
     ? `&& state == "${defaultStateName}"`

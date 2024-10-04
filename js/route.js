@@ -11,7 +11,7 @@ const routes = {
     description: "Promocje",
   },
   kontakt: {
-    template: "/templates/contact.min.html",
+    template: "/templates/contact.html",
     title: "Skontaktuj się",
     description: "Strona kontaktowa",
   },
@@ -32,6 +32,7 @@ const locationHandler = async (hash, isEval = true) => {
   // get the url path, replace hash with empty string
   var location = hash || window.location.hash.replace("#", "");
   // if the path length is 0, set it to primary page route
+
   if (location.length == 0) {
     location = "/";
   }
@@ -57,6 +58,46 @@ const locationHandler = async (hash, isEval = true) => {
   }
 };
 
+// Funkcja usuwająca konkretny parametr z query stringa
+function removeURLParameter(...parameters) {
+  // Pobierz aktualne parametry
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Usuń każdy z podanych parametrów
+  parameters.forEach((param) => urlParams.delete(param));
+
+  // Zaktualizuj URL bez przeładowania strony
+  const newUrl =
+    window.location.protocol +
+    "//" +
+    window.location.host +
+    window.location.pathname +
+    "?" +
+    urlParams.toString();
+
+  // Usuń query string, jeśli jest pusty
+  if (!urlParams.toString()) {
+    window.history.replaceState(
+      null,
+      "",
+      window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname
+    );
+  } else {
+    window.history.replaceState(null, "", newUrl);
+  }
+}
+
+const url = new URL(window.location.href);
+
+const [countryNameURL, stateNameURL] = url.search
+  .replace("?country=", "")
+  .replace("state=", "")
+  .replaceAll("+", " ")
+  .split("&");
+
 window.addEventListener("hashchange", function () {
   locationHandler();
   translation();
@@ -70,12 +111,17 @@ const elDelivery = document.getElementById("main-nav-delivery");
 const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
+  removeURLParameter("country", "state");
   locationHandler("promocje");
   getPromoPlates();
 });
 
 elShop.addEventListener("click", async (e) => {
+  removeURLParameter("country", "state");
+  selectedCategory = "";
+  selectedState = "";
   locationHandler("sklep");
+
   getStates();
   removeElements();
 
@@ -89,15 +135,18 @@ elShop.addEventListener("click", async (e) => {
 });
 
 elMain.addEventListener("click", function () {
+  removeURLParameter("country", "state");
   locationHandler("/");
   getPlates();
 });
 elLogo.addEventListener("click", function () {
+  removeURLParameter("country", "state");
   locationHandler("/");
   getPlates();
 });
 
 elContact.addEventListener("click", function () {
+  removeURLParameter("country", "state");
   locationHandler("kontakt");
   const footer = document.querySelector("footer");
   footer.classList.add("no-border");
@@ -114,11 +163,41 @@ const addBorder = () => {
 addBorder();
 
 elDelivery.addEventListener("click", function () {
+  removeURLParameter("country", "state");
   locationHandler("dostawa");
   getDelivery();
 });
 
+const getFromLink = async () => {
+  if (url.hash === "#sklep") {
+    locationHandler("sklep");
+    getStates();
+    removeElements();
+
+    currentPage = 1;
+    platesStartRange = 0;
+    platesEndRange = 20;
+
+    try {
+      const data = await displayMore(countryNameURL, stateNameURL);
+
+      // Przetwórz dane, jeśli to konieczne
+      infiniteSCroll(data?.count || 0);
+    } catch (error) {
+      console.error("Błąd podczas pobierania danych: ", error);
+    }
+  }
+};
+
+window.addEventListener("load", (event) => {
+  getFromLink();
+});
+
 locationHandler();
+
+// const data = await displayMore(countryNameURL, stateNameURL);
+
+// infiniteSCroll(data?.count || 0);
 
 const contentDiv = document.getElementById("content");
 contentDiv.innerHTML = routes[window.location.pathname];
