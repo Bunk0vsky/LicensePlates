@@ -29,7 +29,10 @@ const infiniteSCroll = async (plateCount) => {
   const addCards = async (pageIndex) => {
     const endRange =
       pageIndex === pageCount ? cardLimit : pageIndex * cardIncrease;
-    cardCountElem.innerHTML = endRange;
+
+    if (cardTotalElem) {
+      cardCountElem.innerHTML = endRange;
+    }
 
     if (pageIndex > 1 && pageIndex <= pageCount) {
       const items = await displayMore();

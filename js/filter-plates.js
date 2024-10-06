@@ -33,9 +33,10 @@ var selectedState = "";
 
 const displayMore = async (countryName, stateName, sortByYear) => {
   const defaultCountryName = countryName || selectedCategory;
-  const isFilterByCountryName = defaultCountryName
-    ? `&& country == "${defaultCountryName}"`
-    : "";
+  const isFilterByCountryName =
+    defaultCountryName && defaultCountryName !== "null"
+      ? `&& country == "${defaultCountryName}"`
+      : "";
 
   const stateNameTemp =
     typeof stateName === "undefined" || stateName === "undefined"
@@ -43,9 +44,10 @@ const displayMore = async (countryName, stateName, sortByYear) => {
       : stateName;
   const defaultStateName = stateNameTemp || selectedState;
 
-  const isFilterByStateName = defaultStateName
-    ? `&& state == "${defaultStateName}"`
-    : "";
+  const isFilterByStateName =
+    defaultStateName && defaultStateName !== "null"
+      ? `&& state == "${defaultStateName}"`
+      : "";
 
   const isSortByYear = sortByYear ? sortByYear : sortBy;
 
@@ -66,6 +68,7 @@ const displayMore = async (countryName, stateName, sortByYear) => {
   const response = await fetch(URL_to_get_more_states);
 
   let { result } = await response.json();
+
   if (result?.list.length > 0) {
     const loader = document.getElementById("loader");
     loader?.classList?.add("hidden");
