@@ -11,7 +11,9 @@ const infiniteSCroll = async (plateCount) => {
   const cardIncrease = pageDisplay;
   const pageCount = Math.ceil(cardLimit / cardIncrease);
 
-  cardTotalElem?.innerHTML = cardLimit ?? 0;
+  if (cardTotalElem) {
+    cardTotalElem.innerHTML = cardLimit ?? 0;
+  }
 
   let throttleTimer;
   const throttle = (callback, time) => {
