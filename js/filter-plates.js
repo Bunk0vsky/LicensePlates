@@ -1,3 +1,5 @@
+let params = new URLSearchParams(document.location.search);
+
 const filterPlates = async (e) => {
   selectState(e?.textContent);
   await resetFilters("Stany Zjednoczone", e?.textContent);
@@ -17,11 +19,9 @@ const displayAll = async () => {
 
   infiniteSCroll(data?.count || 0);
 
-  let params = new URLSearchParams(document.location.search);
-  const url = new URL(window.location.href);
-
   url.searchParams.delete("country");
   url.searchParams.delete("state");
+  url.searchParams.delete("year");
   window.history.pushState(null, "", url.toString());
 };
 
@@ -31,7 +31,7 @@ var platesEndRange = 20;
 var selectedCategory = "";
 var selectedState = "";
 
-const displayMore = async (countryName, stateName) => {
+const displayMore = async (countryName, stateName, sortByYear) => {
   const defaultCountryName = countryName || selectedCategory;
   const isFilterByCountryName = defaultCountryName
     ? `&& country == "${defaultCountryName}"`
@@ -47,11 +47,13 @@ const displayMore = async (countryName, stateName) => {
     ? `&& state == "${defaultStateName}"`
     : "";
 
+  const isSortByYear = sortByYear ? sortByYear : sortBy;
+
   let QUERY_DISPLAY_MORE_STATES = encodeURIComponent(`{
       "list":*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}] {
       ...,
       "imageUrl": src.asset->url
-    } | order(${sortBy}) [${platesStartRange}...${platesEndRange}],
+    } | order(${isSortByYear}) [${platesStartRange}...${platesEndRange}],
       "count": count(*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}]{
         ...,
       }),

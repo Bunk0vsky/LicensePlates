@@ -74,18 +74,17 @@ const infiniteSCroll = async (plateCount) => {
 };
 
 const shopActions = async () => {
-  const url = new URL(window.location.href);
+  let params = new URLSearchParams(url.search);
 
-  const [countryName, stateName] = url.search
-    .replace("?country=", "")
-    .replace("state=", "")
-    .replaceAll("+", " ")
-    .split("&");
+  const countryName = params?.get("country");
+  const stateName = params?.get("state");
+  const yearSort = params?.get("year");
 
   const countryNameURL = decodeURIComponent(countryName);
-  const stateNameURL = decodeURIComponent(stateName);
+  const stateNameURL = stateName ? decodeURIComponent(stateName) : null;
+  const yearSortURL = yearSort ? decodeURIComponent(yearSort) : null;
 
-  const data = await displayMore(countryNameURL, stateNameURL);
+  const data = await displayMore(countryNameURL, stateNameURL, yearSortURL);
   translation();
 
   infiniteSCroll(data?.count || 0);

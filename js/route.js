@@ -111,13 +111,13 @@ const elDelivery = document.getElementById("main-nav-delivery");
 const elContact = document.getElementById("main-nav-contact");
 
 elPromo.addEventListener("click", function (e) {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   locationHandler("promocje");
   getPromoPlates();
 });
 
 elShop.addEventListener("click", async (e) => {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   selectedCategory = "";
   selectedState = "";
   locationHandler("sklep");
@@ -135,18 +135,18 @@ elShop.addEventListener("click", async (e) => {
 });
 
 elMain.addEventListener("click", function () {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   locationHandler("/");
   getPlates();
 });
 elLogo.addEventListener("click", function () {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   locationHandler("/");
   getPlates();
 });
 
 elContact.addEventListener("click", function () {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   locationHandler("kontakt");
   const footer = document.querySelector("footer");
   footer.classList.add("no-border");
@@ -163,7 +163,7 @@ const addBorder = () => {
 addBorder();
 
 elDelivery.addEventListener("click", function () {
-  removeURLParameter("country", "state");
+  removeURLParameter("country", "state", "year");
   locationHandler("dostawa");
   getDelivery();
 });

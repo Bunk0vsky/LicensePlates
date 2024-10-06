@@ -16,14 +16,34 @@ var content = "";
 const selectedOption = async (e) => {
   content = e.textContent;
 
+  let params = new URLSearchParams(document.location.search);
+  const url = new URL(window.location.href);
+
   if (selectedCategory === "Reszta Świata") {
     sortBy = "alt asc";
+    url.searchParams.delete("year");
+    window.history.pushState(null, "", url.toString());
+  } else if (e.id === "year asc" || e.id === "year desc") {
+    url.searchParams.set("year", e.id);
+    sortBy = e.id;
+    window.history.pushState(null, "", url.toString());
   } else {
     sortBy = e.id;
   }
 
+  const newParams = new URLSearchParams(document.location.search);
+
   closeSortingMenu();
-  await resetFilters();
+
+  const countryName = params?.get("country");
+  const stateName = params?.get("state");
+  const yearSort = newParams?.get("year");
+
+  const countryNameURL = decodeURIComponent(countryName);
+  const stateNameURL = stateName ? decodeURIComponent(stateName) : null;
+  const yearSortURL = yearSort ? decodeURIComponent(yearSort) : null;
+
+  await resetFilters(countryNameURL, stateNameURL, yearSortURL);
   const placeHolder = document.querySelector(".select-placeholder");
   placeHolder.textContent = content;
 };
@@ -63,27 +83,36 @@ const debounce = (callback, wait) => {
   };
 };
 
-const resetFilters = async (countryName, stateName) => {
+const resetFilters = async (countryName, stateName, sortByYear) => {
   removeElements();
   currentPage = 1;
   platesStartRange = 0;
   platesEndRange = 20;
 
   let params = new URLSearchParams(document.location.search);
-
   const url = new URL(window.location.href);
 
-  if (countryName && !stateName) {
+  if (countryName && !stateName && !sortByYear) {
     url.searchParams.set("country", countryName);
     url.searchParams.delete("state");
-  } else if (stateName) {
+    url.searchParams.delete("year");
+  } else if (stateName && !sortByYear) {
     url.searchParams.set("country", countryName);
     url.searchParams.set("state", stateName);
+    url.searchParams.delete("year");
+  } else if (countryName && !stateName && sortByYear) {
+    url.searchParams.set("country", countryName);
+    url.searchParams.delete("state");
+    url.searchParams.set("year", sortByYear);
+  } else if (stateName && sortByYear) {
+    url.searchParams.set("country", countryName);
+    url.searchParams.set("state", stateName);
+    url.searchParams.set("year", sortByYear);
   }
 
   window.history.pushState(null, "", url.toString());
 
-  const data = await displayMore(countryName, stateName);
+  const data = await displayMore(countryName, stateName, sortByYear);
   infiniteSCroll(data?.count || 0);
   translation();
 };
@@ -113,31 +142,6 @@ window.addEventListener("load", () => {
 window.addEventListener("hashchange", function () {
   onLoadTranslate();
 });
-
-// function counter() {
-//   var counterContainer = document.querySelector(".website-counter");
-//   var resetButton = document.querySelector("#reset");
-//   var visitCount = localStorage.getItem("page_view");
-
-//   // Check if page_view entry is present
-//   if (visitCount) {
-//     visitCount = Number(visitCount) + 1;
-//     localStorage.setItem("page_view", visitCount);
-//   } else {
-//     visitCount = 1;
-//     localStorage.setItem("page_view", 1);
-//   }
-//   counterContainer.innerHTML = visitCount;
-
-//   // Adding onClick event listener
-//   // resetButton.addEventListener("click", () => {
-//   //   visitCount = 1;
-//   //   localStorage.setItem("page_view", 1);
-//   //   counterContainer.innerHTML = visitCount;
-//   // });
-// }
-
-// counter();
 
 //Make mobile navigation work
 
