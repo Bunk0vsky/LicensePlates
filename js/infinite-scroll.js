@@ -1,5 +1,5 @@
 var currentPage = 1;
-var pageDisplay = 20;
+var pageDisplay = 100;
 var cardLimit;
 
 const infiniteSCroll = async (plateCount) => {
@@ -30,22 +30,24 @@ const infiniteSCroll = async (plateCount) => {
     const endRange =
       pageIndex === pageCount ? cardLimit : pageIndex * cardIncrease;
 
-    if (cardTotalElem) {
-      cardCountElem.innerHTML = endRange;
-    }
+    // if (cardTotalElem) {
+    // cardCountElem.innerHTML = endRange;
+    // }
 
-    if (pageIndex > 1 && pageIndex <= pageCount) {
-      const items = await displayMore();
-      translation();
-      if (items.list.length === 0) {
-        removeInfiniteScroll();
-      } else {
-        currentPage = pageIndex;
-      }
-    }
-    if (pageIndex === pageCount) {
-      removeInfiniteScroll();
-    }
+    // if (pageIndex > 1 && pageIndex <= pageCount) {
+    //   const items = await displayMore();
+    //   translation();
+
+    //   console.log(items, pageIndex, pageCount);
+    //   if (items.list.length === 0) {
+    //     removeInfiniteScroll();
+    //   } else {
+    //     currentPage = pageIndex;
+    //   }
+    // }
+    // if (pageIndex === pageCount) {
+    removeInfiniteScroll();
+    // }
   };
 
   const handleInfiniteScroll = (e) => {
@@ -57,23 +59,23 @@ const infiniteSCroll = async (plateCount) => {
 
       const pageMax = Math.ceil(cardLimit / cardIncrease);
 
-      if (endOfPage && currentPage < pageMax) {
-        platesStartRange += pageDisplay;
-        platesEndRange += pageDisplay;
-        addCards(currentPage + 1);
-      }
+      // if (endOfPage && currentPage < pageMax) {
+      //   platesStartRange += pageDisplay;
+      //   platesEndRange += pageDisplay;
+      //   addCards(currentPage + 1);
+      // }
 
-      if (currentPage === pageMax) {
-        removeInfiniteScroll();
-      }
+      // if (currentPage === pageMax) {
+      removeInfiniteScroll();
+      // }
     }, 1000);
   };
 
   const removeInfiniteScroll = () => {
     scrollLoader?.remove();
-    window.removeEventListener("scroll", handleInfiniteScroll);
+    // window.removeEventListener("scroll", handleInfiniteScroll);
   };
-  window.addEventListener("scroll", handleInfiniteScroll);
+  // window.addEventListener("scroll", handleInfiniteScroll);
 
   await addCards(currentPage);
 };
@@ -91,6 +93,12 @@ const shopActions = async () => {
 
   const data = await displayMore(countryNameURL, stateNameURL, yearSortURL);
   translation();
+
+  if (yearSortURL) {
+    const placeHolder = document.querySelector(".select-placeholder");
+    placeHolder.textContent =
+      yearSortURL === "year asc" ? "Rok: rosnąco" : "Rok: malejąco";
+  }
 
   infiniteSCroll(data?.count || 0);
   getStates();

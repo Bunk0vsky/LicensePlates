@@ -55,7 +55,7 @@ const displayMore = async (countryName, stateName, sortByYear) => {
       "list":*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}] {
       ...,
       "imageUrl": src.asset->url
-    } | order(${isSortByYear}) [${platesStartRange}...${platesEndRange}],
+    } | order(${isSortByYear}),
       "count": count(*[_type == "plate" ${isFilterByCountryName} ${isFilterByStateName}]{
         ...,
       }),

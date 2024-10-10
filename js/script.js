@@ -28,6 +28,8 @@ const selectedOption = async (e) => {
     sortBy = e.id;
     window.history.pushState(null, "", url.toString());
   } else {
+    url.searchParams.delete("year");
+    window.history.pushState(null, "", url.toString());
     sortBy = e.id;
   }
 
@@ -87,30 +89,32 @@ const resetFilters = async (countryName, stateName, sortByYear) => {
   removeElements();
   currentPage = 1;
   platesStartRange = 0;
-  platesEndRange = 20;
+  platesEndRange = 100;
 
   let params = new URLSearchParams(document.location.search);
   const url = new URL(window.location.href);
 
   if (countryName && !stateName && !sortByYear) {
-    url.searchParams.set("country", countryName);
+    countryName !== "null" && url.searchParams.set("country", countryName);
     url.searchParams.delete("state");
     url.searchParams.delete("year");
   } else if (stateName && !sortByYear) {
-    url.searchParams.set("country", countryName);
+    countryName !== "null" && url.searchParams.set("country", countryName);
     url.searchParams.set("state", stateName);
     url.searchParams.delete("year");
   } else if (countryName && !stateName && sortByYear) {
-    url.searchParams.set("country", countryName);
+    countryName !== "null" && url.searchParams.set("country", countryName);
     url.searchParams.delete("state");
     url.searchParams.set("year", sortByYear);
   } else if (stateName && sortByYear) {
-    url.searchParams.set("country", countryName);
+    countryName !== "null" && url.searchParams.set("country", countryName);
     url.searchParams.set("state", stateName);
     url.searchParams.set("year", sortByYear);
   }
 
   window.history.pushState(null, "", url.toString());
+  const placeHolder = document.querySelector(".select-placeholder");
+  placeHolder.textContent = "Sortuj...";
 
   const data = await displayMore(countryName, stateName, sortByYear);
   infiniteSCroll(data?.count || 0);

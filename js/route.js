@@ -16,7 +16,7 @@ const routes = {
     description: "Strona kontaktowa",
   },
   sklep: {
-    template: "/templates/shop.min.html",
+    template: "/templates/shop.html",
     script: "/js/infinite-scroll.js",
     title: "Sklep",
     description: "Sklep",
@@ -127,7 +127,7 @@ elShop.addEventListener("click", async (e) => {
 
   currentPage = 1;
   platesStartRange = 0;
-  platesEndRange = 20;
+  platesEndRange = 100;
 
   const data = await displayMore();
 
@@ -176,7 +176,7 @@ const getFromLink = async () => {
 
     currentPage = 1;
     platesStartRange = 0;
-    platesEndRange = 20;
+    platesEndRange = 100;
 
     try {
       const data = await displayMore(countryNameURL, stateNameURL);
